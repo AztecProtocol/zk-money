@@ -12,19 +12,7 @@ import { useLegacyEthAccountState } from 'alt-model/assets/l1_balance_hooks';
 import { WalletDropdownSelect } from '../defi_modal/wallet_dropdown_select';
 import { WalletAccountIndicator } from 'ui-components';
 import style from './shield.module.scss';
-
-function toLegacyRecipientInput({ recipientAlias }: ShieldFormFields, { input }: ShieldFormValidationResult) {
-  const { aliasIsValid } = input;
-  const valid =
-    aliasIsValid === undefined
-      ? ValueAvailability.PENDING
-      : aliasIsValid
-      ? ValueAvailability.VALID
-      : ValueAvailability.INVALID;
-  return {
-    value: { input: recipientAlias, txType: TxType.DEPOSIT, valid },
-  };
-}
+import { ShieldPrivacySection } from './shield_privacy_section';
 
 interface ShieldPage1Props {
   fields: ShieldFormFields;
@@ -91,7 +79,9 @@ export function ShieldPage1({
           <>
             <RecipientSection
               theme={InputTheme.WHITE}
-              recipient={toLegacyRecipientInput(fields, validationResult)}
+              recipientStr={fields.recipientAlias}
+              isLoading={validationResult.input.aliasIsValid === undefined}
+              isValid={!!validationResult.input.aliasIsValid}
               sendMode={SendMode.SEND}
               onChangeValue={onChangeRecipientAlias}
             />
@@ -109,7 +99,7 @@ export function ShieldPage1({
             />
           </>
         }
-        rightPanel={<div />}
+        rightPanel={<ShieldPrivacySection />}
       />
       <SplitSection
         leftPanel={
