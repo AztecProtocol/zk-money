@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e
+
+TARGET_PROJECT=$1
+PUSH_LABEL=$2
+
+PROJECTS=(
+  barretenberg:./dockerfiles/Dockerfile.x86_64-linux-clang:barretenberg-x86_64-linux-clang
+  barretenberg:./dockerfiles/Dockerfile.wasm-linux-clang:barretenberg-wasm-linux-clang
+  barretenberg.js
+  blockchain-vks
+  blockchain
+  halloumi
+  falafel
+  sdk
+  hummus
+  end-to-end
+  wasabi
+  zk-money
+)
+
+for E in ${PROJECTS[@]}; do
+  ARR=(${E//:/ })
+  PROJECT=${ARR[0]}
+  DOCKERFILE=${ARR[1]:-./Dockerfile}
+  REPO=${ARR[2]:-$PROJECT}
+
+  cd $PROJECT
+  echo
+  echo
+  echo
+  echo "*** Building $PROJECT:$DOCKERFILE -> $REPO ***"
+  echo
+
+  resolve_symlinks
+  time docker build -f $DOCKERFILE -t $ECR_URL/$REPO:latest .
+
+  if [ "$PROJECT" = "$TARGET_PROJECT" ]; then
+    if [ -n "$PUSH_LABEL" ]; then
+      $(aws ecr get-login --region eu-west-2 --no-include-email) 2> /dev/null
+      docker tag $ECR_URL/$REPO:latest $ECR_URL/$REPO:$PUSH_LABEL
+      docker push $ECR_URL/$REPO:$PUSH_LABEL
+    fi
+    break
+  fi
+
+  cd ..
+done
