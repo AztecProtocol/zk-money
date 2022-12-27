@@ -1,9 +1,9 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import { wallet, connectorsForWallets } from '@rainbow-me/rainbowkit';
+
 import { configureChains, createClient, Chain, chain } from 'wagmi';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
-import { publicProvider } from 'wagmi/providers/public';
 import type { Config } from '../config.js';
 
 function getChain(chainId: number): Chain {
@@ -39,8 +39,11 @@ function getPublicProvider(config: Config) {
       // TODO: reshape config to remove this flakey parsing
       const match = config.ethereumHost.match(/[0-9a-z]{32}/);
       const infuraId = match?.[0];
-      if (!infuraId) throw new Error('Could not parse infuraId');
-      return infuraProvider({ infuraId });
+      if (infuraId) {
+        return infuraProvider({ infuraId });
+      } else {
+        return jsonRpcProvider({ rpc: () => ({ http: config.ethereumHost }) });
+      }
     }
     case 1337:
     case 0xa57ec:
@@ -54,9 +57,10 @@ function getPublicProvider(config: Config) {
 export function getWagmiRainbowConfig(config: Config) {
   const { chains, provider, webSocketProvider } = configureChains(
     [getChain(config.chainId)],
-    [getPublicProvider(config), publicProvider()],
+    [getPublicProvider(config)],
   );
-  const wallets = [wallet.metaMask({ chains }), wallet.walletConnect({ chains })];
+
+  const wallets = [wallet.metaMask({ chains }), wallet.walletConnect({ chains }), wallet.brave({ chains })];
   const connectors = connectorsForWallets([{ groupName: 'Supported', wallets }]);
   const wagmiClient = createClient({
     autoConnect: true,

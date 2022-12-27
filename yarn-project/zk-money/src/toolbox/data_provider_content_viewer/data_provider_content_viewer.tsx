@@ -1,5 +1,6 @@
 import { DataProviderWrapper } from '../../bridge-clients/client/aztec/data-provider/DataProvider.js';
-import { EthAddress, JsonRpcProvider } from '@aztec/sdk';
+import { EthAddress } from '@aztec/sdk';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { useEffect, useState } from 'react';
 import { mapObj } from '../../app/util/objects.js';
 
@@ -16,7 +17,7 @@ export function DataProviderContentViewer() {
 }
 
 async function fetchData(dataProviderAddress: string, rpcUrl: string) {
-  const jsonRpcProvider = new JsonRpcProvider(rpcUrl);
+  const jsonRpcProvider = new StaticJsonRpcProvider(rpcUrl);
   const wrapper = DataProviderWrapper.create(jsonRpcProvider, EthAddress.fromString(dataProviderAddress) as any);
   const assets = await wrapper.getAssets();
   const assetsPod = mapObj(assets, x => x.assetAddress.toString());
@@ -36,7 +37,7 @@ async function fetchAndAssembleData() {
   );
   const prod = await fetchData(
     '0x8b2e54fa4398c8f7502f30ac94cb1f354390c8ab',
-    'https://mainnet.infura.io/v3/ce91afa358e44c758ad70908b5ef0c23',
+    'https://aztec-connect-prod-eth-host.aztec.network:8545',
   );
   const assembled = {
     'aztec-connect-dev': dev,
