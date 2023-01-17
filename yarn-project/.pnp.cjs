@@ -88,14 +88,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@aztec/barretenberg", [\
-        ["npm:2.1.76", {\
-          "packageLocation": "./.yarn/cache/@aztec-barretenberg-npm-2.1.76-09adf43574-5bcc0db8f4.zip/node_modules/@aztec/barretenberg/",\
+        ["npm:2.1.77", {\
+          "packageLocation": "./.yarn/cache/@aztec-barretenberg-npm-2.1.77-f87ae69d62-b2d30526a2.zip/node_modules/@aztec/barretenberg/",\
           "packageDependencies": [\
-            ["@aztec/barretenberg", "npm:2.1.76"],\
+            ["@aztec/barretenberg", "npm:2.1.77"],\
             ["@types/levelup", "npm:4.3.3"],\
             ["browserify-cipher", "npm:1.0.1"],\
             ["cross-fetch", "npm:3.1.5"],\
-            ["debug", "virtual:09adf4357434ed052f2b58fbd692d4b1035e577638ebde876ac0985dd9b707d245c5771da8caa17a2deb5e7291145bf7cd1e48fe78914f4e09014c8d42bcaeca#npm:4.3.4"],\
+            ["debug", "virtual:f87ae69d6267b711e0ade677c624114dd76a32506815efd9db070786a404b44a217d628b08da5f3422c609c89506a0e2f0a322c22d9e09ceb3770e05f7ad036f#npm:4.3.4"],\
             ["detect-node", "npm:2.1.0"],\
             ["fs-extra", "npm:10.0.0"],\
             ["hash.js", "npm:1.1.7"],\
@@ -111,11 +111,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@aztec/blockchain", [\
-        ["npm:2.1.76", {\
-          "packageLocation": "./.yarn/cache/@aztec-blockchain-npm-2.1.76-24e2fa01c6-fafc9978c7.zip/node_modules/@aztec/blockchain/",\
+        ["npm:2.1.77", {\
+          "packageLocation": "./.yarn/cache/@aztec-blockchain-npm-2.1.77-f8eaf65ebc-2d4406c48b.zip/node_modules/@aztec/blockchain/",\
           "packageDependencies": [\
-            ["@aztec/blockchain", "npm:2.1.76"],\
-            ["@aztec/barretenberg", "npm:2.1.76"],\
+            ["@aztec/blockchain", "npm:2.1.77"],\
+            ["@aztec/barretenberg", "npm:2.1.77"],\
             ["@ethersproject/abi", "npm:5.5.0"],\
             ["@ethersproject/abstract-provider", "npm:5.5.1"],\
             ["@ethersproject/contracts", "npm:5.5.0"],\
@@ -150,12 +150,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@aztec/sdk", [\
-        ["npm:2.1.76", {\
-          "packageLocation": "./.yarn/cache/@aztec-sdk-npm-2.1.76-c7f26350c8-0f35fc0ad3.zip/node_modules/@aztec/sdk/",\
+        ["npm:2.1.77", {\
+          "packageLocation": "./.yarn/cache/@aztec-sdk-npm-2.1.77-a0e2c79cd1-b4f290511c.zip/node_modules/@aztec/sdk/",\
           "packageDependencies": [\
-            ["@aztec/sdk", "npm:2.1.76"],\
-            ["@aztec/barretenberg", "npm:2.1.76"],\
-            ["@aztec/blockchain", "npm:2.1.76"],\
+            ["@aztec/sdk", "npm:2.1.77"],\
+            ["@aztec/barretenberg", "npm:2.1.77"],\
+            ["@aztec/blockchain", "npm:2.1.77"],\
             ["detect-node", "npm:2.1.0"],\
             ["dexie", "npm:3.0.1"],\
             ["events", "npm:3.3.0"],\
@@ -164,10 +164,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["levelup", "npm:5.1.1"],\
             ["memdown", "npm:6.1.1"],\
             ["serve", "npm:14.0.1"],\
-            ["sqlite3", "virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:5.0.9"],\
+            ["sqlite3", "virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:5.0.9"],\
             ["supports-color", "npm:7.2.0"],\
             ["tslib", "npm:2.4.0"],\
-            ["typeorm", "virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:0.3.10"]\
+            ["typeorm", "virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:0.3.10"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -19835,20 +19835,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:09adf4357434ed052f2b58fbd692d4b1035e577638ebde876ac0985dd9b707d245c5771da8caa17a2deb5e7291145bf7cd1e48fe78914f4e09014c8d42bcaeca#npm:4.3.4", {\
-          "packageLocation": "./.yarn/__virtual__/debug-virtual-4ed277442d/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
-          "packageDependencies": [\
-            ["debug", "virtual:09adf4357434ed052f2b58fbd692d4b1035e577638ebde876ac0985dd9b707d245c5771da8caa17a2deb5e7291145bf7cd1e48fe78914f4e09014c8d42bcaeca#npm:4.3.4"],\
-            ["@types/supports-color", null],\
-            ["ms", "npm:2.1.2"],\
-            ["supports-color", "npm:7.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/supports-color",\
-            "supports-color"\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["virtual:1f43412872fd884ea1247d77cd236ac89b1b489fe66cda1675f885395b16fa7be38fca8f4ee0ddb7d79481d2482886d2d62a39f86813baeaf755095851975ab1#npm:3.2.7", {\
           "packageLocation": "./.yarn/__virtual__/debug-virtual-f112a3202f/0/cache/debug-npm-3.2.7-754e818c7a-b3d8c59407.zip/node_modules/debug/",\
           "packageDependencies": [\
@@ -19884,6 +19870,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supports-color", null],\
             ["ms", "npm:2.1.2"],\
             ["supports-color", null]\
+          ],\
+          "packagePeers": [\
+            "@types/supports-color",\
+            "supports-color"\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["virtual:f87ae69d6267b711e0ade677c624114dd76a32506815efd9db070786a404b44a217d628b08da5f3422c609c89506a0e2f0a322c22d9e09ceb3770e05f7ad036f#npm:4.3.4", {\
+          "packageLocation": "./.yarn/__virtual__/debug-virtual-b0630eea7f/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
+          "packageDependencies": [\
+            ["debug", "virtual:f87ae69d6267b711e0ade677c624114dd76a32506815efd9db070786a404b44a217d628b08da5f3422c609c89506a0e2f0a322c22d9e09ceb3770e05f7ad036f#npm:4.3.4"],\
+            ["@types/supports-color", null],\
+            ["ms", "npm:2.1.2"],\
+            ["supports-color", "npm:7.2.0"]\
           ],\
           "packagePeers": [\
             "@types/supports-color",\
@@ -34721,16 +34721,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],\
       ["sqlite3", [\
         ["npm:5.0.9", {\
-          "packageLocation": "./.yarn/unplugged/sqlite3-virtual-fd911e666c/node_modules/sqlite3/",\
+          "packageLocation": "./.yarn/unplugged/sqlite3-virtual-aed6742206/node_modules/sqlite3/",\
           "packageDependencies": [\
             ["sqlite3", "npm:5.0.9"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:5.0.9", {\
-          "packageLocation": "./.yarn/unplugged/sqlite3-virtual-fd911e666c/node_modules/sqlite3/",\
+        ["virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:5.0.9", {\
+          "packageLocation": "./.yarn/unplugged/sqlite3-virtual-aed6742206/node_modules/sqlite3/",\
           "packageDependencies": [\
-            ["sqlite3", "virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:5.0.9"],\
+            ["sqlite3", "virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:5.0.9"],\
             ["@mapbox/node-pre-gyp", "npm:1.0.9"],\
             ["@types/node-gyp", null],\
             ["node-addon-api", "npm:4.3.0"],\
@@ -36382,10 +36382,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:0.3.10", {\
-          "packageLocation": "./.yarn/__virtual__/typeorm-virtual-5b53da4531/0/cache/typeorm-npm-0.3.10-4667857f33-8a4ce43b42.zip/node_modules/typeorm/",\
+        ["virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:0.3.10", {\
+          "packageLocation": "./.yarn/__virtual__/typeorm-virtual-dd1ac1a096/0/cache/typeorm-npm-0.3.10-4667857f33-8a4ce43b42.zip/node_modules/typeorm/",\
           "packageDependencies": [\
-            ["typeorm", "virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:0.3.10"],\
+            ["typeorm", "virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:0.3.10"],\
             ["@google-cloud/spanner", null],\
             ["@sap/hana-client", null],\
             ["@sqltools/formatter", "npm:1.2.3"],\
@@ -36430,7 +36430,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["reflect-metadata", "npm:0.1.13"],\
             ["sha.js", "npm:2.4.11"],\
             ["sql.js", null],\
-            ["sqlite3", "virtual:c7f26350c8c8beb924b8ca9a8fd7c8fcef506682d6c393b40a750aee91a258cbcbb97f8423c1d1910d00636820d95f0f8b054ae3520389877b4a5a5b23a76217#npm:5.0.9"],\
+            ["sqlite3", "virtual:a0e2c79cd15174c1bb6ad04a544debd54f772119bbac5dcd3a69fe05362419a8b5fcddda0733bf3a4775f20d148e1a297ed2dc21f7866d7a54fe5a0c8af6ead6#npm:5.0.9"],\
             ["ts-node", null],\
             ["tslib", "npm:2.4.0"],\
             ["typeorm-aurora-data-api-driver", null],\
@@ -38766,7 +38766,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./zk-money/",\
           "packageDependencies": [\
             ["zk.money", "workspace:zk-money"],\
-            ["@aztec/sdk", "npm:2.1.76"],\
+            ["@aztec/sdk", "npm:2.1.77"],\
             ["@babel/plugin-syntax-import-assertions", "virtual:9bf5e241e2dc17b833e112da24bae967b9d49b46aa3f05606e86f481d7497e582e0889d30fdb3a89cc6757535ad24586561398b64b10d45c0fcde85b5efce039#npm:7.18.6"],\
             ["@ethersproject/abi", "npm:5.7.0"],\
             ["@ethersproject/abstract-signer", "npm:5.7.0"],\

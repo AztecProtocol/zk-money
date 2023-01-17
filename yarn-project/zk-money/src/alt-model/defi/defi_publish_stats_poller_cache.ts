@@ -19,7 +19,6 @@ export function createDefiPublishStatsPollerCache(sdkObs: SdkObs) {
         if (!sdk) return undefined;
         return () =>
           sdk.queryDefiPublishStats({
-            periodSeconds: 0, // rm sdk has upgraded
             bridgeAddressId,
             inputAssetIdA,
             inputAssetIdB,
