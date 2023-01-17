@@ -3,12 +3,10 @@
     "arcanis.vscode-zipfs",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "ms-vscode.cpptools",
     "eamodio.gitlens",
     "hashicorp.terraform",
     "ms-vsliveshare.vsliveshare",
     "ms-vsliveshare.vsliveshare-pack",
-    "juanblanco.solidity",
     "styled-components.vscode-styled-components"
   ]
 }
