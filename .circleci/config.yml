@@ -94,15 +94,6 @@ jobs:
           name: 'Build and test'
           command: build zk-money
 
-  yarn-join:
-    docker:
-      - image: cimg/base:current
-    resource_class: small
-    steps:
-      - run:
-          name: 'Noop'
-          command: echo Noop
-
   deploy:
     machine:
       image: ubuntu-2004:202010-01
@@ -145,12 +136,8 @@ workflows:
           filters: *tag_filter
       - zk-money: *yarn_project
       # Not currently a yarn project due to using next.js, but should be.
-      - yarn-join:
-          requires:
-            - zk-money
-          filters: *deploy_filters
       - deploy:
           requires:
             # Must list all projects at the end of a dependency chain.
-            - yarn-join
+            - zk-money
           filters: *deploy_filters
