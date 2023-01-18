@@ -23,10 +23,11 @@ async function fetchData(falafelUrl: string, rpcUrl: string) {
     const jsonRpcProvider = new StaticJsonRpcProvider(rpcUrl);
     const wrapper = DataProviderWrapper.create(jsonRpcProvider, EthAddress.fromString(dataProviderAddress));
     const assets = await wrapper.getAssets();
+    const assetList = await wrapper.getAssetsList();
     const assetsPod = mapObj(assets, x => x.assetAddress.toString());
     const bridges = await wrapper.getBridges();
     const bridgesPod = mapObj(bridges, x => x.bridgeAddressId);
-    return { assets: assetsPod, bridges: bridgesPod };
+    return { assets: assetsPod, bridges: bridgesPod, assetList: assetList.map(x => x.label) };
   } catch {
     return;
   }
@@ -36,11 +37,11 @@ async function fetchAndAssembleData() {
   const localhostProm = fetchData('http://localhost:8081', 'http://localhost:8545');
   const devProm = fetchData(
     'https://api.aztec.network/aztec-connect-dev/falafel',
-    'https://aztec-connect-dev-eth-host.aztec.network:8545/INSERT_KEY',
+    'https://aztec-connect-dev-eth-host.aztec.network:8545/e265e055c977fee83d415d3edeb26953',
   );
   const testProm = fetchData(
     'https://api.aztec.network/aztec-connect-testnet/falafel',
-    'https://aztec-connect-testnet-eth-host.aztec.network:8545/INSERT_KEY',
+    'https://aztec-connect-testnet-eth-host.aztec.network:8545/20ceb3a1db59c9b71315d98530093f94',
   );
   const prodProm = fetchData(
     'https://api.aztec.network/aztec-connect-prod/falafel',

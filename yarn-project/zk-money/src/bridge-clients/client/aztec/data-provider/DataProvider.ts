@@ -58,6 +58,15 @@ export class DataProviderWrapper {
     };
   }
 
+  async getAssetsList(): Promise<AssetData[]> {
+    const temp = await this.dataProvider.getAssets();
+    return temp.map(asset => ({
+      assetAddress: EthAddress.fromString(asset.assetAddress),
+      assetId: asset.assetId.toNumber(),
+      label: asset.label,
+    }));
+  }
+
   async getAssets(): Promise<{ [key: string]: AssetData }> {
     const assetDatas = await this.dataProvider.getAssets();
     const dict: { [key: string]: AssetData } = {};
