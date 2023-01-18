@@ -1,33 +1,7 @@
-FROM 278380418400.dkr.ecr.eu-west-2.amazonaws.com/barretenberg-x86_64-linux-clang
-FROM 278380418400.dkr.ecr.eu-west-2.amazonaws.com/barretenberg-wasm-linux-clang
-FROM 278380418400.dkr.ecr.eu-west-2.amazonaws.com/blockchain-vks
-FROM 278380418400.dkr.ecr.eu-west-2.amazonaws.com/contracts
-
 FROM node:18-alpine
 RUN apk update && apk add --no-cache build-base git python3 curl bash jq
-COPY --from=0 /usr/src/barretenberg/cpp/srs_db/ignition /usr/src/barretenberg/cpp/srs_db/ignition
-COPY --from=0 /usr/src/barretenberg/cpp/srs_db/download_ignition.sh /usr/src/barretenberg/cpp/srs_db/download_ignition.sh
-COPY --from=0 /usr/src/barretenberg/cpp/build/bin /usr/src/barretenberg/cpp/build/bin
-COPY --from=1 /usr/src/barretenberg/cpp/build/bin /usr/src/barretenberg/cpp/build-wasm/bin
-COPY --from=2 /usr/src/blockchain-vks/keys /usr/src/blockchain-vks/keys
-COPY --from=3 /usr/src/contracts /usr/src/contracts
 WORKDIR /usr/src/yarn-project
 # We only want to copy the package.json's, to ensure we only rebuild this image if project dependencies changed.
-COPY account-migrator/package.json account-migrator/package.json
-COPY barretenberg.js/package.json barretenberg.js/package.json
-COPY blockchain/package.json blockchain/package.json
-COPY aztec-dev-cli/package.json aztec-dev-cli/package.json
-COPY contracts-verifier-test/package.json contracts-verifier-test/package.json
-COPY explorer/package.json explorer/package.json
-COPY halloumi/package.json halloumi/package.json
-COPY kebab/package.json kebab/package.json
-COPY falafel/package.json falafel/package.json
-COPY block-server/package.json block-server/package.json
-COPY sdk/package.json sdk/package.json
-COPY hummus/package.json hummus/package.json
-COPY end-to-end/package.json end-to-end/package.json
-COPY wallet/package.json wallet/package.json
-COPY wasabi/package.json wasabi/package.json
 COPY zk-money/package.json zk-money/package.json
 # All workspaces use the linting config, so always include it.
 COPY eslint-config eslint-config
