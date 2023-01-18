@@ -26,9 +26,7 @@ interface InvestmentsFilterProps {
 }
 
 function InvestmentsFilter({ filters, onChangeFilters, recipes }: InvestmentsFilterProps) {
-  const assetSymbolsSet = new Set(
-    recipes?.map(x => x.flow.enter.inA.symbol).concat(recipes.map(x => x.flow.enter.outA.symbol)),
-  );
+  const assetSymbolsSet = new Set(recipes?.map(x => x.flow.enter.inA.symbol));
   useHiddenAssets().forEach(hiddenAsset => assetSymbolsSet.delete(hiddenAsset.symbol));
   const assetSymbolOpts = Array.from(assetSymbolsSet).map(value => ({ value, label: value }));
   const tagsSet = new Set(recipes?.map(x => x.cardTag));

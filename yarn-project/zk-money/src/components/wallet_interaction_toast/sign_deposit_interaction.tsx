@@ -11,11 +11,12 @@ interface SignDepositInteractionProps {
 
 export function SignDepositInteraction(props: SignDepositInteractionProps) {
   const amount = useAmount(props.requiredFunds);
-  const prompt = `Approve transfer of ${amount?.format({ layer: 'L1' })}`;
+  const prompt = `Please transfer ${amount?.format({ layer: 'L1' })} to the Aztec contract`;
   return (
     <EnforcedRetryableSignInteractions
       onCancel={props.onCancel}
       flowState={props.flowState}
+      requestButtonLabel="Transfer"
       waitingText="Waiting for approval"
       prompt={prompt}
     />

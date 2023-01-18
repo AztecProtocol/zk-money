@@ -19,6 +19,7 @@ interface SigningRequestProps {
   waitingForSignature?: boolean;
   prompt?: string;
   toastMessage?: string;
+  requestButtonLabel?: string;
   requestButtonDisabled: boolean;
   onRequest?: () => void;
   onCancel?: () => void;
@@ -36,7 +37,11 @@ export function SigningRequest(props: SigningRequestProps) {
       )}
       <div className={style.interactions}>
         <ConnectButton accountStatus="address" showBalance={false} />
-        <Button onClick={props.onRequest} text={'Sign'} disabled={props.requestButtonDisabled} />
+        <Button
+          onClick={props.onRequest}
+          text={props.requestButtonLabel || 'Sign'}
+          disabled={props.requestButtonDisabled}
+        />
       </div>
     </div>
   );
