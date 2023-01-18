@@ -1,5 +1,4 @@
 import { ProofId, UserTx } from '@aztec/sdk';
-import { useUserTxs } from '../../alt-model/user_tx_hooks.js';
 import { Pagination } from '../../components/pagination.js';
 import { useState } from 'react';
 import { TransactionHistoryRow } from './transaction_history_row/index.js';
@@ -12,8 +11,7 @@ function getKey(tx: UserTx) {
   if (tx.proofId === ProofId.DEFI_CLAIM) return `pending-claim-of-${tx.defiTxId.toString()}`;
 }
 
-export function TransactionHistory() {
-  const txs = useUserTxs();
+export function TransactionHistory({ txs }: { txs?: UserTx[] }) {
   const [page, setPage] = useState(1);
   if (!txs || txs.length === 0) return <div className={style.noTransactions}>You have no transactions yet</div>;
   return (

@@ -26,6 +26,7 @@ interface ButtonProps<T> {
   text?: string;
   disabled?: boolean;
   size?: ButtonSize;
+  imageSrc?: string;
   theme?: ButtonTheme;
   gradient?: ButtonGradient;
   color?: string;
@@ -49,7 +50,18 @@ function getTextStyle(color?: string) {
 }
 
 export function Button<T>(props: ButtonProps<T>) {
-  const { disabled, value, className, text, gradient, size, color, theme = ButtonTheme.Primary, onClick } = props;
+  const {
+    disabled,
+    value,
+    className,
+    text,
+    gradient,
+    size,
+    color,
+    imageSrc,
+    theme = ButtonTheme.Primary,
+    onClick,
+  } = props;
 
   return (
     <div
@@ -70,6 +82,7 @@ export function Button<T>(props: ButtonProps<T>) {
     >
       <div className={style.text} style={getTextStyle(color)}>
         {text}
+        {imageSrc && <img src={imageSrc} alt="" className={style.image} />}
       </div>
     </div>
   );
