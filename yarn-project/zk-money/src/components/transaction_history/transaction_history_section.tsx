@@ -1,5 +1,5 @@
 import download from '../../ui-components/images/download.svg';
-import { UserPaymentTx } from '@aztec/sdk';
+import { ProofId, UserPaymentTx } from '@aztec/sdk';
 import { useAccountStateManager, useSdk } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { useObs } from '../../app/util/index.js';
 import { Button, ButtonSize, ButtonTheme, Section, SectionTitle } from '../../ui-components/index.js';
@@ -36,22 +36,22 @@ export function TransactionHistorySection() {
         isSender = '',
         fee = '';
       switch (tx.proofId) {
-        case 1:
+        case ProofId.DEPOSIT:
           txType = 'Deposit';
           break;
-        case 2:
+        case ProofId.WITHDRAW:
           txType = 'Withdrawal';
           break;
-        case 3:
+        case ProofId.SEND:
           txType = 'Send';
           break;
-        case 4:
+        case ProofId.ACCOUNT:
           txType = 'Account';
           break;
-        case 5:
+        case ProofId.DEFI_DEPOSIT:
           txType = 'Defi Deposit';
           break;
-        case 6:
+        case ProofId.DEFI_CLAIM:
           txType = 'Defi Claim';
           break;
       }
