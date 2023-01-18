@@ -33,6 +33,7 @@ export function getRegisterFormFeedback(
   touchedFields: TouchedFormFields<RegisterFormFields>,
   attemptedLock: boolean,
 ) {
+  // amount returns feedback based on the touchedFields.alias field, because the amount is optional (so it can remain untouched)
   const amount = getL1DepositAmountInputFeedback(resources, assessment, touchedFields.alias || attemptedLock);
   const walletAccount = getRegisterFormWalletAccountFeedback(resources, assessment);
   const footer = getL1DepositFooterFeedback(resources, assessment);
