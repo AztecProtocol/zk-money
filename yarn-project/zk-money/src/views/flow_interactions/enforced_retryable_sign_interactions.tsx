@@ -60,6 +60,7 @@ function getProps(flowState: EnforcedRetryableSignFlowState, waitingText: string
 export function EnforcedRetryableSignInteractions(props: {
   flowState: EnforcedRetryableSignFlowState;
   waitingText: string;
+  requestButtonLabel?: string;
   prompt?: string;
   messageToBeSigned?: string;
   onCancel?: () => void;
@@ -69,6 +70,7 @@ export function EnforcedRetryableSignInteractions(props: {
       messageToBeSigned={props.messageToBeSigned}
       prompt={props.prompt}
       onCancel={props.onCancel}
+      requestButtonLabel={props.requestButtonLabel}
       {...getProps(props.flowState, props.waitingText)}
     />
   );
