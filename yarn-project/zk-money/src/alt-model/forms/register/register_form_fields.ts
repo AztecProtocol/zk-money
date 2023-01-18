@@ -1,3 +1,4 @@
+import { TxSettlementTime } from '@aztec/sdk';
 import { KeyGenerationInputValue, KeyGenerationResult } from '../../../components/index.js';
 import { L1DepositFormFields, INTIAL_L1_DEPOSIT_FORM_FIELDS } from '../l1_deposit/l1_deposit_form_fields.js';
 
@@ -14,4 +15,5 @@ export const INTIAL_REGISTRATION_FORM_FIELDS: RegisterFormFields = {
   spendingKeys: null,
   accountKeys: null,
   confirmationAccountKeys: null,
+  speed: TxSettlementTime.NEXT_ROLLUP,
 };
