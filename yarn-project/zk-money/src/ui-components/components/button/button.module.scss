@@ -33,6 +33,11 @@
   background: #2f1f49;
 }
 
+.image {
+  width: 14px;
+  height: 14px;
+}
+
 .disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -48,6 +53,10 @@
   font-size: 14px;
   line-height: 24px;
   font-weight: 450;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .primary > .text {
