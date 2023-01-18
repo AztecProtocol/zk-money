@@ -9,9 +9,11 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chainIdToNetwork } from '../app/networks.js';
 import { RecoverAliasInteractions } from './recover_alias/index.js';
 import style from './toolbox.module.scss';
+import { AliasCollisionChecker } from './alias-collision-checker/alias_collision_checker.js';
 
 const TOOLS = [
   { component: RecoverAliasInteractions, label: 'Transfer a trapped pre-June 2021 alias to a new account' },
+  { component: AliasCollisionChecker, label: 'Check for alias collisions' },
 ];
 if (process.env.NODE_ENV === 'development') {
   TOOLS.push({ component: LegacyRegisterInteractions, label: 'Register with legacy signing message' });
