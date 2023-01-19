@@ -37,11 +37,11 @@ async function fetchAndAssembleData() {
   const localhostProm = fetchData('http://localhost:8081', 'http://localhost:8545');
   const devProm = fetchData(
     'https://api.aztec.network/aztec-connect-dev/falafel',
-    'https://aztec-connect-dev-eth-host.aztec.network:8545/e265e055c977fee83d415d3edeb26953',
+    'https://aztec-connect-dev-eth-host.aztec.network:8545/INSERT_KEY_HERE',
   );
   const testProm = fetchData(
     'https://api.aztec.network/aztec-connect-testnet/falafel',
-    'https://aztec-connect-testnet-eth-host.aztec.network:8545/20ceb3a1db59c9b71315d98530093f94',
+    'https://aztec-connect-testnet-eth-host.aztec.network:8545/INSERT_KEY_HERE',
   );
   const prodProm = fetchData(
     'https://api.aztec.network/aztec-connect-prod/falafel',
