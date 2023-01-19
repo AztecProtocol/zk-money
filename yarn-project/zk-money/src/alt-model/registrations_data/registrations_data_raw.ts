@@ -1,4 +1,4 @@
-// This blob below is pasted from zk.money/toolbox -> "Fetch DataProvider content'
+// This blob below is pasted from the output of `fetchAllDataProviderData` in the aztec-dev-cli.
 
 export const registrationsDataRaw = {
   localhost: {
