@@ -44,7 +44,7 @@ function createTopLevelContextValue(
     defiRecipes,
     stableEthereumProvider,
     initialRollupProviderStatus,
-    config,
+    sdkObs,
   );
   const chainLinkPollerCache = createChainLinkPollerCache(stableEthereumProvider);
   const priceFeedObsCache = createPriceFeedObsCache(

@@ -17,15 +17,9 @@ export const ELEMENT_CARD: CreateRecipeArgs = {
     type: 'async',
     enter: { inA: 'DAI', outA: 'DAI', inDisplayed: 'DAI', outDisplayed: 'DAI' },
   },
-  createAdaptor: ({ provider, rollupContractAddress, bridgeContractAddress, rollupProviderUrl }) => {
+  createAdaptor: ({ provider, rollupContractAddress, bridgeContractAddress, sdkObs }) => {
     const balancerAddress = EthAddress.fromString('0xBA12222222228d8Ba445958a75a0704d566BF2C8');
-    return ElementBridgeData.create(
-      provider,
-      bridgeContractAddress,
-      balancerAddress,
-      rollupContractAddress,
-      rollupProviderUrl,
-    );
+    return ElementBridgeData.create(provider, bridgeContractAddress, balancerAddress, rollupContractAddress, sdkObs);
   },
   enterAuxDataResolver: {
     type: 'bridge-data-select',
