@@ -24,6 +24,14 @@ function getChain(chainId: number): Chain {
         nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
         rpcUrls: { default: 'https://aztec-connect-testnet-eth-host.aztec.network' },
       };
+    case 0x57a93:
+      return {
+        id: 0x57a93,
+        name: 'Aztec Ethereum Mainnet Fork Stage',
+        network: 'mainnet-fork',
+        nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+        rpcUrls: { default: 'https://aztec-connect-stage-eth-host.aztec.network' },
+      };
     case 0xdef:
       return {
         id: 0xdef,
