@@ -48,7 +48,7 @@ if [ -n "$COMMIT_TAG" ]; then
   fi
 else
   # We have no commit tag. Check if this is our staging branch, otherwise use dev
-  [ $BRANCH = "stage" ]] && VERSION_TAG="stage" || VERSION_TAG="dev"
+  [[ $BRANCH = "stage" ]] && VERSION_TAG="stage" || VERSION_TAG="dev"
 fi
 
 # - The deploy tag (used in api paths, subdomains), is a concatenation of the project name and version tag,
