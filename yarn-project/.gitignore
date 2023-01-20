@@ -19,3 +19,5 @@ node_modules
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+twitter_lambda.zip
