@@ -62,6 +62,10 @@ function getEthereumHost(chainId: number) {
       const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
       return `https://aztec-connect-testnet-eth-host.aztec.network:8545/${apiKey}`;
     }
+    case 0x57a93: {
+      const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
+      return `https://aztec-connect-stage-eth-host.aztec.network:8545/${apiKey}`;
+    }
     case 0xdef: {
       const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
       return `https://aztec-connect-dev-eth-host.aztec.network:8545/${apiKey}`;
