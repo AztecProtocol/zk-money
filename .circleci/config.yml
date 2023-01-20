@@ -124,6 +124,7 @@ deploy_filters: &deploy_filters
   branches:
     only:
       - defi-bridge-project
+      - stage
   tags:
     only: *tag_regex
 
