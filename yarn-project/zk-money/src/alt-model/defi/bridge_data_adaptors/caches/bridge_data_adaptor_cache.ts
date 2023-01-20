@@ -1,9 +1,9 @@
 import type { Provider, StaticJsonRpcProvider } from '@ethersproject/providers';
-import type { Config } from '../../../../config.js';
 import type { DefiRecipe } from '../../../../alt-model/defi/types.js';
 import createDebug from 'debug';
 import { LazyInitCacheMap } from '../../../../app/util/lazy_init_cache_map.js';
 import { RollupProviderStatus } from '@aztec/sdk';
+import { SdkObs } from '../../../top_level_context/sdk_obs.js';
 
 const debug = createDebug('zm:bridge_data_adaptor_cache');
 
@@ -11,7 +11,7 @@ export function createBridgeDataAdaptorCache(
   recipes: DefiRecipe[],
   status: RollupProviderStatus,
   provider: Provider,
-  config: Config,
+  sdkObs: SdkObs,
 ) {
   return new LazyInitCacheMap((recipeId: string) => {
     const recipe = recipes.find(x => x.id === recipeId)!;
@@ -26,7 +26,7 @@ export function createBridgeDataAdaptorCache(
       rollupContractAddress,
       bridgeAddressId: blockchainBridge.id,
       bridgeContractAddress: blockchainBridge.address,
-      rollupProviderUrl: config.rollupProviderUrl,
+      sdkObs,
     });
   });
 }

@@ -1,7 +1,8 @@
-import { EthAddress, AssetValue, BridgeCallData } from '@aztec/sdk';
+import { EthAddress, AssetValue, BridgeCallData, AztecSdk } from '@aztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 
 import 'isomorphic-fetch';
+import { SdkObs } from '../../../alt-model/top_level_context/sdk_obs.js';
 import {
   ElementBridge,
   ElementBridge__factory,
@@ -67,7 +68,7 @@ export class ElementBridgeData implements BridgeDataFieldGetters {
     private elementBridgeContract: ElementBridge,
     private balancerContract: IVault,
     private rollupContract: RollupProcessor,
-    private falafelEndpoint: string,
+    private sdkObs: SdkObs,
   ) {}
 
   static create(
@@ -75,12 +76,12 @@ export class ElementBridgeData implements BridgeDataFieldGetters {
     elementBridgeAddress: EthAddress,
     balancerAddress: EthAddress,
     rollupContractAddress: EthAddress,
-    falafelEndpoint: string,
+    sdkObs: SdkObs,
   ) {
     const elementBridgeContract = ElementBridge__factory.connect(elementBridgeAddress.toString(), provider);
     const rollupContract = RollupProcessor__factory.connect(rollupContractAddress.toString(), provider);
     const vaultContract = IVault__factory.connect(balancerAddress.toString(), provider);
-    return new ElementBridgeData(elementBridgeContract, vaultContract, rollupContract, falafelEndpoint);
+    return new ElementBridgeData(elementBridgeContract, vaultContract, rollupContract, sdkObs);
   }
 
   private async storeEventBlocks(events: AsyncDefiBridgeProcessedEvent[]) {
@@ -115,13 +116,14 @@ export class ElementBridgeData implements BridgeDataFieldGetters {
   private async getBlockNumber(interactionNonce: number) {
     const id = Math.floor(interactionNonce / 32);
 
-    const response = await fetch(`${this.falafelEndpoint}/rollup/${id}`, {
-      headers: { 'Content-Type': 'application/json' },
-      method: 'GET',
-    });
+    const sdk = await this.sdkObs.whenDefined<AztecSdk>();
 
-    const data = await response.json();
-    const tx = await this.elementBridgeContract.provider.getTransactionReceipt(data['ethTxHash']);
+    const blocks = await sdk.getBlocks(id, 1);
+    if (!blocks.length) {
+      throw new Error(`Block not found for rollup id ${id}`);
+    }
+    const block = blocks[0];
+    const tx = await this.elementBridgeContract.provider.getTransactionReceipt(block.ethTxHash.toString());
     return tx.blockNumber;
   }
 

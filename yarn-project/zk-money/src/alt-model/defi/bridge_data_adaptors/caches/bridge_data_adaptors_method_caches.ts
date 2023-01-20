@@ -1,5 +1,4 @@
 import type { Provider } from '@ethersproject/providers';
-import type { Config } from '../../../../config.js';
 import type { RollupProviderStatus } from '@aztec/sdk';
 import type { DefiRecipe } from '../../../../alt-model/defi/types.js';
 import { createAuxDataOptionsPollerCache } from './aux_data_options_poller_cache.js';
@@ -14,14 +13,15 @@ import { createTermAprPollerCache } from './term_apr_poller_cache.js';
 import { createUnderlyingAmountPollerCache } from './underlying_amount_poller_cache.js';
 import { createUserDebtAndCollateralPollerCache } from './user_debt_and_collateral_poller_cache.js';
 import { createCurrentCollateralRatioPollerCache } from './current_collateral_ratio_poller_cache.js';
+import { SdkObs } from '../../../top_level_context/sdk_obs.js';
 
 export function createBridgeDataAdaptorsMethodCaches(
   defiRecipes: DefiRecipe[],
   provider: Provider,
   remoteStatus: RollupProviderStatus,
-  config: Config,
+  sdkObs: SdkObs,
 ) {
-  const adaptorsCache = createBridgeDataAdaptorCache(defiRecipes, remoteStatus, provider, config);
+  const adaptorsCache = createBridgeDataAdaptorCache(defiRecipes, remoteStatus, provider, sdkObs);
   const auxDataPollerCache = createAuxDataOptionsPollerCache(defiRecipes, adaptorsCache);
   const expectedAssetYieldPollerCache = createExpectedAssetYieldPollerCache(defiRecipes, adaptorsCache);
   const termAprPollerCache = createTermAprPollerCache(defiRecipes, adaptorsCache);
