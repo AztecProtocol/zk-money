@@ -60,6 +60,7 @@ function getPublicProvider(config: Config) {
     case 1337:
     case 31337:
     case 0xe2e:
+    case 0x57a93:
     case 0xa57ec:
     case 0xdef:
       return jsonRpcProvider({ rpc: () => ({ http: config.ethereumHost }) });
