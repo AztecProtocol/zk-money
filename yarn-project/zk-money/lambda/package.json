@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dest && tsc",
-    "build:zip": "rm ./twitter_lambda.zip && zip -r ./twitter_lambda.zip ."
+    "build:zip": "rm -f -- ./twitter_lambda.zip && zip -r ./twitter_lambda.zip ./dest"
   },
   "devDependencies": {
     "@types/node": "^18.7.23",
