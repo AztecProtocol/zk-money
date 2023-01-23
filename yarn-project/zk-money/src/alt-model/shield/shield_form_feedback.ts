@@ -78,16 +78,6 @@ function getFooterFeedback(result: ShieldFormValidationResult) {
       fee?.info.symbol
     } in a seperate transaction.`;
   }
-  if (result.hasPendingBalance) {
-    const { targetAsset, l1PendingBalance } = result.input;
-    if (targetAsset && l1PendingBalance) {
-      const pendingAmount = new Amount(l1PendingBalance, targetAsset);
-      return `You have ${pendingAmount.format({
-        layer: 'L1',
-        uniform: true,
-      })} pending on the contract. This will be used first.`;
-    }
-  }
 }
 
 export function getShieldFormFeedback(

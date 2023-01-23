@@ -4,15 +4,16 @@ import style from './shield_modal_header.module.scss';
 
 interface ShieldModalHeaderProps {
   closeDisabled: boolean;
+  backDisabled: boolean;
   onClose: () => void;
   onBack?: () => void;
 }
 
-export function ShieldModalHeader({ onClose, closeDisabled, onBack }: ShieldModalHeaderProps) {
+export function ShieldModalHeader({ onClose, closeDisabled, onBack, backDisabled }: ShieldModalHeaderProps) {
   return (
     <div className={style.root}>
       <div className={style.leftSegment}>
-        {onBack && (
+        {!backDisabled && onBack && (
           <div className={style.navButtons}>
             <BackButton disabled={!onBack} onClick={onBack} />
           </div>

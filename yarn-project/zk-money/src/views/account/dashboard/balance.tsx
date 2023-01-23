@@ -12,9 +12,10 @@ import { useAccountState } from '../../../alt-model/account_state/index.js';
 import { AccessAccountForm } from './access_account_form.js';
 import { Loader, LoaderSize } from '../../../ui-components/index.js';
 import { useCachedAlias } from '../../../alt-model/alias_hooks.js';
-import style from './balance.module.scss';
 import { useUserTxs } from '../../../alt-model/user_tx_hooks.js';
 import { SynchronisationLoadingBar } from '../../../components/index.js';
+import { RemoteAsset } from '../../../alt-model/types.js';
+import style from './balance.module.scss';
 
 function LoadingFallback() {
   return (
@@ -40,6 +41,7 @@ type ModalActivation =
       type: 'shield';
       recipient: string;
       assetId?: number;
+      amount?: string;
     };
 
 function renderModal(activation: ModalActivation | undefined, onClose: () => void) {
@@ -51,6 +53,7 @@ function renderModal(activation: ModalActivation | undefined, onClose: () => voi
         <ShieldModal
           preselectedRecipient={activation.recipient}
           preselectedAssetId={activation.assetId}
+          preselectedAmount={activation.amount}
           onClose={onClose}
         />
       );
@@ -89,9 +92,9 @@ export function Balance(props: BalanceProps) {
       </div>
     );
 
-  const handleOpenShieldModal = (assetId?: number) => {
+  const handleOpenShieldModal = (asset?: RemoteAsset, amount?: string) => {
     const recipient = cachedAlias || formattedAddress;
-    setModalActivation({ type: 'shield', assetId, recipient });
+    setModalActivation({ type: 'shield', assetId: asset?.id, recipient, amount });
   };
 
   const handleOpenSendModal = (assetId: number) => {

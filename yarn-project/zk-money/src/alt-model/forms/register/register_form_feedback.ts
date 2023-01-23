@@ -31,12 +31,12 @@ export function getRegisterFormFeedback(
   resources: RegisterFormResources,
   assessment: RegisterFormAssessment,
   touchedFields: TouchedFormFields<RegisterFormFields>,
-  attemptedLock: boolean,
+  walletInteractionIsOngoing: boolean,
 ) {
   // amount returns feedback based on the touchedFields.alias field, because the amount is optional (so it can remain untouched)
-  const amount = getL1DepositAmountInputFeedback(resources, assessment, touchedFields.alias || attemptedLock);
+  const amount = getL1DepositAmountInputFeedback(resources, assessment, touchedFields.alias);
   const walletAccount = getRegisterFormWalletAccountFeedback(resources, assessment);
-  const footer = getL1DepositFooterFeedback(resources, assessment);
-  const alias = getRegisterFormAliasFeedback(assessment, touchedFields.alias || attemptedLock);
+  const footer = getL1DepositFooterFeedback(resources, assessment, walletInteractionIsOngoing);
+  const alias = getRegisterFormAliasFeedback(assessment, touchedFields.alias);
   return { amount, walletAccount, footer, alias };
 }

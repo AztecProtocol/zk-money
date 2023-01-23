@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { AssetValue } from '@aztec/sdk';
 import { useNavigate } from 'react-router-dom';
 import { recipeFiltersToSearchStr } from '../../alt-model/defi/recipe_filters.js';
@@ -12,7 +12,7 @@ import style from './token_list.module.scss';
 
 interface TokenListProps {
   balances: AssetValue[] | undefined;
-  onOpenShieldModal: (assetId: number) => void;
+  onOpenShieldModal: (asset: RemoteAsset, amount?: string) => void;
   onOpenSendModal: (assetId: number) => void;
 }
 
@@ -39,7 +39,10 @@ export function TokenList(props: TokenListProps) {
     navigate(`/earn${searchStr}`);
   };
 
-  const allBalances = generateBalances(pendingBalances, props.balances);
+  const allBalances = useMemo(
+    () => generateBalances(pendingBalances, props.balances),
+    [pendingBalances, props.balances],
+  );
 
   if (!allBalances) return <></>;
   if (allBalances.length === 0) {
@@ -55,7 +58,7 @@ export function TokenList(props: TokenListProps) {
             key={assetId}
             assetValue={balance}
             onSend={() => props.onOpenSendModal(assetId)}
-            onShield={() => props.onOpenShieldModal(assetId)}
+            onShield={props.onOpenShieldModal}
             onGoToEarn={handleGoToEarn}
           />
         );

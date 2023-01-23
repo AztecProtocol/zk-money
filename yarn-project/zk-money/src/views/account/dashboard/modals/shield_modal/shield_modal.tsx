@@ -4,8 +4,10 @@ import { Modal } from '../../../../../components/index.js';
 import { ShieldConfirmationPage } from './shield_confirmation_page/index.js';
 import { ShieldPage1 } from './shield_page1.js';
 import { ShieldModalHeader } from './shield_modal_header.js';
+import { useEffect } from 'react';
 
 interface ShieldModalProps {
+  preselectedAmount?: string;
   preselectedAssetId?: number;
   preselectedRecipient?: string;
   onClose: () => void;
@@ -25,7 +27,18 @@ export function ShieldModal(props: ShieldModalProps) {
     feedback,
     submit,
     unlock,
-  } = useShieldForm(props.preselectedAssetId, props.preselectedRecipient, props.onShieldComplete);
+  } = useShieldForm(
+    props.preselectedAssetId,
+    props.preselectedRecipient,
+    props.preselectedAmount,
+    props.onShieldComplete,
+  );
+
+  useEffect(() => {
+    if (props.preselectedAmount) {
+      attemptLock();
+    }
+  }, [props.preselectedAmount, attemptLock]);
 
   const phase = composerState?.phase;
   const isIdle = phase === ShieldComposerPhase.IDLE;
@@ -48,6 +61,7 @@ export function ShieldModal(props: ShieldModalProps) {
         fields={fields}
         feedback={feedback}
         validationResult={validationResult}
+        isAmountPreselected={!!props.preselectedAmount}
         onNext={attemptLock}
         onChangeAmountStrOrMax={setters.amountStrOrMax}
         onChangeAsset={setters.assetId}
@@ -59,7 +73,14 @@ export function ShieldModal(props: ShieldModalProps) {
   return (
     <Modal onClose={onClose}>
       <Card
-        cardHeader={<ShieldModalHeader closeDisabled={!canClose} onClose={onClose} onBack={handleBack} />}
+        cardHeader={
+          <ShieldModalHeader
+            backDisabled={!!props.preselectedAmount}
+            closeDisabled={!canClose}
+            onClose={onClose}
+            onBack={handleBack}
+          />
+        }
         cardContent={cardContent}
         headerSize={CardHeaderSize.LARGE}
       />

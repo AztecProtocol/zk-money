@@ -19,6 +19,7 @@ interface ShieldPage1Props {
   fields: ShieldFormFields;
   feedback: ShieldFormFeedback;
   validationResult: ShieldFormValidationResult;
+  isAmountPreselected: boolean;
   onNext(): void;
   onChangeAmountStrOrMax(value: StrOrMax): void;
   onChangeRecipientAlias(value: string): void;
@@ -34,6 +35,7 @@ export function ShieldPage1({
   fields,
   feedback,
   validationResult,
+  isAmountPreselected,
   onNext,
   onChangeAmountStrOrMax,
   onChangeRecipientAlias,
@@ -69,6 +71,7 @@ export function ShieldPage1({
             <AmountSelection
               maxAmount={validationResult.maxL2Output ?? 0n}
               asset={asset}
+              disabled={isAmountPreselected}
               amountStringOrMax={fields.amountStrOrMax}
               allowAssetSelection={true}
               allowWalletSelection={true}

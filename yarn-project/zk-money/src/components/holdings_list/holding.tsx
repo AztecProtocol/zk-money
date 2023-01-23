@@ -17,16 +17,18 @@ import style from './holding.module.scss';
 interface HoldingProps {
   assetValue: AssetValue;
   onSend?: (asset: RemoteAsset) => void;
-  onShield?: (asset: RemoteAsset) => void;
+  onShield?: (asset: RemoteAsset, amount?: string) => void;
   onGoToEarn?: (asset: RemoteAsset) => void;
 }
 
 export function PendingBalance({
   l1PendingBalance,
   targetAsset,
+  onShield,
 }: {
-  l1PendingBalance?: bigint;
   targetAsset: RemoteAsset;
+  l1PendingBalance?: bigint;
+  onShield?: (asset: RemoteAsset, amount?: string) => void;
 }) {
   if (!l1PendingBalance) {
     return null;
@@ -40,19 +42,19 @@ export function PendingBalance({
   });
 
   return (
-    <div className={style.pendingBalance}>
+    <div className={style.pendingBalance} onClick={() => onShield?.(targetAsset, formattedPendingAmount)}>
       <div className={style.alert}>
         <Clock className={style.clock} />
       </div>{' '}
-      {formattedPendingAmount} pending, shield to complete
+      <div>You have {formattedPendingAmount} in the Aztec Network, click here to shield it</div>
     </div>
   );
 }
 
 export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingProps) {
-  const amount = useAmount(assetValue);
   const targetAsset = useAsset(assetValue.assetId);
   const l1PendingBalance = usePendingBalances()[assetValue.assetId];
+  const amount = useAmount({ assetId: assetValue.assetId, value: assetValue.value + (l1PendingBalance ?? 0n) });
   const walletInteractionIsOngoing = useWalletInteractionIsOngoing();
   const asset = amount?.info;
   const spendableBalance = useSpendableBalance(assetValue.assetId);
@@ -85,7 +87,7 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
             </div>
             <div className={style.details}>
               <div className={style.spendableBalance}>{`${spendableFormatted} available`}</div>
-              <PendingBalance l1PendingBalance={l1PendingBalance} targetAsset={targetAsset} />
+              <PendingBalance onShield={onShield} l1PendingBalance={l1PendingBalance} targetAsset={targetAsset} />
             </div>
           </div>
         </div>

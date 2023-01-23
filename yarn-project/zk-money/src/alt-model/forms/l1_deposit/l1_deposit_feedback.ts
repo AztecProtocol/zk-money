@@ -81,7 +81,12 @@ export function getL1DepositWalletAccountFeedback(resources: L1DepositResources,
   }
 }
 
-export function getL1DepositFooterFeedback(resources: L1DepositResources, assessment: L1DepositAssessment) {
+export function getL1DepositFooterFeedback(
+  resources: L1DepositResources,
+  assessment: L1DepositAssessment,
+  walletInteractionIsOngoing?: boolean,
+) {
+  if (walletInteractionIsOngoing) return;
   if (assessment.balances?.issues.insufficientAuxiliaryFeeAssetBalance) {
     const fee = resources.feeAmount;
     return `You do not have enough zk${fee?.info.symbol} to pay the fee. Please shield at least ${fee?.toFloat()} ${
@@ -93,6 +98,6 @@ export function getL1DepositFooterFeedback(resources: L1DepositResources, assess
     return `You have ${pendingAmount.format({
       layer: 'L1',
       uniform: true,
-    })} pending on the contract. This will be used first.`;
+    })} in the Aztec Network.`;
   }
 }
