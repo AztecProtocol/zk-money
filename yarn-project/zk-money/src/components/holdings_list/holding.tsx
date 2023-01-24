@@ -12,6 +12,7 @@ import { getIsDust } from '../../alt-model/assets/asset_helpers.js';
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';
 import { useAccountState } from '../../alt-model/account_state/account_state_hooks.js';
 import { usePendingBalances } from '../../alt-model/top_level_context/top_level_context_hooks.js';
+import { useDepositFeeAmounts } from '../../alt-model/shield/deposit_fee_hooks.js';
 import style from './holding.module.scss';
 
 interface HoldingProps {
@@ -30,23 +31,32 @@ export function PendingBalance({
   l1PendingBalance?: bigint;
   onShield?: (asset: RemoteAsset, amount?: string) => void;
 }) {
-  if (!l1PendingBalance) {
+  const feeAmounts = useDepositFeeAmounts(targetAsset.id);
+  const feeAmount = feeAmounts?.[0];
+
+  if (!l1PendingBalance || !feeAmount) {
     return null;
   }
 
   const pendingAmount = new Amount(l1PendingBalance, targetAsset);
+  const pendingAmountMinusFee = pendingAmount.subtract(feeAmount.baseUnits);
   const formattedPendingAmount = pendingAmount.format({
+    layer: 'L1',
+    uniform: true,
+    hideSymbol: true,
+  });
+  const formattedPendingAmountMinusFee = pendingAmountMinusFee.format({
     layer: 'L1',
     uniform: true,
     hideSymbol: true,
   });
 
   return (
-    <div className={style.pendingBalance} onClick={() => onShield?.(targetAsset, formattedPendingAmount)}>
+    <div className={style.pendingBalance} onClick={() => onShield?.(targetAsset, formattedPendingAmountMinusFee)}>
       <div className={style.alert}>
         <Clock className={style.clock} />
       </div>{' '}
-      <div>You have {formattedPendingAmount} in the Aztec Network, click here to shield it</div>
+      <div>You have {formattedPendingAmount} pending, click here to shield it</div>
     </div>
   );
 }

@@ -10,7 +10,7 @@ import { formatBaseUnits } from '../../app/units.js';
 import { Layer, DropdownOption, FieldStatus, Field } from '../../ui-components/index.js';
 import { getWalletSelectorToast, Toasts } from '../../views/toasts/toast_configurations.js';
 
-function formatMaxAmount(maxAmount: bigint, asset: RemoteAsset) {
+export function formatMaxAmount(maxAmount: bigint, asset: RemoteAsset) {
   if (maxAmount === 0n) {
     // Skip decimal places for 0
     return '0';
@@ -47,16 +47,18 @@ function getStatus(message?: string, amount?: string) {
   }
 }
 
-function getPendingFundsMessage(message?: string, value?: string, pendingFunds?: string) {
+function getPendingFundsMessage(message?: string, value?: string, pendingFunds?: number, symbol?: string) {
   if (message) {
     return message;
   }
 
   const valueNumber = Number(value);
   if (pendingFunds && valueNumber > 0) {
-    const pendingFundsNumber = Number(pendingFunds);
-    const usedPendingFunds = valueNumber > pendingFundsNumber ? pendingFundsNumber : valueNumber;
-    return usedPendingFunds + ' will be taken from your pending funds.';
+    const usingOverPendingFunds = valueNumber > pendingFunds;
+    const usedPendingFundsAmount = usingOverPendingFunds ? pendingFunds : valueNumber;
+    return usingOverPendingFunds
+      ? `Your balance includes ${usedPendingFundsAmount} ${symbol} already sent to the contract. This transaction will unblock your funds previously sent to the contract first.`
+      : `Your balance includes ${usedPendingFundsAmount} ${symbol} already sent to the contract. This transaction will use funds previously sent to the contract.`;
   }
 }
 
@@ -82,15 +84,8 @@ export function AmountInput(props: AmountInputProps) {
   const status = getStatus(props.message, amountStr);
 
   const pendingAmount = new Amount(l1PendingBalance, asset);
-  const formattedPendingAmount =
-    props.layer === Layer.L1
-      ? pendingAmount.format({
-          layer: 'L1',
-          uniform: true,
-          hideSymbol: true,
-        })
-      : undefined;
-  const message = getPendingFundsMessage(props.message, amountStr, formattedPendingAmount);
+  const pendingAmountNumber = pendingAmount.toFloat();
+  const message = getPendingFundsMessage(props.message, amountStr, pendingAmountNumber, asset.symbol);
 
   return (
     <Field

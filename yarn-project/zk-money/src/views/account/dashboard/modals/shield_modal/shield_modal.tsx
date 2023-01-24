@@ -4,7 +4,7 @@ import { Modal } from '../../../../../components/index.js';
 import { ShieldConfirmationPage } from './shield_confirmation_page/index.js';
 import { ShieldPage1 } from './shield_page1.js';
 import { ShieldModalHeader } from './shield_modal_header.js';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ShieldModalProps {
   preselectedAmount?: string;
@@ -15,6 +15,7 @@ interface ShieldModalProps {
 }
 
 export function ShieldModal(props: ShieldModalProps) {
+  const [shouldAttemptAutomaticLock, setShouldAttemptAutomaticLock] = useState(!!props.preselectedAmount);
   const { onClose } = props;
   const {
     fields,
@@ -23,8 +24,9 @@ export function ShieldModal(props: ShieldModalProps) {
     composerState,
     lockedComposerPayload,
     locked,
-    attemptLock,
     feedback,
+    attemptedLock,
+    attemptLock,
     submit,
     unlock,
   } = useShieldForm(
@@ -35,16 +37,20 @@ export function ShieldModal(props: ShieldModalProps) {
   );
 
   useEffect(() => {
-    if (props.preselectedAmount) {
-      attemptLock();
-    }
-  }, [props.preselectedAmount, attemptLock]);
+    if (shouldAttemptAutomaticLock) attemptLock();
+  }, [shouldAttemptAutomaticLock, attemptLock]);
 
   const phase = composerState?.phase;
   const isIdle = phase === ShieldComposerPhase.IDLE;
   const canClose = phase === undefined || isIdle || phase === ShieldComposerPhase.DONE;
   const canGoBack = locked && isIdle;
-  const handleBack = canGoBack ? unlock : undefined;
+
+  const handleBack = () => {
+    if (canGoBack) {
+      setShouldAttemptAutomaticLock(false);
+      unlock();
+    }
+  };
 
   const cardContent =
     locked && composerState && lockedComposerPayload ? (
@@ -60,8 +66,8 @@ export function ShieldModal(props: ShieldModalProps) {
       <ShieldPage1
         fields={fields}
         feedback={feedback}
+        attemptedLock={attemptedLock}
         validationResult={validationResult}
-        isAmountPreselected={!!props.preselectedAmount}
         onNext={attemptLock}
         onChangeAmountStrOrMax={setters.amountStrOrMax}
         onChangeAsset={setters.assetId}
@@ -74,12 +80,7 @@ export function ShieldModal(props: ShieldModalProps) {
     <Modal onClose={onClose}>
       <Card
         cardHeader={
-          <ShieldModalHeader
-            backDisabled={!!props.preselectedAmount}
-            closeDisabled={!canClose}
-            onClose={onClose}
-            onBack={handleBack}
-          />
+          <ShieldModalHeader backDisabled={canGoBack} closeDisabled={!canClose} onClose={onClose} onBack={handleBack} />
         }
         cardContent={cardContent}
         headerSize={CardHeaderSize.LARGE}

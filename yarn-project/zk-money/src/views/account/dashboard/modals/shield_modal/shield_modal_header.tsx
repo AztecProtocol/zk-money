@@ -9,11 +9,11 @@ interface ShieldModalHeaderProps {
   onBack?: () => void;
 }
 
-export function ShieldModalHeader({ onClose, closeDisabled, onBack, backDisabled }: ShieldModalHeaderProps) {
+export function ShieldModalHeader({ onClose, onBack, backDisabled, closeDisabled }: ShieldModalHeaderProps) {
   return (
     <div className={style.root}>
       <div className={style.leftSegment}>
-        {!backDisabled && onBack && (
+        {onBack && backDisabled && (
           <div className={style.navButtons}>
             <BackButton disabled={!onBack} onClick={onBack} />
           </div>

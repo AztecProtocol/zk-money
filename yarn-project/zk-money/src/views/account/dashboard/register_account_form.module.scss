@@ -3,3 +3,12 @@
   flex-direction: column;
   width: 100%;
 }
+
+.usePendingFunds {
+  font-weight: 450;
+  cursor: pointer;
+}
+
+.usePendingFunds:hover {
+  text-decoration: underline;
+}

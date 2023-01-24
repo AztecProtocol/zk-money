@@ -28,6 +28,16 @@
   gap: 20px;
 }
 
+.loader {
+  position: absolute;
+  left: calc(50% - 17.5px);
+  top: calc(50% - 17.5px);
+}
+
+.isLoading {
+  opacity: 0;
+}
+
 .contentWrapper {
   display: flex;
   flex-direction: column;

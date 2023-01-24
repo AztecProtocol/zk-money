@@ -13,13 +13,16 @@ import { FooterSection } from '../sections/footer_section/index.js';
 import { AmountSelection } from '../../../../../components/index.js';
 import { useAccountStateManager } from '../../../../../alt-model/top_level_context/index.js';
 import { useObs } from '../../../../../app/util/index.js';
+import { bindStyle, Loader, LoaderSize } from '../../../../../ui-components/index.js';
 import style from './shield.module.scss';
+
+const cx = bindStyle(style);
 
 interface ShieldPage1Props {
   fields: ShieldFormFields;
   feedback: ShieldFormFeedback;
+  attemptedLock: boolean;
   validationResult: ShieldFormValidationResult;
-  isAmountPreselected: boolean;
   onNext(): void;
   onChangeAmountStrOrMax(value: StrOrMax): void;
   onChangeRecipientAlias(value: string): void;
@@ -35,7 +38,7 @@ export function ShieldPage1({
   fields,
   feedback,
   validationResult,
-  isAmountPreselected,
+  attemptedLock,
   onNext,
   onChangeAmountStrOrMax,
   onChangeRecipientAlias,
@@ -57,7 +60,9 @@ export function ShieldPage1({
 
   return (
     <div className={style.contentWrapper}>
+      {attemptedLock && <Loader size={LoaderSize.ExtraLarge} className={style.loader} />}
       <SplitSection
+        className={cx(attemptedLock && style.isLoading)}
         leftPanel={
           <>
             <RecipientSection
@@ -71,7 +76,6 @@ export function ShieldPage1({
             <AmountSelection
               maxAmount={validationResult.maxL2Output ?? 0n}
               asset={asset}
-              disabled={isAmountPreselected}
               amountStringOrMax={fields.amountStrOrMax}
               allowAssetSelection={true}
               allowWalletSelection={true}
@@ -85,6 +89,7 @@ export function ShieldPage1({
         rightPanel={<ShieldPrivacySection />}
       />
       <SplitSection
+        className={cx(attemptedLock && style.isLoading)}
         leftPanel={
           <TxGasSection
             balanceType={validationResult.targetAssetIsPayingFee ? 'L1' : 'L2'}

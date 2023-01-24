@@ -153,6 +153,7 @@ export function useShieldForm(
       debug('Tried to unlock form while in progress');
       return;
     }
+    setAttemptedLock(false);
     setLockedComposer(undefined);
   };
 
@@ -163,9 +164,10 @@ export function useShieldForm(
     feedback,
     composerState,
     lockedComposerPayload,
-    submit,
-    attemptLock,
     locked,
+    attemptedLock,
+    submit,
     unlock,
+    attemptLock,
   };
 }
