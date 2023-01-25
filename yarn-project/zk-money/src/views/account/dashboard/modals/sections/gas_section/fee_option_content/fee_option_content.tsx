@@ -15,7 +15,6 @@ interface FeeOptionContentProps {
 function formatTime(expectedTimeOfSettlement?: Date, averageTimeoutSeconds?: number) {
   if (expectedTimeOfSettlement) return moment(expectedTimeOfSettlement).fromNow(true);
   if (averageTimeoutSeconds) return '~ ' + moment(Date.now() + averageTimeoutSeconds * 1000).fromNow(true);
-  if (averageTimeoutSeconds === 0) return 'TBD';
   return '';
 }
 

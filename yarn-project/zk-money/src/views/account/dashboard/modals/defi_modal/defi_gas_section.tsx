@@ -27,7 +27,6 @@ function formatExpectedTimeOfSettlement(expectedTimeOfSettlement?: Date) {
 
 function formatAverageTimeoutSeconds(averageTimeoutSeconds?: number) {
   if (averageTimeoutSeconds) return '~' + moment(Date.now() + averageTimeoutSeconds * 1000).fromNow(true);
-  if (averageTimeoutSeconds === 0) return 'TBD';
   return '';
 }
 
