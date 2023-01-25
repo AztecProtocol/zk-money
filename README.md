@@ -1,6 +1,6 @@
 # zk.money
 
-This mono repo is still undergoing structural changes. At the time of writing zk.money's development server can be started with:
+At the time of writing zk.money's development server can be started with:
 
 ```
 ./bootstrap.sh
