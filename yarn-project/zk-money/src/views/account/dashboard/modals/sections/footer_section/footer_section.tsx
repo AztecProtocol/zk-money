@@ -5,7 +5,7 @@ import style from './footer_section.module.scss';
 interface FooterSectionProps {
   onNext: () => void;
   nextDisabled: boolean;
-  feedback?: string;
+  feedback?: React.ReactNode;
 }
 
 export function FooterSection(props: FooterSectionProps) {

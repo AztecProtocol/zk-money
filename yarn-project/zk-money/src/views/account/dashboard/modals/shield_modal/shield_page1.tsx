@@ -14,6 +14,7 @@ import { AmountSelection } from '../../../../../components/index.js';
 import { useAccountStateManager } from '../../../../../alt-model/top_level_context/index.js';
 import { useObs } from '../../../../../app/util/index.js';
 import { bindStyle, Loader, LoaderSize } from '../../../../../ui-components/index.js';
+import { Amount } from '../../../../../alt-model/assets/amount.js';
 import style from './shield.module.scss';
 
 const cx = bindStyle(style);
@@ -53,7 +54,37 @@ export function ShieldPage1({
     return <>Loading...</>;
   }
 
-  const footerFeedback = `${feedback.walletAccount ? feedback.walletAccount + '. ' : ''}${feedback.footer || ''}`;
+  function handleUsePendingFunds() {
+    if (!validationResult.input?.l1PendingBalance) return;
+    const pendingAmount = new Amount(validationResult.input.l1PendingBalance, validationResult.input.targetAsset);
+    if (!pendingAmount || fields.speed === null || !validationResult.input.feeAmount) return;
+    const pendingAmountMinusFee = pendingAmount.subtract(validationResult.input.feeAmount?.baseUnits);
+    onChangeAmountStrOrMax(
+      pendingAmountMinusFee.format({
+        layer: 'L1',
+        uniform: true,
+        hideSymbol: true,
+      }),
+    );
+  }
+
+  let footerFeedback: React.ReactNode = `${feedback.walletAccount ? feedback.walletAccount + '. ' : ''}${
+    feedback.footer || ''
+  }`;
+
+  if (!footerFeedback) {
+    footerFeedback = feedback.pendingFunds ? (
+      <span>
+        {feedback.pendingFunds}{' '}
+        <span onClick={handleUsePendingFunds} className={style.usePendingFunds}>
+          Click here to use it.
+        </span>
+      </span>
+    ) : (
+      ''
+    );
+  }
+
   const recipientWasFound = !!validationResult.input.recipientUserId;
   const recipientAddress = validationResult.input.recipientUserId?.toString();
   const isShieldingToHimself = recipientAddress === accountState?.userId.toString();
@@ -76,6 +107,7 @@ export function ShieldPage1({
             <AmountSelection
               maxAmount={validationResult.maxL2Output ?? 0n}
               asset={asset}
+              feeAmount={validationResult.input.feeAmounts?.[fields.speed]}
               amountStringOrMax={fields.amountStrOrMax}
               allowAssetSelection={true}
               allowWalletSelection={true}

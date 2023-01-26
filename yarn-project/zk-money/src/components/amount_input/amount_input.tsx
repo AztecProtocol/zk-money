@@ -6,7 +6,7 @@ import { TopLevelContext } from '../../alt-model/top_level_context/top_level_con
 import { usePendingBalances } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { RemoteAsset } from '../../alt-model/types.js';
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';
-import { formatBaseUnits, formatBulkPrice } from '../../app/units.js';
+import { formatBaseUnits } from '../../app/units.js';
 import { Layer, DropdownOption, FieldStatus, Field } from '../../ui-components/index.js';
 import { getWalletSelectorToast, Toasts } from '../../views/toasts/toast_configurations.js';
 
@@ -24,6 +24,7 @@ export function formatMaxAmount(maxAmount: bigint, asset: RemoteAsset) {
 interface AmountInputProps {
   asset: RemoteAsset;
   value: StrOrMax;
+  feeAmount?: Amount;
   maxAmount: bigint;
   disabled?: boolean;
   layer?: Layer;
@@ -47,29 +48,31 @@ function getStatus(message?: string, amount?: string) {
   }
 }
 
-function getPendingFundsMessage(message?: string, inputAmount?: Amount, pendingAmount?: Amount) {
+function getPendingFundsMessage(message?: string, inputAmount?: Amount, pendingAmount?: Amount, feeAmount?: Amount) {
   if (message) {
     return message;
   }
 
-  if (!pendingAmount || !inputAmount) {
+  if (!pendingAmount?.baseUnits || !inputAmount || !feeAmount) {
     return;
   }
 
   if (inputAmount.baseUnits > 0) {
-    const usingOverPendingFunds = inputAmount.baseUnits > pendingAmount.baseUnits;
-    const usingUnderPendingFunds = inputAmount.baseUnits < pendingAmount.baseUnits;
+    const usingOverPendingFunds = inputAmount.baseUnits + feeAmount.baseUnits > pendingAmount.baseUnits;
+    const usingUnderPendingFunds = inputAmount.baseUnits + feeAmount.baseUnits < pendingAmount.baseUnits;
     const formattedPendingAmount = pendingAmount.format({
       layer: 'L1',
       uniform: true,
     });
+
+    console.log(inputAmount.baseUnits, feeAmount.baseUnits, pendingAmount);
 
     if (usingUnderPendingFunds) {
       return `You already sent ${formattedPendingAmount} to the contract. This transaction will use a portion of these funds.`;
     }
 
     if (usingOverPendingFunds) {
-      const formattedRemainingAmount = inputAmount.subtract(pendingAmount.baseUnits).format({
+      const formattedRemainingAmount = inputAmount.add(feeAmount.baseUnits).subtract(pendingAmount.baseUnits).format({
         layer: 'L1',
         uniform: true,
       });
@@ -103,7 +106,7 @@ export function AmountInput(props: AmountInputProps) {
 
   const pendingAmount = new Amount(l1PendingBalance, asset);
   const inputAmount = Amount.from(amountStr, asset);
-  const message = getPendingFundsMessage(props.message, inputAmount, pendingAmount);
+  const message = getPendingFundsMessage(props.message, inputAmount, pendingAmount, props.feeAmount);
 
   return (
     <Field

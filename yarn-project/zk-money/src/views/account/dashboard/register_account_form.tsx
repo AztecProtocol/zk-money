@@ -75,6 +75,7 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
   const { walletInteractionToastsObs } = useContext(TopLevelContext);
   const walletInteractionIsOngoing = useWalletInteractionIsOngoing();
 
+  const feeAmount = fields.speed !== null ? resources.feeAmounts?.[fields.speed] : undefined;
   const pendingAmount = resources.l1PendingBalance
     ? new Amount(resources.l1PendingBalance, resources.depositAsset)
     : undefined;
@@ -97,9 +98,7 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
   }, [props.onRetry, props.onResetRunner, props.onCancel, walletInteractionToastsObs, props.runnerState]);
 
   const handleUsePendingFunds = () => {
-    if (!pendingAmount || fields.speed === null) return;
-    const feeAmount = resources.feeAmounts?.[fields.speed];
-    if (!feeAmount) return;
+    if (!pendingAmount || fields.speed === null || !feeAmount) return;
     const pendingAmountMinusFee = pendingAmount.subtract(feeAmount?.baseUnits);
     setters.depositValueStrOrMax(
       pendingAmountMinusFee.format({
@@ -143,6 +142,7 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
         sublabel={'Take advantage of your registration transaction fee and make a feeless deposit'}
         maxAmount={assessment.balances?.info.maxL2Output ?? 0n}
         asset={resources.depositAsset}
+        feeAmount={feeAmount}
         allowWalletSelection={true}
         amountStringOrMax={fields.depositValueStrOrMax}
         disabled={locked}

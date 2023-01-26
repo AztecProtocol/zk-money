@@ -9,6 +9,7 @@ import {
   useL2BalanceIndicator,
 } from '../../views/account/dashboard/modals/sections/amount_section/mini_balance_indicators.js';
 import { AmountInput } from '../index.js';
+import { Amount } from '../../alt-model/assets/amount.js';
 import style from './amount_selection.module.scss';
 
 type BalanceType = 'L1' | 'L2';
@@ -16,6 +17,7 @@ type BalanceType = 'L1' | 'L2';
 interface AmountSelectionProps {
   asset: RemoteAsset;
   maxAmount: bigint;
+  feeAmount?: Amount;
   amountStringOrMax: StrOrMax;
   balanceType: BalanceType;
   allowAssetSelection?: boolean;
@@ -51,6 +53,7 @@ export function AmountSelection(props: AmountSelectionProps) {
     <div className={style.inputWrapper}>
       <AmountInput
         asset={props.asset}
+        feeAmount={props.feeAmount}
         label={props.label}
         sublabel={props.sublabel}
         disabled={props.disabled}
