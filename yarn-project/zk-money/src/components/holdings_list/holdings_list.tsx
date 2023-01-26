@@ -6,6 +6,7 @@ import { useBalances } from '../../alt-model/index.js';
 import { useOpenPositions } from '../../alt-model/defi/open_position_hooks.js';
 import { Toggle } from '../../ui-components/index.js';
 import { useHiddenAssets } from '../../alt-model/defi/hidden_asset_hooks.js';
+import { RemoteAsset } from '../../alt-model/types.js';
 import style from './holdings_list.module.scss';
 
 const VIEWS = [
@@ -17,7 +18,7 @@ type View = typeof VIEWS[number]['value'];
 
 interface HoldingsListProps {
   onOpenDefiExitModal: (recipe: DefiRecipe) => void;
-  onOpenShieldModal: (assetId: number) => void;
+  onOpenShieldModal: (asset: RemoteAsset, amount?: string) => void;
   onOpenSendModal: (assetId: number) => void;
 }
 

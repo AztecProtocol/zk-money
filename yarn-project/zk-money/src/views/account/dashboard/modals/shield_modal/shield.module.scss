@@ -17,6 +17,15 @@
   align-self: end;
 }
 
+.usePendingFunds {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.usePendingFunds:hover {
+  text-decoration: underline;
+}
+
 .errorAlert {
   font-size: 18px;
   text-align: center;
@@ -26,6 +35,16 @@
   height: 200px;
   flex-direction: column;
   gap: 20px;
+}
+
+.loader {
+  position: absolute;
+  left: calc(50% - 17.5px);
+  top: calc(50% - 17.5px);
+}
+
+.isLoading {
+  opacity: 0;
 }
 
 .contentWrapper {

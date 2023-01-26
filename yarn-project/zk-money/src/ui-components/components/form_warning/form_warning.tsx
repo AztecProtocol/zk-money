@@ -3,7 +3,7 @@ import style from './form_warning.module.scss';
 const cx = bindStyle(style);
 
 interface FormWarningProps {
-  text: string;
+  text: React.ReactNode;
   className?: string;
 }
 

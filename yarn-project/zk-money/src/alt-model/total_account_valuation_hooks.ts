@@ -1,13 +1,14 @@
 import { AssetValue, UserDefiInteractionResultState } from '@aztec/sdk';
 import { useMemo } from 'react';
 import { useAggregatedAssetsBulkPrice } from './price_hooks.js';
-import { useBridgeDataAdaptorsMethodCaches, useDefiRecipes } from './top_level_context/index.js';
+import { useBridgeDataAdaptorsMethodCaches, useDefiRecipes, usePendingBalances } from './top_level_context/index.js';
 import { useDefiTxs } from './defi_txs_hooks.js';
 import { Obs, useMaybeObs, useObs } from '../app/util/obs/index.js';
 import { recipeMatcher } from './defi/recipe_matchers.js';
 import { useBalances, useSpendableBalances } from './balance_hooks.js';
 import { concatDefined } from '../app/util/arrays.js';
 import { useHiddenAssets } from './defi/hidden_asset_hooks.js';
+import { PendingBalances } from './top_level_context/pending_balances_obs.js';
 
 function useUnfinalisedAsyncDefiAsyncPresentValues() {
   const { interactionPresentValuePollerCache } = useBridgeDataAdaptorsMethodCaches();
@@ -76,20 +77,34 @@ function useDebtsAndCollaterals(balances: AssetValue[] | undefined) {
   return useObs(debtAndCollateralValuesObs);
 }
 
+function generatePendingBalancesAssetValues(pendingBalances?: PendingBalances): AssetValue[] | undefined {
+  if (!pendingBalances) return undefined;
+
+  return Object.keys(pendingBalances).map(assetId => {
+    return {
+      assetId: Number(assetId),
+      value: pendingBalances[assetId],
+    };
+  });
+}
+
 export function useTotalValuation() {
   const balances = useBalances();
+  const pendingBalances = usePendingBalances();
+  const pendingBalancesValues = useMemo(() => generatePendingBalancesAssetValues(pendingBalances), [pendingBalances]);
   const unfinalisedPresentValues = useUnfinalisedAsyncDefiAsyncPresentValues();
   const debtsAndCollaterals = useDebtsAndCollaterals(balances);
   const hiddenValues = useHiddenAssets();
   const presentValuesAreLoading = !unfinalisedPresentValues || Object.values(unfinalisedPresentValues).some(x => !x);
   const combinedAssetValues = useMemo(() => {
     let out: AssetValue[] = [];
+    out = concatDefined(out, pendingBalancesValues);
     out = concatDefined(out, balances);
     out = concatDefined(out, unfinalisedPresentValues);
     out = concatDefined(out, debtsAndCollaterals);
     out = out.filter(x1 => !hiddenValues.some(x2 => x1.assetId === x2.id));
     return out;
-  }, [balances, unfinalisedPresentValues, debtsAndCollaterals, hiddenValues]);
+  }, [balances, unfinalisedPresentValues, debtsAndCollaterals, hiddenValues, pendingBalancesValues]);
   const aggregationState = useAggregatedAssetsBulkPrice(combinedAssetValues);
   return {
     ...aggregationState,
