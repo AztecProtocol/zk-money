@@ -28,9 +28,11 @@ export function BalanceIndicator(props: BalanceIndicatorProps) {
           />
         )}
         <div className={cx(style.text, props.disabled && style.disabled)}>Balance: {props.balance}</div>
-        <div onClick={handleClick} className={cx(style.text, style.maxButton, props.disabled && style.disabled)}>
-          Max
-        </div>
+        {!props.disabled && (
+          <div onClick={handleClick} className={cx(style.text, style.maxButton, props.disabled && style.disabled)}>
+            Max
+          </div>
+        )}
       </div>
     </>
   );

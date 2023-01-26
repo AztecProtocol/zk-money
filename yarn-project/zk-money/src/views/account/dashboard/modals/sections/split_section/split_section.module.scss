@@ -31,3 +31,9 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .leftPanel {
+    padding: 40px 24px 45px 24px;
+  }
+}

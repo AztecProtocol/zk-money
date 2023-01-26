@@ -3,6 +3,8 @@ import {
   getL1DepositWalletAccountFeedback,
   getL1DepositAmountInputFeedback,
   getL1DepositFooterFeedback,
+  getL1PendingFundsFeedback,
+  getL1DepositAccountFeedback,
 } from '../l1_deposit/l1_deposit_feedback.js';
 import { RegisterFormResources, RegisterFormAssessment } from './assess_register_form.js';
 import { RegisterFormFields } from './register_form_fields.js';
@@ -31,12 +33,14 @@ export function getRegisterFormFeedback(
   resources: RegisterFormResources,
   assessment: RegisterFormAssessment,
   touchedFields: TouchedFormFields<RegisterFormFields>,
-  attemptedLock: boolean,
+  walletInteractionIsOngoing: boolean,
 ) {
   // amount returns feedback based on the touchedFields.alias field, because the amount is optional (so it can remain untouched)
-  const amount = getL1DepositAmountInputFeedback(resources, assessment, touchedFields.alias || attemptedLock);
+  const amount = getL1DepositAmountInputFeedback(resources, assessment, touchedFields.alias);
+  const deposit = getL1DepositAccountFeedback(resources, assessment, touchedFields.depositValueStrOrMax);
   const walletAccount = getRegisterFormWalletAccountFeedback(resources, assessment);
-  const footer = getL1DepositFooterFeedback(resources, assessment);
-  const alias = getRegisterFormAliasFeedback(assessment, touchedFields.alias || attemptedLock);
-  return { amount, walletAccount, footer, alias };
+  const footer = getL1DepositFooterFeedback(resources, assessment, walletInteractionIsOngoing);
+  const pendingFunds = getL1PendingFundsFeedback(resources, walletInteractionIsOngoing);
+  const alias = getRegisterFormAliasFeedback(assessment, touchedFields.alias);
+  return { amount, walletAccount, footer, pendingFunds, alias, deposit };
 }

@@ -32,12 +32,13 @@ const debug = createDebug('zm:shield_form_hooks');
 export function useShieldForm(
   preselectedAssetId?: number,
   preselectedRecipient?: string,
+  preselectedAmount?: string,
   onShieldComplete?: () => void,
 ) {
   const [fields, setFields] = useState<ShieldFormFields>({
     assetId: preselectedAssetId ?? 0,
     recipientAlias: preselectedRecipient ? removePrefixFromRecipient(preselectedRecipient) : '',
-    amountStrOrMax: '',
+    amountStrOrMax: preselectedAmount ?? '',
     speed: TxSettlementTime.NEXT_ROLLUP,
   });
   const [touchedFields, setters] = useTrackedFieldChangeHandlers(fields, setFields);
@@ -152,6 +153,7 @@ export function useShieldForm(
       debug('Tried to unlock form while in progress');
       return;
     }
+    setAttemptedLock(false);
     setLockedComposer(undefined);
   };
 
@@ -162,9 +164,10 @@ export function useShieldForm(
     feedback,
     composerState,
     lockedComposerPayload,
-    submit,
-    attemptLock,
     locked,
+    attemptedLock,
+    submit,
     unlock,
+    attemptLock,
   };
 }

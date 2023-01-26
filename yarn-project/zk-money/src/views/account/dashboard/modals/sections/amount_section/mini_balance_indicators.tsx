@@ -3,12 +3,15 @@ import { getAssetPreferredFractionalDigits } from '../../../../../../alt-model/k
 import { formatBaseUnits } from '../../../../../../app/index.js';
 import { useL1Balance } from '../../../../../../alt-model/assets/l1_balance_hooks.js';
 import { useMaxSpendableValue } from '../../../../../../alt-model/index.js';
+import { usePendingBalances } from '../../../../../../alt-model/top_level_context/top_level_context_hooks.js';
 
 export function useL1BalanceIndicator(asset?: RemoteAsset, symbol: boolean = false) {
+  const pendingBalances = usePendingBalances();
   const l1Balance = useL1Balance(asset);
+  const l1PendingBalance = asset ? pendingBalances?.[asset.id] ?? 0n : 0n;
   return asset === undefined || l1Balance === undefined
     ? 'Loading...'
-    : `${formatBaseUnits(l1Balance, asset.decimals, {
+    : `${formatBaseUnits(l1Balance + l1PendingBalance, asset.decimals, {
         precision: getAssetPreferredFractionalDigits(asset.label),
       })}${symbol ? ` ${asset.symbol}` : ''}`;
 }
