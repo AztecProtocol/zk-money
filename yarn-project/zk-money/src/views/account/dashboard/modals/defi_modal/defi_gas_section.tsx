@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { max } from 'moment';
 import { BridgeCallData, DefiSettlementTime } from '@aztec/sdk';
 import type { Amount } from '../../../../../alt-model/assets/index.js';
 import type { DefiRecipe } from '../../../../../alt-model/defi/types.js';
@@ -20,13 +20,16 @@ interface DefiGasSectionProps {
   bridgeCallData?: BridgeCallData;
 }
 
-function formatExpectedTimeOfSettlement(expectedTimeOfSettlement?: Date) {
-  if (expectedTimeOfSettlement) return moment(expectedTimeOfSettlement).fromNow(true);
-  return '';
+function getLatestOf(nextSettlementTime?: Date, batchAverageTimeout?: number) {
+  //? Note, this assumes that a batch was just executed. Otherwise will overestimate time.
+  if (nextSettlementTime && batchAverageTimeout) {
+    return max(moment(nextSettlementTime), moment(Date.now() + batchAverageTimeout * 1000)).toDate();
+  }
+  return undefined;
 }
 
-function formatAverageTimeoutSeconds(averageTimeoutSeconds?: number) {
-  if (averageTimeoutSeconds) return '~' + moment(Date.now() + averageTimeoutSeconds * 1000).fromNow(true);
+function formatExpectedTimeOfSettlement(expectedTimeOfSettlement?: Date) {
+  if (expectedTimeOfSettlement) return `~${moment(expectedTimeOfSettlement).fromNow(true)}`;
   return '';
 }
 
@@ -46,6 +49,7 @@ export function DefiGasSection(props: DefiGasSectionProps) {
   const { instantSettlementTime, nextSettlementTime } = estimateTxSettlementTimes(rpStatus);
   const batchData = useDefiBatchData(props.bridgeCallData);
   const batchAverageTimeout = useDefiBatchAverageTimeout(props.recipe, props.bridgeCallData);
+  const nextExpectedBatchTime = getLatestOf(nextSettlementTime, batchAverageTimeout);
 
   const feeBulkPriceDeadline = useAmountBulkPrice(feeAmounts?.[DefiSettlementTime.DEADLINE]);
   const feeBulkPriceNextRollup = useAmountBulkPrice(feeAmounts?.[DefiSettlementTime.NEXT_ROLLUP]);
@@ -68,7 +72,7 @@ export function DefiGasSection(props: DefiGasSectionProps) {
       id: DefiSettlementTime.DEADLINE,
       content: {
         label: 'Batched',
-        timeStr: formatAverageTimeoutSeconds(batchAverageTimeout),
+        timeStr: formatExpectedTimeOfSettlement(nextExpectedBatchTime),
         feeAmountStr: formatFeeAmount(feeAmounts?.[DefiSettlementTime.DEADLINE]),
         feeBulkPriceStr: formatFeeBulkPrice(feeBulkPriceDeadline),
       },
