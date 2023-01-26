@@ -32,7 +32,6 @@ export async function aliasCollider(sdk: AztecSdk, alias: string) {
 
   const collisions: { [key: string]: number } = {};
   await inner(alias.toLowerCase(), 0, collisions);
-  console.log(collisions);
 
   // Create a sorted array of the collisions (sorted by the index of the alias)
   const entities: AliasCollision[] = [];
