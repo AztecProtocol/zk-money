@@ -6,7 +6,7 @@ import { TopLevelContext } from '../../alt-model/top_level_context/top_level_con
 import { usePendingBalances } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { RemoteAsset } from '../../alt-model/types.js';
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';
-import { formatBaseUnits } from '../../app/units.js';
+import { formatBaseUnits, formatBulkPrice } from '../../app/units.js';
 import { Layer, DropdownOption, FieldStatus, Field } from '../../ui-components/index.js';
 import { getWalletSelectorToast, Toasts } from '../../views/toasts/toast_configurations.js';
 
@@ -47,18 +47,36 @@ function getStatus(message?: string, amount?: string) {
   }
 }
 
-function getPendingFundsMessage(message?: string, value?: string, pendingFunds?: number, symbol?: string) {
+function getPendingFundsMessage(message?: string, inputAmount?: Amount, pendingAmount?: Amount) {
   if (message) {
     return message;
   }
 
-  const valueNumber = Number(value);
-  if (pendingFunds && valueNumber > 0) {
-    const usingOverPendingFunds = valueNumber > pendingFunds;
-    const usedPendingFundsAmount = usingOverPendingFunds ? pendingFunds : valueNumber;
-    return usingOverPendingFunds
-      ? `Your balance includes ${usedPendingFundsAmount} ${symbol} already sent to the contract. This transaction will unblock your funds previously sent to the contract first.`
-      : `Your balance includes ${usedPendingFundsAmount} ${symbol} already sent to the contract. This transaction will use funds previously sent to the contract.`;
+  if (!pendingAmount || !inputAmount) {
+    return;
+  }
+
+  if (inputAmount.baseUnits > 0) {
+    const usingOverPendingFunds = inputAmount.baseUnits > pendingAmount.baseUnits;
+    const usingUnderPendingFunds = inputAmount.baseUnits < pendingAmount.baseUnits;
+    const formattedPendingAmount = pendingAmount.format({
+      layer: 'L1',
+      uniform: true,
+    });
+
+    if (usingUnderPendingFunds) {
+      return `You already sent ${formattedPendingAmount} to the contract. This transaction will use a portion of these funds.`;
+    }
+
+    if (usingOverPendingFunds) {
+      const formattedRemainingAmount = inputAmount.subtract(pendingAmount.baseUnits).format({
+        layer: 'L1',
+        uniform: true,
+      });
+      return `You already sent ${formattedPendingAmount} to the contract. This transaction will use these funds first and you will be asked to deposit ${formattedRemainingAmount} on the next step.`;
+    }
+
+    return `You already sent ${formattedPendingAmount} to the contract. This transaction will use these funds.`;
   }
 }
 
@@ -84,8 +102,8 @@ export function AmountInput(props: AmountInputProps) {
   const status = getStatus(props.message, amountStr);
 
   const pendingAmount = new Amount(l1PendingBalance, asset);
-  const pendingAmountNumber = pendingAmount.toFloat();
-  const message = getPendingFundsMessage(props.message, amountStr, pendingAmountNumber, asset.symbol);
+  const inputAmount = Amount.from(amountStr, asset);
+  const message = getPendingFundsMessage(props.message, inputAmount, pendingAmount);
 
   return (
     <Field

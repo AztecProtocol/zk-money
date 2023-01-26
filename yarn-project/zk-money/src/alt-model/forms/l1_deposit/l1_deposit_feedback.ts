@@ -117,9 +117,10 @@ export function getL1PendingFundsFeedback(resources: L1DepositResources, walletI
   if (resources.l1PendingBalance === undefined || resources.l1PendingBalance === 0n) return;
 
   const pendingAmount = new Amount(resources.l1PendingBalance, resources.depositAsset);
+  const pendingAmountMinusFee = pendingAmount.subtract(resources.feeAmount?.baseUnits || 0n);
   const depositAmount = Amount.from(resources.depositValueStr, resources.depositAsset);
 
-  if (depositAmount.toAssetValue().value < pendingAmount.toAssetValue().value) {
+  if (depositAmount.toAssetValue().value < pendingAmountMinusFee.toAssetValue().value) {
     const pendingAmountStr = pendingAmount.format({
       layer: 'L1',
       uniform: true,

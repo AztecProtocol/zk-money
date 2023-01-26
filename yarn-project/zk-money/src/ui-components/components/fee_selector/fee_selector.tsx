@@ -81,7 +81,7 @@ export function FeeSelector<TId extends SomeId>(props: FeeSelectorProps<TId>) {
             label: `${option.content.label}${
               option.content.feeBulkPriceStr ? ` (${option.content.feeBulkPriceStr})` : ``
             }${option.content.timeStr ? ` [${option.content.timeStr}]` : ``}`,
-            sublabel: `Paid with: ${option.content.feeAmountStr || '-'}`,
+            sublabel: `${option.content.feeAmountStr || '-'}`,
           }))}
           onChange={value => (!!value || value === 0) && props.onChangeValue(value)}
         />

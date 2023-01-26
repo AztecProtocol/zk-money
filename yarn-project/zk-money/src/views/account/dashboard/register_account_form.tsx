@@ -97,9 +97,12 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
   }, [props.onRetry, props.onResetRunner, props.onCancel, walletInteractionToastsObs, props.runnerState]);
 
   const handleUsePendingFunds = () => {
-    if (!pendingAmount) return;
+    if (!pendingAmount || fields.speed === null) return;
+    const feeAmount = resources.feeAmounts?.[fields.speed];
+    if (!feeAmount) return;
+    const pendingAmountMinusFee = pendingAmount.subtract(feeAmount?.baseUnits);
     setters.depositValueStrOrMax(
-      pendingAmount.format({
+      pendingAmountMinusFee.format({
         layer: 'L1',
         uniform: true,
         hideSymbol: true,
