@@ -65,8 +65,6 @@ function getPendingFundsMessage(message?: string, inputAmount?: Amount, pendingA
       uniform: true,
     });
 
-    console.log(inputAmount.baseUnits, feeAmount.baseUnits, pendingAmount);
-
     if (usingUnderPendingFunds) {
       return `You already sent ${formattedPendingAmount} to the contract. This transaction will use a portion of these funds.`;
     }
