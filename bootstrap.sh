@@ -10,7 +10,7 @@ fi
 nvm install
 
 # Until we push .yarn/cache, we still need to install.
-cd yarn-project
+cd zk-money
 yarn install --immutable
 cd ..
 
