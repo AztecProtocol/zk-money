@@ -18,7 +18,6 @@ async function rootRender() {
   try {
     const supportStatusProm = getSupportStatus();
     const { config, initialRollupProviderStatus, staleFrontend } = await getEnvironment();
-    console.log(config, initialRollupProviderStatus, staleFrontend);
     const { wagmiClient, chains } = getWagmiRainbowConfig(config);
     const supportStatus = await supportStatusProm;
     if (supportStatus !== 'supported') {
@@ -58,7 +57,7 @@ async function rootRender() {
         </RainbowKitProvider>
       </WagmiConfig>
     );
-  } catch {
+  } catch (e) {
     return (
       <BrowserRouter>
         <AppInitFailed reason={{ type: 'falafel-down' }} explorerUrl={PROD_EXPLORER_URL} />

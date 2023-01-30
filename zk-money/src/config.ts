@@ -33,10 +33,11 @@ const fromLocalStorage = (): ConfigVars => ({
   debugFilter: localStorage.getItem('zm_debug') ?? '',
 });
 
-const fromEnvVars = (): ConfigVars => ({
+const fromEnvVars = (): ConfigVars => {
+  return {
   deployTag: import.meta.env.REACT_APP_DEPLOY_TAG || '',
   debugFilter: import.meta.env.REACT_APP_DEBUG ?? '',
-});
+}};
 
 const productionConfig: ConfigVars = {
   deployTag: '',
@@ -78,7 +79,7 @@ function getEthereumHost(chainId: number) {
 async function getInferredDeployTag() {
   // If we haven't overridden our deploy tag, we discover it at runtime. All s3 deployments have a file
   // called DEPLOY_TAG in their root containing the deploy tag.
-  if (import.meta.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== 'development') {
     const resp = await fetch('/DEPLOY_TAG');
     const text = await resp.text();
     return text.replace('\n', '');
@@ -105,7 +106,7 @@ function getDeployConfig(deployTag: string, rollupProviderUrl: string, chainId: 
 }
 
 function getRawConfigWithOverrides() {
-  const defaultConfig = import.meta.env.NODE_ENV === 'development' ? developmentConfig : productionConfig;
+  const defaultConfig = process.env.NODE_ENV === 'development' ? developmentConfig : productionConfig;
   return { ...defaultConfig, ...removeEmptyValues(fromEnvVars()), ...removeEmptyValues(fromLocalStorage()) };
 }
 
@@ -146,6 +147,7 @@ function assembleConfig(
 }
 
 export async function getEnvironment() {
+
   const rawConfig = getRawConfigWithOverrides();
   const deployTag = rawConfig.deployTag || (await getInferredDeployTag());
   const rollupProviderUrl = getRollupProviderUrl(deployTag);
