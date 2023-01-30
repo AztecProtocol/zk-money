@@ -94,6 +94,7 @@ export function Balance(props: BalanceProps) {
 
   const handleOpenShieldModal = (asset?: RemoteAsset, amount?: string) => {
     const recipient = cachedAlias || formattedAddress;
+    amount = amount && amount!.replace(/,/g, '');
     setModalActivation({ type: 'shield', assetId: asset?.id, recipient, amount });
   };
 
