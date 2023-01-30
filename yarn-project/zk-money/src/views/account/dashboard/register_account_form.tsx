@@ -7,6 +7,7 @@ import { TopLevelContext } from '../../../alt-model/top_level_context/top_level_
 import { TxGasSection } from '../../../views/account/dashboard/modals/sections/gas_section/index.js';
 import { getRegisterToast } from '../../../views/toasts/toast_configurations.js';
 import { useWalletInteractionIsOngoing } from '../../../alt-model/wallet_interaction_hooks.js';
+import { Amount } from '../../../alt-model/assets/amount.js';
 import style from './register_account_form.module.scss';
 
 export type KeyType = 'account' | 'spending';
@@ -74,6 +75,11 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
   const { walletInteractionToastsObs } = useContext(TopLevelContext);
   const walletInteractionIsOngoing = useWalletInteractionIsOngoing();
 
+  const feeAmount = fields.speed !== null ? resources.feeAmounts?.[fields.speed] : undefined;
+  const pendingAmount = resources.l1PendingBalance
+    ? new Amount(resources.l1PendingBalance, resources.depositAsset)
+    : undefined;
+
   useEffect(() => {
     const interactionItem = getInteractionItem(props.runnerState);
     if (interactionItem) {
@@ -90,6 +96,19 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
       return () => walletInteractionToastsObs.removeToastByKey(toastItem.key);
     }
   }, [props.onRetry, props.onResetRunner, props.onCancel, walletInteractionToastsObs, props.runnerState]);
+
+  const handleUsePendingFunds = () => {
+    if (!pendingAmount || fields.speed === null || !feeAmount) return;
+    const pendingAmountMinusFee = pendingAmount.subtract(feeAmount?.baseUnits);
+    setters.depositValueStrOrMax(
+      pendingAmountMinusFee.format({
+        layer: 'L1',
+        uniform: true,
+        hideSymbol: true,
+        hideComma: true,
+      }),
+    );
+  };
 
   return (
     <div className={style.registerAccountForm}>
@@ -124,17 +143,31 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
         sublabel={'Take advantage of your registration transaction fee and make a feeless deposit'}
         maxAmount={assessment.balances?.info.maxL2Output ?? 0n}
         asset={resources.depositAsset}
+        feeAmount={feeAmount}
         allowWalletSelection={true}
         amountStringOrMax={fields.depositValueStrOrMax}
         disabled={locked}
         allowAssetSelection={false}
         onChangeAsset={setters.depositAssetId}
+        message={feedback.deposit}
         onChangeAmountStringOrMax={setters.depositValueStrOrMax}
         balanceType={'L1'}
       />
       {feedback.amount && <FormWarning text={feedback.amount} />}
       {feedback.walletAccount && <FormWarning text={feedback.walletAccount} />}
       {feedback.footer && <FormWarning text={feedback.footer} />}
+      {feedback.pendingFunds && (
+        <FormWarning
+          text={
+            <span className={style.pendingFundsFooter}>
+              {feedback.pendingFunds}{' '}
+              <span onClick={handleUsePendingFunds} className={style.usePendingFunds}>
+                Click here to use it.
+              </span>
+            </span>
+          }
+        />
+      )}
     </div>
   );
 }

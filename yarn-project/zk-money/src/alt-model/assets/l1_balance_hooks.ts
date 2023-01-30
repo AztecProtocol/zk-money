@@ -34,12 +34,15 @@ export function useL1PendingBalances(): PendingBalances {
       const gatedSetter = createGatedSetter(setL1PendingBalances);
 
       const task = setTimeout(() => {
-        const fundsPromises = assets.map(asset => sdk.getUserPendingFunds(asset.id, EthAddress.fromString(address)));
+        const fundsPromises = assets.map(async asset => {
+          const value = await sdk.getUserPendingFunds(asset.id, EthAddress.fromString(address));
+          return { assetId: asset.id, value };
+        });
         Promise.all(fundsPromises).then(pendingDeposits => {
           const pendingBalances = pendingDeposits
-            .filter(deposit => deposit > 0n)
-            .reduce((acc, pendingDeposit, index) => {
-              acc[assets[index].id] = pendingDeposit;
+            .filter(deposit => deposit.value > 0n)
+            .reduce((acc, pendingDeposit) => {
+              acc[pendingDeposit.assetId] = pendingDeposit.value;
               return acc;
             }, {} as PendingBalances);
           gatedSetter.set(pendingBalances);

@@ -2,6 +2,30 @@ import { Amount } from '../../assets/amount.js';
 import { getAssetPreferredFractionalDigits } from '../../known_assets/known_asset_display_data.js';
 import { L1DepositResources, L1DepositAssessment } from './assess_l1_deposit.js';
 
+export function getL1DepositAccountFeedback(
+  resources: L1DepositResources,
+  assessment: L1DepositAssessment,
+  touched: boolean,
+) {
+  if (!touched) return;
+  if (!assessment.balances) return;
+  const { issues, info } = assessment.balances;
+
+  if (issues.beyondTransactionLimit) {
+    if (!resources.transactionLimit) {
+      console.error('Could not format transaction limit message');
+      return 'Beyond transaction limit';
+    }
+    const txLimitAmount = info.targetL2OutputAmount.withBaseUnits(resources.transactionLimit);
+    return `Transactions are capped at ${txLimitAmount?.format()}`;
+  }
+
+  if (issues.precisionIsTooHigh) {
+    const digits = getAssetPreferredFractionalDigits(resources.depositAsset.label);
+    return `Please enter no more than ${digits} decimal places.`;
+  }
+}
+
 export function getL1DepositAmountInputFeedback(
   resources: L1DepositResources,
   assessment: L1DepositAssessment,
@@ -32,12 +56,8 @@ export function getL1DepositAmountInputFeedback(
     })} from your L1 balance for paying the transaction fee.`;
   }
   if (issues.beyondTransactionLimit) {
-    if (!resources.transactionLimit) {
-      console.error('Could not format transaction limit message');
-      return 'Beyind transaction limit';
-    }
-    const txLimitAmount = info.targetL2OutputAmount.withBaseUnits(resources.transactionLimit);
-    return `Transactions are capped at ${txLimitAmount?.format()}`;
+    // this is a duplicate of the same check in getL1DepositAccountFeedback
+    return ``;
   }
   if (issues.insufficientDepositAssetBalance) {
     const required = info.requiredL1InputCoveringCosts;
@@ -58,10 +78,6 @@ export function getL1DepositAmountInputFeedback(
       uniform: true,
     })} available.`;
   }
-  if (issues.precisionIsTooHigh) {
-    const digits = getAssetPreferredFractionalDigits(resources.depositAsset.label);
-    return `Please enter no more than ${digits} decimal places.`;
-  }
 }
 
 export function getL1DepositWalletAccountFeedback(resources: L1DepositResources, assessment: L1DepositAssessment) {
@@ -81,18 +97,34 @@ export function getL1DepositWalletAccountFeedback(resources: L1DepositResources,
   }
 }
 
-export function getL1DepositFooterFeedback(resources: L1DepositResources, assessment: L1DepositAssessment) {
+export function getL1DepositFooterFeedback(
+  resources: L1DepositResources,
+  assessment: L1DepositAssessment,
+  walletInteractionIsOngoing?: boolean,
+) {
+  if (walletInteractionIsOngoing) return;
   if (assessment.balances?.issues.insufficientAuxiliaryFeeAssetBalance) {
     const fee = resources.feeAmount;
     return `You do not have enough zk${fee?.info.symbol} to pay the fee. Please shield at least ${fee?.toFloat()} ${
       fee?.info.symbol
     } in a seperate transaction.`;
   }
-  if (resources.l1PendingBalance !== undefined && resources.l1PendingBalance > 0n) {
-    const pendingAmount = new Amount(resources.l1PendingBalance, resources.depositAsset);
-    return `You have ${pendingAmount.format({
+}
+
+export function getL1PendingFundsFeedback(resources: L1DepositResources, walletInteractionIsOngoing?: boolean) {
+  if (walletInteractionIsOngoing) return;
+  if (resources.depositValueStr === 'string') return;
+  if (resources.l1PendingBalance === undefined || resources.l1PendingBalance === 0n) return;
+
+  const pendingAmount = new Amount(resources.l1PendingBalance, resources.depositAsset);
+  const pendingAmountMinusFee = pendingAmount.subtract(resources.feeAmount?.baseUnits || 0n);
+  const depositAmount = Amount.from(resources.depositValueStr, resources.depositAsset);
+
+  if (depositAmount.toAssetValue().value < pendingAmountMinusFee.toAssetValue().value) {
+    const pendingAmountStr = pendingAmount.format({
       layer: 'L1',
       uniform: true,
-    })} pending on the contract. This will be used first.`;
+    });
+    return `You have ${pendingAmountStr} deposited in the Aztec Network.`;
   }
 }

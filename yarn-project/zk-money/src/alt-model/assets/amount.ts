@@ -34,7 +34,17 @@ export class Amount {
     return this.withBaseUnits(this.baseUnits + baseUnits);
   }
 
-  format(opts?: { layer?: 'L1' | 'L2'; uniform?: boolean; showPlus?: boolean; hideSymbol?: boolean }) {
+  subtract(baseUnits: bigint) {
+    return this.withBaseUnits(this.baseUnits - baseUnits);
+  }
+
+  format(opts?: {
+    layer?: 'L1' | 'L2';
+    uniform?: boolean;
+    showPlus?: boolean;
+    hideSymbol?: boolean;
+    hideComma?: boolean;
+  }) {
     const layer = opts?.layer ?? 'L2';
     const symbolPrefix = layer === 'L2' ? 'zk' : '';
     const hideSymbol = opts?.hideSymbol;
@@ -44,7 +54,8 @@ export class Amount {
       showPlus: opts?.showPlus,
     });
     const symbol = `${symbolPrefix}${this.info.symbol}`;
-    return `${numStr} ${hideSymbol ? '' : symbol}`;
+    const result = `${numStr}${hideSymbol ? '' : ` ${symbol}`}`;
+    return opts?.hideComma ? result.replace(/,/g, '') : result;
   }
 
   toBulkPrice(assetUnitPrice: bigint) {

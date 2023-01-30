@@ -11,11 +11,8 @@ export function useRegisterForm() {
   const [touchedFields, setters] = useTrackedFieldChangeHandlers(fields, setFields);
   const resources = useRegisterFormResources(fields);
   const assessment = assessRegisterForm(resources);
-  const { runner, runnerState, submit, cancel, attemptedSubmit, locked, canSubmit } = useRegisterFormFlowRunner(
-    resources,
-    assessment,
-  );
-  const feedback = getRegisterFormFeedback(resources, assessment, touchedFields, attemptedSubmit);
+  const { runner, runnerState, submit, cancel, locked, canSubmit } = useRegisterFormFlowRunner(resources, assessment);
+  const feedback = getRegisterFormFeedback(resources, assessment, touchedFields, locked);
   return { fields, setters, resources, assessment, runner, runnerState, locked, submit, cancel, canSubmit, feedback };
 }
 

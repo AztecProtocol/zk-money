@@ -41,8 +41,7 @@ export function usePendingBalances() {
 }
 
 export function useWalletInteractionToasts() {
-  const { walletInteractionToastsObs } = useTopLevelContext();
-  return useObs(walletInteractionToastsObs);
+  return useObs(useTopLevelContext().walletInteractionToastsObs);
 }
 
 export function useRemoteAssetForId(assetId: number) {

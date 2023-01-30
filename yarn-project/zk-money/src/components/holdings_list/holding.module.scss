@@ -84,12 +84,19 @@
 
 .pendingBalance {
   background-color: #ffd166;
+  font-weight: 450;
+  cursor: pointer;
   color: black;
   border-radius: 5px;
   flex-direction: row;
   display: flex;
   gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
   padding: 3px 6px;
+}
+
+.pendingBalance:hover {
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
 }
 
 .buttonIcon {
@@ -103,7 +110,6 @@
   align-items: center;
   width: 80px;
   cursor: pointer;
-  transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .disabled {
