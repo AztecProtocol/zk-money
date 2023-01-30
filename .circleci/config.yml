@@ -72,17 +72,6 @@ save_logs: &save_logs
       - ./*
 
 jobs:
-  yarn-zk-money-base:
-    machine:
-      image: ubuntu-2004:202010-01
-    resource_class: large
-    steps:
-      - *checkout
-      - *setup_env
-      - run:
-          name: 'Build'
-          command: build yarn-zk-money-base
-
   zk-money:
     machine:
       image: ubuntu-2004:202010-01
@@ -116,10 +105,6 @@ bb_test: &bb_test
   requires:
     - x86_64-linux-clang-assert
   filters: *tag_filter
-yarn_project: &yarn_project
-  requires:
-    - yarn-zk-money-base
-  filters: *tag_filter
 deploy_filters: &deploy_filters
   branches:
     only:
@@ -133,9 +118,7 @@ workflows:
     when:
       equal: [system, << pipeline.parameters.workflow >>]
     jobs:
-      - yarn-zk-money-base:
-          filters: *tag_filter
-      - zk-money: *yarn_project
+      - zk-money
       # Not currently a yarn project due to using next.js, but should be.
       - deploy:
           requires:

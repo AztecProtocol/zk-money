@@ -9,28 +9,28 @@ import svgrPlugin from 'vite-plugin-svgr';
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
   resolve: {
-    alias: {}
+    alias: {},
   },
   build: {
     outDir: 'dest',
   },
   optimizeDeps: {
     // exclude: ['@aztec/sdk']
+  },
+  esbuildOptions: {
+    define: {
+      global: 'globalThis',
     },
-        esbuildOptions: {
-            define: {
-                global: "globalThis",
-            },
-            plugins: [
-                NodeGlobalsPolyfillPlugin({
-                   process: true,
-                   buffer: true,
-            }),
-            NodeModulesPolyfillPlugin(),
-      ],
-    },
+    plugins: [
+      NodeGlobalsPolyfillPlugin({
+        process: true,
+        buffer: true,
+      }),
+      NodeModulesPolyfillPlugin(),
+    ],
+  },
   server: {
     port: 8080,
-    host: "0.0.0.0"
-  }
+    host: '0.0.0.0',
+  },
 });

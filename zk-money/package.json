@@ -32,7 +32,8 @@
     "clean": "rm -rf ./dest",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "formatting": "run -T prettier --check ./src && run -T eslint --max-warnings 0 ./src",
+    "formatting": "prettier --check ./src && eslint --max-warnings 0 ./src",
+    "format": "prettier -w .",
     "build:lambda": "cd lambda && yarn build",
     "test": "NODE_OPTIONS=--experimental-vm-modules yarn jest"
   },
@@ -96,7 +97,9 @@
     "@types/styled-components": "^5.1.3",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
+    "@vitejs/plugin-react": "^3.0.1",
     "assert": "^2.0.0",
+    "babel-eslint": "^10.1.0",
     "buffer": "^6.0.3",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
@@ -119,7 +122,6 @@
     "typescript": "^4.7.4",
     "util": "^0.12.4",
     "vite": "^4.0.4",
-    "@vitejs/plugin-react": "^3.0.1",
     "vite-plugin-svgr": "^2.4.0",
     "vite-preset-react": "^2.3.0",
     "vite-tsconfig-paths": "^4.0.5"

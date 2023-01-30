@@ -1,5 +1,6 @@
 Dockerfile
 .cache
 dist
-node_modules
-terraform
+dest
+**/node_modules
+**/terraform

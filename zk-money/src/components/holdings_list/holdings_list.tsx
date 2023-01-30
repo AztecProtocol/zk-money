@@ -14,7 +14,7 @@ const VIEWS = [
   { label: 'Earn Positions', value: 'defi-positions' },
 ];
 
-type View = typeof VIEWS[number]['value'];
+type View = (typeof VIEWS)[number]['value'];
 
 interface HoldingsListProps {
   onOpenDefiExitModal: (recipe: DefiRecipe) => void;
