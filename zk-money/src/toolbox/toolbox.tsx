@@ -15,7 +15,7 @@ const TOOLS = [
   { component: RecoverAliasInteractions, label: 'Transfer a trapped pre-June 2021 alias to a new account' },
   { component: AliasCollisionChecker, label: 'Check for alias collisions' },
 ];
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.NODE_ENV === 'development') {
   TOOLS.push({ component: LegacyRegisterInteractions, label: 'Register with legacy signing message' });
 }
 

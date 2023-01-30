@@ -34,8 +34,8 @@ const fromLocalStorage = (): ConfigVars => ({
 });
 
 const fromEnvVars = (): ConfigVars => ({
-  deployTag: process.env.REACT_APP_DEPLOY_TAG || '',
-  debugFilter: process.env.REACT_APP_DEBUG ?? '',
+  deployTag: import.meta.env.REACT_APP_DEPLOY_TAG || '',
+  debugFilter: import.meta.env.REACT_APP_DEBUG ?? '',
 });
 
 const productionConfig: ConfigVars = {
