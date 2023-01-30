@@ -30,7 +30,7 @@ function getForkProvider(config: Config): Chain {
     name: 'Aztec Ethereum Mainnet Fork',
     network: 'mainnet-fork',
     nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
-    rpcUrls: { default: { http: [config.ethereumHost] }, public: {http: []} },
+    rpcUrls: { default: { http: [config.ethereumHost] }, public: { http: [] } },
   };
 }
 
