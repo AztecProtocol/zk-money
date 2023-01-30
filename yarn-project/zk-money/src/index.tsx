@@ -18,6 +18,7 @@ async function rootRender() {
   try {
     const supportStatusProm = getSupportStatus();
     const { config, initialRollupProviderStatus, staleFrontend } = await getEnvironment();
+    console.log(config, initialRollupProviderStatus, staleFrontend);
     const { wagmiClient, chains } = getWagmiRainbowConfig(config);
     const supportStatus = await supportStatusProm;
     if (supportStatus !== 'supported') {

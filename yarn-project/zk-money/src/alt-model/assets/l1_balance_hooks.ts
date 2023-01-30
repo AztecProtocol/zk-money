@@ -21,7 +21,7 @@ export function useL1PendingBalances(): PendingBalances {
   const sdk = useSdk();
   const { address } = useAccount();
   const { data: l1EthBalanceFetchResult } = useBalance({
-    addressOrName: address,
+    address,
     watch: true,
   });
   const l1EthBalance = l1EthBalanceFetchResult?.value.toBigInt();
@@ -70,8 +70,8 @@ export function useL1PendingBalances(): PendingBalances {
 export function useL1Balance(asset: RemoteAsset | undefined) {
   const { address } = useAccount();
   const { data: l1BalanceFetchResult } = useBalance({
-    addressOrName: address,
-    token: asset?.id === 0 ? undefined : asset?.address.toString(),
+    address,
+    token: asset?.id === 0 ? undefined : (asset?.address.toString() as undefined | `0x${string}`),
     watch: true,
   });
   return l1BalanceFetchResult?.value.toBigInt();
