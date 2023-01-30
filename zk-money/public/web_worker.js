@@ -1,0 +1,1 @@
+../node_modules/@aztec/sdk/dest/web_worker.js
