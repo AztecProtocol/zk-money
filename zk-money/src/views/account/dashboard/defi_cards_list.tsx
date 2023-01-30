@@ -11,7 +11,7 @@ import {
   recipeFiltersToSearchStr,
   searchStrToRecipeFilters,
 } from '../../../alt-model/defi/recipe_filters.js';
-import style from './defi_cards_list.module.scss.js';
+import style from './defi_cards_list.module.scss';
 import { useHiddenAssets } from '../../../alt-model/defi/hidden_asset_hooks.js';
 
 interface DefiCardsListProps {

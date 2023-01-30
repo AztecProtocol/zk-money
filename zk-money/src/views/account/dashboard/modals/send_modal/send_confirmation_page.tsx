@@ -16,7 +16,7 @@ import {
 import { RetrySigningButton } from '../modal_molecules/retry_signing_button/index.js';
 import { useWalletInteractionIsOngoing } from '../../../../../alt-model/wallet_interaction_hooks.js';
 import { formatEthAddress } from '../../../../../app/util/helpers.js';
-import style from './send_confirmation_page.module.scss.js';
+import style from './send_confirmation_page.module.scss';
 
 interface SendConfirmationPageProps {
   composerState: SendComposerState;

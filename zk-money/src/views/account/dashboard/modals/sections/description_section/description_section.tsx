@@ -1,5 +1,5 @@
 import { bindStyle } from '../../../../../../ui-components/util/classnames.js';
-import style from './description_section.module.scss.js';
+import style from './description_section.module.scss';
 
 const cx = bindStyle(style);
 interface DescriptionSectionProps {

@@ -14,7 +14,7 @@ import { ShieldSubmissionSteps } from './shield_submission_steps.js';
 import { RetrySigningButton } from '../../modal_molecules/retry_signing_button/retry_signing_button.js';
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
 import { BorderBox } from '../../../../../../components/border_box.js';
-import style from './shield_confirmation_page.module.scss.js';
+import style from './shield_confirmation_page.module.scss';
 
 interface ShieldConfirmationPageProps {
   composerState: ShieldComposerState;

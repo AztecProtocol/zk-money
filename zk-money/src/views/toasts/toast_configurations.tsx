@@ -7,7 +7,7 @@ import { Button, ButtonTheme, TxProgress, TxProgressFlow, TxProgressStep } from 
 import { WalletInteractionStep, WalletInteractionToast } from '../../components/index.js';
 import { FlowRunnerState } from '../../toolbox/flows/flow_runner.js';
 import { PhaseType } from '../account/dashboard/register_account_form.js';
-import style from './toast_configurations.module.scss.js';
+import style from './toast_configurations.module.scss';
 
 export enum Toasts {
   COOKIES = 'COOKIES',

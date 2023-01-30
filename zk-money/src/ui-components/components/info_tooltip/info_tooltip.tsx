@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { bindStyle } from '../../util/classnames.js';
 import { Tooltip } from '../index.js';
-import style from './info_tooltip.module.scss.js';
+import style from './info_tooltip.module.scss';
 
 const cx = bindStyle(style);
 

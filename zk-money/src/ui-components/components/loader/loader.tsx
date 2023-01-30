@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindStyle } from '../../util/classnames.js';
 import loaderIcon from '../../images/loader.svg';
-import style from './loader.module.scss.js';
+import style from './loader.module.scss';
 
 const cx = bindStyle(style);
 

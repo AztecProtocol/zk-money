@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AliasCheckResult, VerifyAliasFlowState } from '../flows/verify_alias_flow.js';
-import style from './alias_checker.module.css.js';
+import style from './alias_checker.module.css';
 
 function getResultMessage(result: AliasCheckResult) {
   switch (result) {

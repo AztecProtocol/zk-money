@@ -5,7 +5,7 @@ import { InformationSection } from '../information_section/index.js';
 import { DefiGasSaving } from '../../defi_modal/defi_gas_saving.js';
 import { Amount } from '../../../../../../alt-model/assets/amount.js';
 import { useDefiBatchData } from '../../../../../../features/defi/bridge_count_down/bridge_count_down_hooks.js';
-import style from './settlement_time_information_section.module.scss.js';
+import style from './settlement_time_information_section.module.scss';
 
 interface SettlementTimeInformationSectionProps {
   remainingSlots: number;

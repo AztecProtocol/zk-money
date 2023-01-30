@@ -10,7 +10,7 @@ import { StrOrMax } from '../../../../../alt-model/forms/constants.js';
 import { SendFormDerivedData, SendMode, SendFormFeedback } from '../../../../../alt-model/send/index.js';
 import { FooterSection } from '../sections/footer_section/index.js';
 import { AmountSelection } from '../../../../../components/index.js';
-import style from './send_form_fields_page.module.scss.js';
+import style from './send_form_fields_page.module.scss';
 import { getAssetWithdrawShown } from '../../../../../alt-model/known_assets/known_asset_display_data.js';
 
 interface SendProps {

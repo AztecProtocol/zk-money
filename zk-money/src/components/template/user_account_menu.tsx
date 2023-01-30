@@ -14,7 +14,7 @@ import { Loader, Card, CardHeaderSize, Field, FieldStatus, Button, ButtonTheme }
 import { Dot } from '../dot.js';
 import { CloseButtonWhite } from '../index.js';
 import { Modal } from '../modal.js';
-import style from './user_account_menu.module.scss.js';
+import style from './user_account_menu.module.scss';
 
 function deleteAllCookies() {
   const cookies = document.cookie.split(';');

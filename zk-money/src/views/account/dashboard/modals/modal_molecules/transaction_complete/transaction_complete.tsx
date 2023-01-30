@@ -1,5 +1,5 @@
 import { DoneGradientIcon } from '../../../../../../ui-components/components/icons/index.js';
-import style from './transaction_complete.module.scss.js';
+import style from './transaction_complete.module.scss';
 
 interface TransactionCompleteProps {
   onClose(): void;

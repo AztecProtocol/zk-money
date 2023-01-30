@@ -1,4 +1,4 @@
-import style from './section_title.module.scss.js';
+import style from './section_title.module.scss';
 
 interface SectionTitleProps {
   label: string;

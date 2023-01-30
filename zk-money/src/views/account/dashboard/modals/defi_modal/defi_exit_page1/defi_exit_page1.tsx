@@ -13,7 +13,7 @@ import { DefiWebLinks } from '../defi_web_links/index.js';
 import { ExpectedExitOutputSection } from './expected_exit_output_section/index.js';
 import { FooterSection } from '../../sections/footer_section/index.js';
 import { AmountSelection } from '../../../../../../components/index.js';
-import style from './defi_exit_page1.module.css.js';
+import style from './defi_exit_page1.module.css';
 import { CustomisationPopup } from '../customisation_popup/index.js';
 
 interface DefiExitPage1Props {

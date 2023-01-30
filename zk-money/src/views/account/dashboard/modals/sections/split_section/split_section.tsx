@@ -1,5 +1,5 @@
 import { BorderBox } from '../../../../../../components/index.js';
-import style from './split_section.module.scss.js';
+import style from './split_section.module.scss';
 
 interface SplitSectionProps {
   leftPanel: React.ReactNode;

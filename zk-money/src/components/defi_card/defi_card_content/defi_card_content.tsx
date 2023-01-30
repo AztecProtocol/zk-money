@@ -9,7 +9,7 @@ import { useAccountStateManager } from '../../../alt-model/top_level_context/ind
 import { useWalletInteractionIsOngoing } from '../../../alt-model/wallet_interaction_hooks.js';
 import { useObs } from '../../../app/util/index.js';
 
-import style from './defi_card_content.module.scss.js';
+import style from './defi_card_content.module.scss';
 
 interface DefiCardContentProps {
   onSelect: (recipe: DefiRecipe) => void;

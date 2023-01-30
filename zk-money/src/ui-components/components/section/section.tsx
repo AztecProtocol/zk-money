@@ -1,4 +1,4 @@
-import style from './section.module.scss.js';
+import style from './section.module.scss';
 
 interface SectionProps {
   children?: React.ReactNode;

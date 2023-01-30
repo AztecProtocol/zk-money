@@ -5,7 +5,7 @@ import { InteractiveTooltip } from '../../../../../../../ui-components/index.js'
 import { Amount } from '../../../../../../../alt-model/assets/index.js';
 import { useAmountBulkPrice } from '../../../../../../../alt-model/index.js';
 import { formatBulkPrice } from '../../../../../../../app/index.js';
-import style from './exit_exchange_rate_info.module.css.js';
+import style from './exit_exchange_rate_info.module.css';
 
 interface ExitExchangeRateInfoProps {
   recipe: DefiRecipe;

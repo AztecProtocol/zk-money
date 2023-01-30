@@ -1,6 +1,6 @@
 import { Checkbox } from '../../../../../../components/index.js';
 import { Hyperlink, HyperlinkIcon } from '../../../../../../ui-components/index.js';
-import style from './disclaimer.module.scss.js';
+import style from './disclaimer.module.scss';
 
 interface DisclaimerProps {
   accepted: boolean;

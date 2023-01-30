@@ -9,7 +9,7 @@ import {
   SkeletonRect,
 } from '../../ui-components/index.js';
 import { useTotalValuation, useTotalSpendableValuation } from '../../alt-model/total_account_valuation_hooks.js';
-import style from './my_balance.module.scss.js';
+import style from './my_balance.module.scss';
 import { useAccountStateManager } from '../../alt-model/top_level_context/index.js';
 import { useObs } from '../../app/util/index.js';
 

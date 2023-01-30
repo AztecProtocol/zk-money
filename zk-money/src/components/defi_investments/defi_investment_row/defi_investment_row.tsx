@@ -4,7 +4,7 @@ import { bindStyle } from '../../../ui-components/util/classnames.js';
 import { renderInteractionField } from './defi_investment_interaction_fields.js';
 import { renderValueField } from './defi_investment_value_fields.js';
 import { renderPositionKeyStat } from './defi_investment_key_stat_field.js';
-import style from './defi_investment_row.module.scss.js';
+import style from './defi_investment_row.module.scss';
 
 const cx = bindStyle(style);
 

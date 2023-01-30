@@ -1,5 +1,5 @@
 import { Button } from '../../../ui-components/index.js';
-import style from './trade.module.scss.js';
+import style from './trade.module.scss';
 
 const underContruction = (
   <svg

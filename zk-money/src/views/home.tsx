@@ -32,7 +32,7 @@ import { bindStyle } from '../ui-components/util/classnames.js';
 import { DefiCard } from '../components/index.js';
 import { DefiRecipe } from '../alt-model/defi/types.js';
 import { recipeFiltersToSearchStr } from '../alt-model/defi/recipe_filters.js';
-import style from './home.module.scss.js';
+import style from './home.module.scss';
 
 const cx = bindStyle(style);
 

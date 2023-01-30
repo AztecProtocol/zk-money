@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { VerticalScrollBar, VerticalScrollBarHandle } from '../vertical_scroll_bar/vertical_scroll_bar.js';
-import style from './vertical_scroll_region.module.css.js';
+import style from './vertical_scroll_region.module.css';
 
 const FADE_WIDTH = 30;
 

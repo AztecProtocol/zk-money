@@ -1,6 +1,6 @@
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
 import { FaqHint, Button } from '../../../../../../ui-components/index.js';
-import style from './footer_section.module.scss.js';
+import style from './footer_section.module.scss';
 
 interface FooterSectionProps {
   onNext: () => void;

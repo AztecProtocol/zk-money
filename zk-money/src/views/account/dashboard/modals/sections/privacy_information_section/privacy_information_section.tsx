@@ -5,7 +5,7 @@ import { RemoteAsset } from '../../../../../../alt-model/types.js';
 import { InformationSection } from '../information_section/index.js';
 import { useRollupProviderStatus } from '../../../../../../alt-model/index.js';
 import { FullPrivacy } from './full_privacy.js';
-import style from './privacy_information_section.module.scss.js';
+import style from './privacy_information_section.module.scss';
 
 const approxCrowdFormatter = new Intl.NumberFormat('en-GB', { maximumSignificantDigits: 1, notation: 'compact' });
 interface PrivacyInformationSectionProps {

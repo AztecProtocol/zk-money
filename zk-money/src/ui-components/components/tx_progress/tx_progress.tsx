@@ -1,4 +1,4 @@
-import style from './tx_progress.module.css.js';
+import style from './tx_progress.module.css';
 
 export enum TxProgressStep {
   PROVING = 'PROVING',

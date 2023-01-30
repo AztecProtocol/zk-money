@@ -14,7 +14,7 @@ import { RetrySigningButton } from '../../modal_molecules/retry_signing_button/i
 import { renderInteractionPrediction } from './interaction_prediction.js';
 import { Button } from '../../../../../../ui-components/index.js';
 import { BorderBox } from '../../../../../../components/index.js';
-import style from './defi_confirmation_page.module.scss.js';
+import style from './defi_confirmation_page.module.scss';
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
 
 interface DefiConfirmationPageProps {

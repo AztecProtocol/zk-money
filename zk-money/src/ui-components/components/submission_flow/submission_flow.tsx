@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindStyle } from '../../util/classnames.js';
 import { StepStatusIndicator, StepStatus } from '../../index.js';
-import style from './submission_flow.module.scss.js';
+import style from './submission_flow.module.scss';
 
 const cx = bindStyle(style);
 

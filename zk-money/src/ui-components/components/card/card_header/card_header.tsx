@@ -1,4 +1,4 @@
-import style from './card_header.module.scss.js';
+import style from './card_header.module.scss';
 
 export enum CardHeaderSize {
   SMALL = '40px',

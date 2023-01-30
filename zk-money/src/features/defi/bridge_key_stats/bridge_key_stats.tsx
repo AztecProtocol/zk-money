@@ -2,7 +2,7 @@ import { DefiRecipe, KeyStatConfig } from '../../../alt-model/defi/types.js';
 import React from 'react';
 import { SkeletonRect } from '../../../ui-components/index.js';
 import { bindStyle } from '../../../ui-components/util/classnames.js';
-import style from './bridge_key_stats.module.scss.js';
+import style from './bridge_key_stats.module.scss';
 
 const cx = bindStyle(style);
 

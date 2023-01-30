@@ -14,7 +14,7 @@ import { DefiGasSection } from '../defi_gas_section.js';
 import { DefiWebLinks } from '../defi_web_links/index.js';
 import { FooterSection } from '../../sections/footer_section/index.js';
 import { AmountSelection } from '../../../../../../components/index.js';
-import style from './defi_enter_page1.module.scss.js';
+import style from './defi_enter_page1.module.scss';
 
 interface DefiEnterPage1Props {
   flowDirection: FlowDirection;

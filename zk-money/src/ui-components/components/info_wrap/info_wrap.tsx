@@ -1,6 +1,6 @@
 import { CloseMiniButton } from '../index.js';
 import { VerticalScrollRegion } from '../vertical_scroll_region/vertical_scroll_region.js';
-import style from './info_wrap.module.css.js';
+import style from './info_wrap.module.css';
 
 interface InfoLayerProps {
   children: React.ReactNode;

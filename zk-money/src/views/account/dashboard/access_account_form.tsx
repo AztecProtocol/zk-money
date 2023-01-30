@@ -7,7 +7,7 @@ import { useWalletInteractionIsOngoing } from '../../../alt-model/wallet_interac
 import { KeyGenerationResult } from '../../../components/index.js';
 import { KeysGenerationPage } from './keys_generation_page.js';
 import { RegisterAccountForm } from './register_account_form.js';
-import style from './access_account_form.module.scss.js';
+import style from './access_account_form.module.scss';
 
 const cx = bindStyle(style);
 

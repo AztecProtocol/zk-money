@@ -6,7 +6,7 @@ import { CachingRecoverAliasFlow, RecoverAliasFlowState } from '../flows/caching
 import { AliasChecker } from './alias_checker.js';
 import { FlowRunner, FlowRunnerState } from '../flows/flow_runner.js';
 import { getDepositAndSignFlowMessage } from '../flows/deposit_and_sign_flow_messages.js';
-import style from './recover_alias_interactions.module.css.js';
+import style from './recover_alias_interactions.module.css';
 
 function getMessageForFlowState(flowState?: RecoverAliasFlowState): string | undefined {
   switch (flowState?.phase) {

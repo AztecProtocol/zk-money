@@ -3,7 +3,7 @@ import { ImageButton, ImageButtonIcon } from '../../ui-components/index.js';
 import { bindStyle } from '../../ui-components/util/classnames.js';
 import { formatEthAddress } from '../../app/util/helpers.js';
 import { KeyType, PhaseType } from '../../views/account/dashboard/register_account_form.js';
-import style from './key_generation_input.module.scss.js';
+import style from './key_generation_input.module.scss';
 
 const cx = bindStyle(style);
 export interface KeyGenerationInputValue {

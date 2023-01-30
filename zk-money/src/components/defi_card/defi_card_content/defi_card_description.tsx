@@ -1,4 +1,4 @@
-import style from './defi_card_description.module.scss.js';
+import style from './defi_card_description.module.scss';
 
 interface DefiCardDescriptionProps {
   text: string;

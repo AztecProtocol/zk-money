@@ -5,7 +5,7 @@ import { PaddedBlock } from '../padded_block.js';
 import { Text } from '../text.js';
 import { TextLink } from '../text_link.js';
 import { ContentWrapper } from './content_wrapper.js';
-import style from './footer.module.scss.js';
+import style from './footer.module.scss';
 
 interface MenuItem {
   name: string;

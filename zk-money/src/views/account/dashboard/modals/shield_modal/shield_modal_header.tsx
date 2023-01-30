@@ -1,6 +1,6 @@
 import { BackButton } from '../../../../../ui-components/index.js';
 import { CloseButtonWhite } from '../../../../../components/index.js';
-import style from './shield_modal_header.module.scss.js';
+import style from './shield_modal_header.module.scss';
 
 interface ShieldModalHeaderProps {
   closeDisabled: boolean;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Colour, colours } from '../../styles/colour.js';
 import { FontSize, FontWeight, fontSizes, lineHeights, fontWeights } from '../../styles/typography.js';
 import { bindStyle } from '../../util/classnames.js';
-import style from './text_area.module.scss.js';
+import style from './text_area.module.scss';
 
 const cx = bindStyle(style);
 

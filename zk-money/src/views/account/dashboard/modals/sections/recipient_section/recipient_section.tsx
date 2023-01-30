@@ -6,7 +6,7 @@ import { getPrefixFromRecipient, removePrefixFromRecipient } from './helpers.js'
 import copy from '../../../../../../ui-components/images/copy.svg';
 import { GrumpkinAddress } from '@aztec/sdk';
 import { TopLevelContext } from '../../../../../../alt-model/top_level_context/top_level_context.js';
-import style from './recipient_section.module.scss.js';
+import style from './recipient_section.module.scss';
 
 type RecipientType = 'L1' | 'L2';
 

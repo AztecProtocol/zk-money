@@ -24,7 +24,7 @@ import { Toasts } from './toasts/toasts.js';
 import { useDefiRecipes } from '../alt-model/top_level_context/index.js';
 import { useValidRecipesOnly } from './account/dashboard/defi_cards_list.js';
 import { useL1PendingBalances } from '../alt-model/assets/l1_balance_hooks.js';
-import './app.css.js';
+import './app.css';
 
 const getIsCookieAccepted = () => Cookie.get('accepted') === 'true';
 

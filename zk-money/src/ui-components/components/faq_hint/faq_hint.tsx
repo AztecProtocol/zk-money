@@ -1,6 +1,6 @@
 import { Link } from '../../index.js';
 import { useUniqueId } from '../../util/index.js';
-import style from './faq_hint.module.scss.js';
+import style from './faq_hint.module.scss';
 
 function FaqIcon() {
   const id = useUniqueId();

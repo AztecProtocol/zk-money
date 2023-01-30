@@ -1,5 +1,5 @@
 import { ReactComponent as SearchIcon } from '../../images/search_icon.svg';
-import style from './search_input.module.scss.js';
+import style from './search_input.module.scss';
 
 interface SearchInputProps {
   onChange: (value: string) => void;

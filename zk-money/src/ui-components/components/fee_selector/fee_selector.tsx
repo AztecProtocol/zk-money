@@ -3,7 +3,7 @@ import { bindStyle } from '../../util/classnames.js';
 import successIcon from '../../images/success.svg';
 import errorIcon from '../../images/error.svg';
 import warningIcon from '../../images/warning.svg';
-import style from './fee_selector.module.scss.js';
+import style from './fee_selector.module.scss';
 
 const cx = bindStyle(style);
 

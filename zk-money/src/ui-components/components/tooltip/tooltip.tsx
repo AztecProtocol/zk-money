@@ -1,5 +1,5 @@
 import { bindStyle } from '../../util/classnames.js';
-import style from './tooltip.module.scss.js';
+import style from './tooltip.module.scss';
 
 const cx = bindStyle(style);
 

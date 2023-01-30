@@ -8,7 +8,7 @@ import { WagmiConfig } from 'wagmi';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chainIdToNetwork } from '../app/networks.js';
 import { RecoverAliasInteractions } from './recover_alias/index.js';
-import style from './toolbox.module.scss.js';
+import style from './toolbox.module.scss';
 import { AliasCollisionChecker } from './alias-collision-checker/alias_collision_checker.js';
 
 const TOOLS = [

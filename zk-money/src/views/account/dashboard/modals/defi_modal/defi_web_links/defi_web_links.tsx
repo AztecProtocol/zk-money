@@ -1,6 +1,6 @@
 import type { DefiRecipe } from '../../../../../../alt-model/defi/types.js';
 import { Hyperlink, HyperlinkIcon } from '../../../../../../ui-components/index.js';
-import style from './defi_web_links.module.css.js';
+import style from './defi_web_links.module.css';
 
 interface DefiWebLinksProps {
   recipe: DefiRecipe;

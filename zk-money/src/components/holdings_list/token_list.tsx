@@ -8,7 +8,7 @@ import { HOLDINGS_PER_PAGE, slicePage } from './helpers.js';
 import { Holding } from './holding.js';
 import { usePendingBalances } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { PendingBalances } from '../../alt-model/top_level_context/pending_balances_obs.js';
-import style from './token_list.module.scss.js';
+import style from './token_list.module.scss';
 
 interface TokenListProps {
   balances: AssetValue[] | undefined;

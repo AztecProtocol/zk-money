@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { bindStyle } from '../../util/classnames.js';
 import { useOutsideAlerter } from './helpers.js';
-import style from './dropdown.module.scss.js';
+import style from './dropdown.module.scss';
 
 const cx = bindStyle(style);
 

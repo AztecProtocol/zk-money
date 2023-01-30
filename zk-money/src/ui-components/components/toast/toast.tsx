@@ -3,7 +3,7 @@ import { Button, ButtonSize, ButtonTheme } from '../../index.js';
 import { CloseMiniIcon } from '../icons/index.js';
 import { bindStyle } from '../../util/classnames.js';
 import { ToastProps, ToastType } from './toast.types.js';
-import style from './toast.module.scss.js';
+import style from './toast.module.scss';
 
 const cx = bindStyle(style);
 const MAX_TEXT_LENGTH = 400;

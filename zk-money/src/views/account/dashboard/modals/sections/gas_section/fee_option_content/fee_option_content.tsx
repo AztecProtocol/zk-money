@@ -2,7 +2,7 @@ import { useAmountBulkPrice } from '../../../../../../../alt-model/index.js';
 import { Amount } from '../../../../../../../alt-model/assets/index.js';
 import { formatBulkPrice } from '../../../../../../../app/index.js';
 import moment from 'moment';
-import style from './fee_option_content.module.scss.js';
+import style from './fee_option_content.module.scss';
 
 interface FeeOptionContentProps {
   label: string;

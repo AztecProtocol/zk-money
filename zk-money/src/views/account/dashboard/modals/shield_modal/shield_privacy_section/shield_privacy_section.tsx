@@ -1,4 +1,4 @@
-import style from './shield_privacy_section.module.css.js';
+import style from './shield_privacy_section.module.css';
 
 // SVGS are inlined to reduce page load jank
 

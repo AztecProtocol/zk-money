@@ -5,7 +5,7 @@ import successIcon from '../../images/success.svg';
 import errorIcon from '../../images/error.svg';
 import warningIcon from '../../images/warning.svg';
 import { Loader, LoaderSize } from '../loader/index.js';
-import style from './field.module.scss.js';
+import style from './field.module.scss';
 
 const cx = bindStyle(style);
 

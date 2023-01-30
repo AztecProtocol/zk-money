@@ -1,7 +1,7 @@
 import { ProofId, UserDefiClaimTx, UserDefiTx, UserTx } from '@aztec/sdk';
 import { useDefiRecipes } from '../../../alt-model/top_level_context/index.js';
 import { exitingRecipeMatcher, recipeMatcher } from '../../../alt-model/defi/recipe_matchers.js';
-import style from './transaction_type_field.module.scss.js';
+import style from './transaction_type_field.module.scss';
 
 function getTxTypeLabel(tx: UserTx) {
   switch (tx.proofId) {

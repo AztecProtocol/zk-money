@@ -1,5 +1,5 @@
 import { bindStyle } from '../../../../../../ui-components/util/classnames.js';
-import style from './submission_item_prompt.module.css.js';
+import style from './submission_item_prompt.module.css';
 
 const cx = bindStyle(style);
 

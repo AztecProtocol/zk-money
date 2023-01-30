@@ -1,5 +1,5 @@
 import { Hyperlink, HyperlinkIcon } from '../../../../../../ui-components/index.js';
-import style from './information_section.module.scss.js';
+import style from './information_section.module.scss';
 
 interface InformationSectionProps {
   title: string;

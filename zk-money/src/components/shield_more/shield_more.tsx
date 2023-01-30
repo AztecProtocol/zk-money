@@ -2,7 +2,7 @@ import { useAccountStateManager } from '../../alt-model/top_level_context/top_le
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';
 import { useObs } from '../../app/util/index.js';
 import { Button, CardWrapper } from '../../ui-components/index.js';
-import style from './shield_more.module.scss.js';
+import style from './shield_more.module.scss';
 
 interface ShieldMoreProps {
   onOpenShieldModal(): void;

@@ -1,7 +1,7 @@
 import { DefiRecipe } from '../../../alt-model/defi/types.js';
 import { ProgressBar } from '../../../ui-components/index.js';
 import { useDefiBatchData } from './bridge_count_down_hooks.js';
-import style from './bridge_count_down.module.scss.js';
+import style from './bridge_count_down.module.scss';
 import { useDefaultEnterBridgeCallData } from '../../../alt-model/defi/defi_info_hooks.js';
 
 interface EnterBridgeCountDownProps {

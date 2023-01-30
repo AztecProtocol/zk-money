@@ -1,6 +1,6 @@
 import { bindStyle } from '../../util/classnames.js';
 import { ToastContent, Toast } from '../index.js';
-import style from './toast_group.module.scss.js';
+import style from './toast_group.module.scss';
 const cx = bindStyle(style);
 
 export enum ToastGroupPosition {

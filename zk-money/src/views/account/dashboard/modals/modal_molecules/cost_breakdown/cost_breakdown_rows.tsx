@@ -2,7 +2,7 @@ import { getAssetIcon } from '../../../../../../alt-model/known_assets/known_ass
 import { RemoteAsset } from '../../../../../../alt-model/types.js';
 import { ShieldedAssetIcon } from '../../../../../../components/index.js';
 import { bindStyle } from '../../../../../../ui-components/index.js';
-import style from './cost_breakdown_rows.module.scss.js';
+import style from './cost_breakdown_rows.module.scss';
 const cx = bindStyle(style);
 
 function renderIcon(assetIsZk?: boolean, asset?: RemoteAsset) {

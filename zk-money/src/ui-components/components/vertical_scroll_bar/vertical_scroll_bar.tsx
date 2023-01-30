@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import style from './vertical_scroll_bar.module.scss.js';
+import style from './vertical_scroll_bar.module.scss';
 
 interface VerticalScrollBarProps {
   contentHeight: number;

@@ -3,7 +3,7 @@ import { bindStyle } from '../../util/classnames.js';
 import { CloseMiniIcon } from '../icons/close_mini_icon.js';
 import { GradientDisclosureIcon } from '../icons/gradient_disclosure_icon.js';
 import { DropdownOption, DropdownType, Dropdown } from '../index.js';
-import style from './select.module.scss.js';
+import style from './select.module.scss';
 
 const cx = bindStyle(style);
 

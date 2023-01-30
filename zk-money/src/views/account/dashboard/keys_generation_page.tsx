@@ -14,7 +14,7 @@ import { KeyGenerationInput, KeyGenerationResult } from '../../../components/ind
 import { ImageButton, ImageButtonIcon, FormWarning } from '../../../ui-components/index.js';
 import { RegisterFormAssessment } from '../../../alt-model/forms/register/assess_register_form.js';
 import { useAccountState } from '../../../alt-model/account_state/index.js';
-import style from './keys_generation_page.module.scss.js';
+import style from './keys_generation_page.module.scss';
 
 const debug = createDebug('keys_generation_page');
 

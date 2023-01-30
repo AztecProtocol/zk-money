@@ -6,7 +6,7 @@ import { EnforcedRetryableSignInteractions } from '../../views/flow_interactions
 import { L1DepositAndSignFlowState } from '../../alt-model/forms/l1_deposit/l1_deposit_and_sign_flow.js';
 import { RegisterFormFlowRunnerState } from '../../alt-model/forms/register/register_form_flow_runner_hooks.js';
 import { SignDepositInteraction } from './sign_deposit_interaction.js';
-import style from './wallet_interaction_toast.module.scss.js';
+import style from './wallet_interaction_toast.module.scss';
 
 const cx = bindStyle(style);
 

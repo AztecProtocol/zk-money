@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import { BackIcon, CloseMiniIcon, ForwardIcon } from '../icons/index.js';
-import style from './icon_buttons.module.css.js';
+import style from './icon_buttons.module.css';
 
 type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 

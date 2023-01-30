@@ -1,6 +1,6 @@
 import { DefiRecipe } from '../../../alt-model/defi/types.js';
 import { CardAssetTag, CardTag } from '../../index.js';
-import style from './defi_card_header.module.scss.js';
+import style from './defi_card_header.module.scss';
 
 export const DefiCardHeader = ({ recipe }: { recipe: DefiRecipe }) => {
   const { cardTag, logo, flow } = recipe;

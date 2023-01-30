@@ -10,7 +10,7 @@ import copyIcon from '../../images/copy.svg';
 import copyGreenIcon from '../../images/copy_green.svg';
 import successIcon from '../../images/success.svg';
 
-import style from './image_button.module.scss.js';
+import style from './image_button.module.scss';
 const cx = bindStyle(style);
 
 export enum ImageButtonIcon {

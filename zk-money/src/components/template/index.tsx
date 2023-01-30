@@ -4,7 +4,7 @@ import { ContentWrapper } from './content_wrapper.js';
 import { Footer } from './footer.js';
 import { Pages } from '../../views/views.js';
 import { Theme } from '../../ui-components/index.js';
-import style from './index.module.scss.js';
+import style from './index.module.scss';
 
 interface ContentRootProps {
   fullWidth: boolean;

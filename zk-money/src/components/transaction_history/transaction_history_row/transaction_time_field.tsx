@@ -5,7 +5,7 @@ import { useExplorerTxLink } from '../../../alt-model/explorer_link_hooks.js';
 import { Hyperlink, HyperlinkIcon, Tooltip } from '../../../ui-components/index.js';
 import oneTick from '../../../images/two_ticks_one.svg';
 import twoTicks from '../../../images/two_ticks_two.svg';
-import style from './transaction_time_field.module.scss.js';
+import style from './transaction_time_field.module.scss';
 
 function ExplorerLink(props: { txId: TxId; label: string }) {
   const link = useExplorerTxLink(props.txId);

@@ -1,5 +1,5 @@
 import { bindStyle } from '../../../util/classnames.js';
-import style from './card_wrapper.module.scss.js';
+import style from './card_wrapper.module.scss';
 
 const cx = bindStyle(style);
 

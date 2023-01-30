@@ -1,4 +1,4 @@
-import style from './skeleton_rect.module.css.js';
+import style from './skeleton_rect.module.css';
 
 interface SkeletonRectProps {
   sizingContent: React.ReactNode;

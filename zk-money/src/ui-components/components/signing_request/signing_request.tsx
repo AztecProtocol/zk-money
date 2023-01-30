@@ -1,6 +1,6 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Button } from '../../index.js';
-import style from './signing_request.module.scss.js';
+import style from './signing_request.module.scss';
 
 function insertBreaks(text: string) {
   const lines = text.split('\n');

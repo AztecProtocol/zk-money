@@ -1,6 +1,6 @@
 import React from 'react';
 import { bindStyle } from '../../util/classnames.js';
-import style from './button.module.scss.js';
+import style from './button.module.scss';
 
 const cx = bindStyle(style);
 

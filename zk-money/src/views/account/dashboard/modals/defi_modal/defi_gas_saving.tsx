@@ -2,7 +2,7 @@ import type { Amount } from '../../../../../alt-model/assets/index.js';
 import { useAmountBulkPrice, useRollupProviderStatus } from '../../../../../alt-model/index.js';
 import { useGasBulkPrice } from '../../../../../alt-model/gas/gas_hooks.js';
 import { formatBulkPrice } from '../../../../../app/index.js';
-import style from './defi_gas_saving.module.scss.js';
+import style from './defi_gas_saving.module.scss';
 
 export function DefiGasSaving(props: { feeAmount?: Amount; bridgeAddressId?: number }) {
   const feeBulkPrice = useAmountBulkPrice(props.feeAmount);

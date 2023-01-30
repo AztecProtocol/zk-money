@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Pagination } from '../index.js';
 import { DefiInvestmentRow } from './defi_investment_row/index.js';
 import { DefiPosition } from '../../alt-model/defi/open_position_hooks.js';
-import style from './defi_investments.module.scss.js';
+import style from './defi_investments.module.scss';
 
 const INVESTMENTS_PER_PAGE = 5;
 

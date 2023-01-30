@@ -2,7 +2,7 @@ import { useAmountBulkPrice } from '../../../../../../alt-model/index.js';
 import { Amount } from '../../../../../../alt-model/assets/amount.js';
 import { formatBulkPrice } from '../../../../../../app/index.js';
 import { CostBreakdownRecipientRow, CostBreakdownValueRow } from './cost_breakdown_rows.js';
-import style from './cost_breakdown.module.css.js';
+import style from './cost_breakdown.module.css';
 
 interface CostBreakdownProps {
   amountLabel: string;

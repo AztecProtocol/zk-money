@@ -1,7 +1,7 @@
 import { useAccountState } from '../../alt-model/account_state/account_state_hooks.js';
 import { useRollupProviderStatus } from '../../alt-model/rollup_provider_hooks.js';
 import { ProgressBar } from '../../ui-components/index.js';
-import style from './synchronisation_loading_bar.module.scss.js';
+import style from './synchronisation_loading_bar.module.scss';
 
 function useSynchronsationProgress() {
   const accountState = useAccountState();

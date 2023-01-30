@@ -3,7 +3,7 @@ import infoIcon from '../../images/info_icon.svg';
 import openIcon from '../../images/open_icon.svg';
 import whiteInfoIcon from '../../images/info_icon_white.svg';
 import whiteOpenIcon from '../../images/open_icon_white.svg';
-import style from './hyperlink.module.scss.js';
+import style from './hyperlink.module.scss';
 
 export enum HyperlinkIcon {
   Info = 'Info',

@@ -1,7 +1,7 @@
 import { SendMode } from '../../../../../alt-model/send/index.js';
 import { BackButton } from '../../../../../ui-components/index.js';
 import { CloseButtonWhite } from '../../../../../components/index.js';
-import style from './send_modal_header.module.scss.js';
+import style from './send_modal_header.module.scss';
 
 interface SendModalHeaderProps {
   closeDisabled: boolean;

@@ -2,7 +2,7 @@ import { AssetValue, ProofId, UserTx } from '@aztec/sdk';
 import { useAmount } from '../../../alt-model/asset_hooks.js';
 import { useHiddenAssets } from '../../../alt-model/defi/hidden_asset_hooks.js';
 import { ShieldedAssetIcon } from '../../shielded_asset_icon.js';
-import style from './transaction_value_field.module.scss.js';
+import style from './transaction_value_field.module.scss';
 
 function invertAssetValue({ assetId, value }: AssetValue): AssetValue {
   return { assetId, value: -value };

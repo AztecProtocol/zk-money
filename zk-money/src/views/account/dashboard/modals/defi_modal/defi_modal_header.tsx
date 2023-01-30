@@ -1,7 +1,7 @@
 import { BackButton } from '../../../../../ui-components/index.js';
 import { DefiRecipe } from '../../../../../alt-model/defi/types.js';
 import { CloseButtonWhite, CardAssetTag, CardTag } from '../../../../../components/index.js';
-import style from './defi_modal_header.module.scss.js';
+import style from './defi_modal_header.module.scss';
 
 interface DefiModalHeaderProps {
   recipe: DefiRecipe;

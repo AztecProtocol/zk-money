@@ -1,6 +1,6 @@
 import { bindStyle } from '../../util/classnames.js';
 import walletIcon from '../../images/wallet_switcher.svg';
-import style from './balance_indicator.module.scss.js';
+import style from './balance_indicator.module.scss';
 const cx = bindStyle(style);
 
 interface BalanceIndicatorProps {

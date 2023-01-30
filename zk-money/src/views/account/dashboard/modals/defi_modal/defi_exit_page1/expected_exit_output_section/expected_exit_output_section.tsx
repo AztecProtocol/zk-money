@@ -4,7 +4,7 @@ import { useExpectedOutput } from '../../../../../../../alt-model/defi/defi_info
 import { useAmount } from '../../../../../../../alt-model/asset_hooks.js';
 import { useAmountBulkPrice } from '../../../../../../../alt-model/price_hooks.js';
 import { DefiFormValidationResult } from '../../../../../../../alt-model/defi/defi_form/index.js';
-import style from './expected_exit_output_section.module.css.js';
+import style from './expected_exit_output_section.module.css';
 import { ExitExchangeRateInfo } from './exit_exchange_rate_info.js';
 import { AssetValue } from '@aztec/sdk';
 
