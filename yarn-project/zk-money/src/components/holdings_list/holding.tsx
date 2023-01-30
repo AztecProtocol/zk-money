@@ -49,6 +49,7 @@ export function PendingBalance({
     layer: 'L1',
     uniform: true,
     hideSymbol: true,
+    hideComma: true,
   });
 
   return (
