@@ -38,7 +38,7 @@ export function useShieldForm(
   const [fields, setFields] = useState<ShieldFormFields>({
     assetId: preselectedAssetId ?? 0,
     recipientAlias: preselectedRecipient ? removePrefixFromRecipient(preselectedRecipient) : '',
-    amountStrOrMax: preselectedAmount ?? '',
+    amountStrOrMax: preselectedAmount ? preselectedAmount.replace(/,/g, '') : '',
     speed: TxSettlementTime.NEXT_ROLLUP,
   });
   const [touchedFields, setters] = useTrackedFieldChangeHandlers(fields, setFields);

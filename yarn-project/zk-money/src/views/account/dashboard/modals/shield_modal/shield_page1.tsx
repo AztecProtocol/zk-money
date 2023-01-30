@@ -59,13 +59,13 @@ export function ShieldPage1({
     const pendingAmount = new Amount(validationResult.input.l1PendingBalance, validationResult.input.targetAsset);
     if (!pendingAmount || fields.speed === null || !validationResult.input.feeAmount) return;
     const pendingAmountMinusFee = pendingAmount.subtract(validationResult.input.feeAmount?.baseUnits);
-    onChangeAmountStrOrMax(
-      pendingAmountMinusFee.format({
-        layer: 'L1',
-        uniform: true,
-        hideSymbol: true,
-      }),
-    );
+    const amountStr = pendingAmountMinusFee.format({
+      layer: 'L1',
+      uniform: true,
+      hideSymbol: true,
+      hideComma: true,
+    });
+    onChangeAmountStrOrMax(amountStr);
   }
 
   let footerFeedback: React.ReactNode = `${feedback.walletAccount ? feedback.walletAccount + '. ' : ''}${
