@@ -35,9 +35,10 @@ const fromLocalStorage = (): ConfigVars => ({
 
 const fromEnvVars = (): ConfigVars => {
   return {
-  deployTag: import.meta.env.REACT_APP_DEPLOY_TAG || '',
-  debugFilter: import.meta.env.REACT_APP_DEBUG ?? '',
-}};
+    deployTag: import.meta.env.REACT_APP_DEPLOY_TAG || '',
+    debugFilter: import.meta.env.REACT_APP_DEBUG ?? '',
+  };
+};
 
 const productionConfig: ConfigVars = {
   deployTag: '',
@@ -147,7 +148,6 @@ function assembleConfig(
 }
 
 export async function getEnvironment() {
-
   const rawConfig = getRawConfigWithOverrides();
   const deployTag = rawConfig.deployTag || (await getInferredDeployTag());
   const rollupProviderUrl = getRollupProviderUrl(deployTag);
