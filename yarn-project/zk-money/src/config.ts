@@ -49,7 +49,6 @@ const developmentConfig: ConfigVars = {
 };
 
 function getEthereumHost(chainId: number) {
-  console.log(chainId);
   switch (chainId) {
     case 5:
       return 'https://goerli.infura.io/v3/85712ac4df0446b58612ace3ed566352';
@@ -69,8 +68,6 @@ function getEthereumHost(chainId: number) {
     }
     case 0xdef: {
       const apiKey = localStorage.getItem('ETH_HOST_API_KEY') ?? '';
-      console.log(localStorage);
-      console.table({ apiKey });
       return `https://aztec-connect-dev-eth-host.aztec.network:8545/${apiKey}`;
     }
     default:
