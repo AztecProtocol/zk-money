@@ -105,6 +105,7 @@ export function RegisterAccountForm(props: RegisterAccountFormProps) {
         layer: 'L1',
         uniform: true,
         hideSymbol: true,
+        hideComma: true,
       }),
     );
   };
