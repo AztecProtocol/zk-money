@@ -1,4 +1,4 @@
-import moment, { max } from 'moment';
+import moment from 'moment';
 import { BridgeCallData, DefiSettlementTime } from '@aztec/sdk';
 import type { Amount } from '../../../../../alt-model/assets/index.js';
 import type { DefiRecipe } from '../../../../../alt-model/defi/types.js';
@@ -23,7 +23,7 @@ interface DefiGasSectionProps {
 function getLatestOf(nextSettlementTime?: Date, batchAverageTimeout?: number) {
   //? Note, this assumes that a batch was just executed. Otherwise will overestimate time.
   if (nextSettlementTime && batchAverageTimeout) {
-    return max(moment(nextSettlementTime), moment(Date.now() + batchAverageTimeout * 1000)).toDate();
+    return moment.max(moment(nextSettlementTime), moment(Date.now() + batchAverageTimeout * 1000)).toDate();
   }
   return undefined;
 }

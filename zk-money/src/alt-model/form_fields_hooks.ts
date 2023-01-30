@@ -10,7 +10,7 @@ export type FieldSetters<TFields> = {
   [K in keyof TFields]: (value: TFields[K]) => void;
 };
 
-export function useTrackedFieldChangeHandlers<TFields>(
+export function useTrackedFieldChangeHandlers<TFields extends {}>(
   fields: TFields,
   fieldsSetter: FieldsSetter<TFields>,
 ): [TouchedFormFields<TFields>, FieldSetters<TFields>] {
