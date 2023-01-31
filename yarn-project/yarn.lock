@@ -42,9 +42,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aztec/barretenberg@npm:2.1.79":
-  version: 2.1.79
-  resolution: "@aztec/barretenberg@npm:2.1.79"
+"@aztec/barretenberg@npm:2.1.81":
+  version: 2.1.81
+  resolution: "@aztec/barretenberg@npm:2.1.81"
   dependencies:
     "@types/levelup": ^4.3.0
     browserify-cipher: ^1.0.1
@@ -60,15 +60,15 @@ __metadata:
     sha3: ^2.1.3
     supports-color: 7.2.0
     tslib: ^2.0.0
-  checksum: 3370e6c068be7bed98a60ff6b1df72d3257d12bbcfe10fc6a79a3a30c039be0635287b183bb8bc2af8abacf2a1248c56f2f428e8394559adc1ddbc31c0b6b948
+  checksum: e41a8389cd668b45b21f044991e9b8130c54ae27adde782d431a775646a88e8a4fc46871a86941a56f6221656734fc204796021de8370b70c16a459f84109962
   languageName: node
   linkType: hard
 
-"@aztec/blockchain@npm:2.1.79":
-  version: 2.1.79
-  resolution: "@aztec/blockchain@npm:2.1.79"
+"@aztec/blockchain@npm:2.1.81":
+  version: 2.1.81
+  resolution: "@aztec/blockchain@npm:2.1.81"
   dependencies:
-    "@aztec/barretenberg": 2.1.79
+    "@aztec/barretenberg": 2.1.81
     "@ethersproject/abi": 5.5.0
     "@ethersproject/abstract-provider": 5.5.1
     "@ethersproject/contracts": 5.5.0
@@ -79,8 +79,7 @@ __metadata:
     cross-fetch: ^3.1.5
     debug: ^4.3.4
     ethers: 5.5.1
-    sha3: ^2.1.4
-  checksum: fa565358bfb1224f301cf775ab05491d00dd7565851510d3f6a97a87731c97cbb52a081c63b8c3b291db760937fddf60ac50ca1534e838360e264eb845f9b72a
+  checksum: faf41e8f564297da323f437ec23efbc0a38def628c214a6add7cef7922c66e4dea0caa504e399ee0ec1bb6382e55fedc1f4d65c2b526d832258ae1209a3aa96a
   languageName: node
   linkType: hard
 
@@ -100,12 +99,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aztec/sdk@npm:^2.1.79":
-  version: 2.1.79
-  resolution: "@aztec/sdk@npm:2.1.79"
+"@aztec/sdk@npm:^2.1.81":
+  version: 2.1.81
+  resolution: "@aztec/sdk@npm:2.1.81"
   dependencies:
-    "@aztec/barretenberg": 2.1.79
-    "@aztec/blockchain": 2.1.79
+    "@aztec/barretenberg": 2.1.81
+    "@aztec/blockchain": 2.1.81
     detect-node: ^2.1.0
     dexie: 3.0.1
     events: ^3.3.0
@@ -118,7 +117,7 @@ __metadata:
     supports-color: 7.2.0
     tslib: ^2.4.0
     typeorm: ^0.3.10
-  checksum: c20d9c41e69aae9d4b94de0717058e74115e6226d4adf06b68a8f30dbe730e6351118e2ec4dd869b74f3b5d9630f390b7005c79eedf8e3d66514571a3c015afe
+  checksum: 4a51596b0bd280e7af77e8684d8b19f0704890c5c9a48691cf9a8271374c87db9288ec3d950994794faebd07baed31643be8df5d51225b13f96b24c82e6fd3f9
   languageName: node
   linkType: hard
 
@@ -23659,7 +23658,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sha3@npm:^2.1.3, sha3@npm:^2.1.4":
+"sha3@npm:^2.1.3":
   version: 2.1.4
   resolution: "sha3@npm:2.1.4"
   dependencies:
@@ -27426,7 +27425,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zk.money@workspace:zk-money"
   dependencies:
-    "@aztec/sdk": ^2.1.79
+    "@aztec/sdk": ^2.1.81
     "@babel/plugin-syntax-import-assertions": ^7.18.6
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/abstract-signer": ^5.7.0
