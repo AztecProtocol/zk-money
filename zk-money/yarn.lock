@@ -10,10 +10,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@aztec/barretenberg@2.1.80":
-  version "2.1.80"
-  resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.80.tgz#a82462cd257ef85b242fdc7dce3bd5674d81a4ff"
-  integrity sha512-3lPW4Ggb6QcaoKmQOd/K5kvI6XQJpfXJOs9a1BLwStQ/ayZCWntxv14HxNx43RtWFPIwjUozJP0iDn1vkh90pw==
+"@aztec/barretenberg@2.1.81":
+  version "2.1.81"
+  resolved "https://registry.yarnpkg.com/@aztec/barretenberg/-/barretenberg-2.1.81.tgz#07f2d17f981411670d21835b691ef7abbd18c3a6"
+  integrity sha512-lhinpTO2a60JWDBtyViKuAunbUkhoUJA76PgBoyKCIPk7mMaRbvLZHRCH6Qwm1Dr8Lg72PE+IbAd4bc4nmjd6w==
   dependencies:
     "@types/levelup" "^4.3.0"
     browserify-cipher "^1.0.1"
@@ -30,12 +30,12 @@
     supports-color "7.2.0"
     tslib "^2.0.0"
 
-"@aztec/blockchain@2.1.80":
-  version "2.1.80"
-  resolved "https://registry.yarnpkg.com/@aztec/blockchain/-/blockchain-2.1.80.tgz#91ae8bc58c3d7f6fc72db54b21c4bb38de1be37b"
-  integrity sha512-iMV7HGwIQ/NE2JMPVdnvVeGtaHmlp06SwJkC470yK0ysS4m0rFVCdsFRIT5MYQ37HTVz35ht2eTqfZeB99jLOQ==
+"@aztec/blockchain@2.1.81":
+  version "2.1.81"
+  resolved "https://registry.yarnpkg.com/@aztec/blockchain/-/blockchain-2.1.81.tgz#45e8b31279e31c4e4aa2f2a2887112797502be4f"
+  integrity sha512-Hzrq0A3KYyWJTNKO2rdTwT1qGRZhJVmTNOxxXk0aSnt2DVXuJbnFbFDkHHY5AYv13DzvgoZZUqEzGAGyrn1RmA==
   dependencies:
-    "@aztec/barretenberg" "2.1.80"
+    "@aztec/barretenberg" "2.1.81"
     "@ethersproject/abi" "5.5.0"
     "@ethersproject/abstract-provider" "5.5.1"
     "@ethersproject/contracts" "5.5.0"
@@ -46,15 +46,14 @@
     cross-fetch "^3.1.5"
     debug "^4.3.4"
     ethers "5.5.1"
-    sha3 "^2.1.4"
 
-"@aztec/sdk@^2.1.80":
-  version "2.1.80"
-  resolved "https://registry.yarnpkg.com/@aztec/sdk/-/sdk-2.1.80.tgz#cee3102dcbba4fc37cd6005cd676e94f21094c01"
-  integrity sha512-YAShPSfZzTcjjamjKzywofEOwnRNxv6jOwNC6qc6psbaInBLFMnjFMMk6YUDZVsKRlI1K3DvjEodMIPsPL+avA==
+"@aztec/sdk@^2.1.81":
+  version "2.1.81"
+  resolved "https://registry.yarnpkg.com/@aztec/sdk/-/sdk-2.1.81.tgz#f17c83b4582e934cd688bbe91250735ceb794b6c"
+  integrity sha512-WM85oaO571mn4BwfLXZ1+ngCw75e4O88qgOi/aIWZQvhYixH9k+WOBesF0y+FpRRVf/6c+DlbzIPra7wewUGjA==
   dependencies:
-    "@aztec/barretenberg" "2.1.80"
-    "@aztec/blockchain" "2.1.80"
+    "@aztec/barretenberg" "2.1.81"
+    "@aztec/blockchain" "2.1.81"
     detect-node "^2.1.0"
     dexie "3.0.1"
     events "^3.3.0"
@@ -6706,7 +6705,7 @@ check-error@^1.0.2:
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
   integrity sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==
 
-chokidar@3.5.3, "chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1, chokidar@^3.4.2:
+chokidar@3.5.3, "chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1, chokidar@^3.4.2, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
@@ -8768,7 +8767,7 @@ fast-glob@^2.2.6:
     merge2 "^1.2.3"
     micromatch "^3.1.10"
 
-fast-glob@^3.2.9:
+fast-glob@^3.2.11, fast-glob@^3.2.9:
   version "3.2.12"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.12.tgz#7f39ec99c2e6ab030337142da9e0c18f37afae80"
   integrity sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==
@@ -9091,6 +9090,15 @@ fs-extra@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
+fs-extra@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.1.0.tgz#5784b102104433bb0e090f48bfc4a30742c357ed"
+  integrity sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
@@ -14213,7 +14221,7 @@ sha.js@^2.4.0, sha.js@^2.4.11, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-sha3@^2.1.3, sha3@^2.1.4:
+sha3@^2.1.3:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/sha3/-/sha3-2.1.4.tgz#000fac0fe7c2feac1f48a25e7a31b52a6492cc8f"
   integrity sha512-S8cNxbyb0UGUM2VhRD4Poe5N58gJnJsLJ5vC7FYWGUmGhcsj4++WaIOBFVDxlG0W3To6xBuiRh+i0Qp2oNCOtg==
@@ -15718,6 +15726,16 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
+
+vite-plugin-static-copy@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-static-copy/-/vite-plugin-static-copy-0.13.0.tgz#1a05bfc0afb5d89e052043f645b610b57b050662"
+  integrity sha512-cln+fvKMgwNBjxQ59QVblmExZrc9gGEdRmfqcPOOGpxT5KInfpkGMvmK4L+kCAeHHSSGNU1bM7BA9PQgaAJc6g==
+  dependencies:
+    chokidar "^3.5.3"
+    fast-glob "^3.2.11"
+    fs-extra "^11.1.0"
+    picocolors "^1.0.0"
 
 vite-plugin-svgr@^2.4.0:
   version "2.4.0"
