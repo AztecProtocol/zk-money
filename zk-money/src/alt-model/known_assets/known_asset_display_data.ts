@@ -29,6 +29,7 @@ export function getAssetIcon(label?: AssetLabel) {
       return daiIcon;
     case 'yvDAI':
     case 'yvWETH':
+    case 'yvLUSD':
       return yearnGradientIcon;
     default:
       return questionMarkBlackIcon;
@@ -45,6 +46,7 @@ export function getAssetIconWhite(label?: AssetLabel) {
       return stEthWhiteIcon;
     case 'yvDAI':
     case 'yvWETH':
+    case 'yvLUSD':
       return yearnGradientIcon;
     default:
       return questionMarkWhiteIcon;
@@ -61,6 +63,7 @@ export function getAssetIconGradient(label?: AssetLabel) {
       return stEthGradientIcon;
     case 'yvDAI':
     case 'yvWETH':
+    case 'yvLUSD':
       return yearnGradientIcon;
     case 'weWETH':
     case 'weDAI':
@@ -84,6 +87,7 @@ export function getAssetPreferredFractionalDigits(label?: AssetLabel) {
   switch (label) {
     case 'DAI':
     case 'yvDAI':
+    case 'yvLUSD':
     case 'weDAI':
     case 'wa2DAI':
     case 'LUSD':

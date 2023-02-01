@@ -18,6 +18,7 @@ export const registrationsDataRaw = {
       'TB-400',
       'wcDAI',
       'icETH',
+      'yvLUSD',
     ],
     assets: {
       Eth: '0x0000000000000000000000000000000000000000',
@@ -35,6 +36,7 @@ export const registrationsDataRaw = {
       'TB-400': '0x11956f5416C0019cAAd81205543bA68278e30869',
       wcDAI: '0x6D088fe2500Da41D7fA7ab39c76a506D7c91f53b',
       icETH: '0x7C07F7aBe10CE8e33DC6C5aD68FE033085256A84',
+      yvLUSD: '0x378cb52b00F9D0921cb46dFc099CFf73b42419dC',
     },
     bridges: {
       ElementBridge_800K: 1,
