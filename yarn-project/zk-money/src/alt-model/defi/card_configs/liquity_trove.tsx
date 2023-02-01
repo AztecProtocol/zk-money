@@ -79,9 +79,9 @@ export const LIQUITY_TROVE_275: CreateRecipeArgs = {
   },
   positionKeyStat: {
     type: 'closable',
-    useEnterText: () => '',
+    useEnterText: () => ' ', // delierately blank
     useOpenText: useFormattedLusdDebt,
-    useExitText: () => '',
+    useExitText: () => ' ', // delierately blank
   },
   useEnterInteractionPredictionInfo: bindInteractionPredictionHook_expectedOutput({
     direction: 'enter',
