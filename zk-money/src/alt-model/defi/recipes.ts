@@ -13,7 +13,7 @@ import { YEARN_DAI_CARD, YEARN_ETH_CARD, YEARN_LUSD_CARD } from './card_configs/
 import { SEVEN_DAY_DCA_CARD_DAI_TO_ETH, SEVEN_DAY_DCA_CARD_ETH_TO_DAI } from './card_configs/seven_day_dca.js';
 import { EULER_DAI_CARD, EULER_ETH_CARD, EULER_WSTETH_CARD } from './card_configs/euler.js';
 import { AAVE_ETH_CARD, AAVE_DAI_CARD } from './card_configs/aave.js';
-import { LIQUITY_TROVE_275, LIQUITY_TROVE_400 } from './card_configs/liquity_trove.js';
+import { LIQUITY_TROVE_275 } from './card_configs/liquity_trove.js';
 import { RegistrationsRepo } from '../registrations_data/index.js';
 import { COMPOUND_DAI_CARD } from './card_configs/compound.js';
 import { SET_UNISWAP_CARD } from './card_configs/set_uniswap.js';
@@ -128,7 +128,6 @@ const CREATE_RECIPES_ARGS: CreateRecipeArgs[] = [
   SET_UNISWAP_CARD,
   COMPOUND_DAI_CARD,
   LIQUITY_TROVE_275,
-  LIQUITY_TROVE_400,
   AAVE_ETH_CARD,
   AAVE_DAI_CARD,
   EULER_ETH_CARD,
