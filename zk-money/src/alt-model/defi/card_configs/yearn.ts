@@ -68,7 +68,7 @@ export const YEARN_DAI_CARD: CreateRecipeArgs = {
 export const YEARN_LUSD_CARD: CreateRecipeArgs = {
   ...YEARN_ETH_CARD,
   id: 'yearn-finance.LUSD-to-yvLUSD',
-  openHandleAssetBinding: 'LUSD',
+  openHandleAssetBinding: 'yvLUSD',
   flowBindings: createSimpleSwapFlowBinding('LUSD', 'yvLUSD'),
   shortDesc: `Deposit LUSD into Yearn's vault to easily generate yield with a passive investing strategy.`,
   longDescription:
