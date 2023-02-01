@@ -17,8 +17,7 @@ import { useEffect, useState } from 'react';
 
 export const LIQUITY_TROVE_275: CreateRecipeArgs = {
   id: 'liquity-trove.ETH-to-TB-and-LUSD.275',
-  unlisted: !localStorage.getItem('show_unpublished_defi_cards'),
-  bridgeBinding: 'Liquity275_550K',
+  bridgeBinding: 'Liquity275_700K',
   openHandleAssetBinding: 'TB-275',
   flowBindings: {
     type: 'closable',
@@ -102,7 +101,7 @@ export const LIQUITY_TROVE_275: CreateRecipeArgs = {
 export const LIQUITY_TROVE_400: CreateRecipeArgs = {
   ...LIQUITY_TROVE_275,
   id: 'liquity-trove.ETH-to-TB-and-LUSD.400',
-  bridgeBinding: 'Liquity400_550K',
+  bridgeBinding: 'Liquity400_700K',
   openHandleAssetBinding: 'TB-400',
   flowBindings: {
     type: 'closable',
