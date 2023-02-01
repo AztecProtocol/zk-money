@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import path from "path";
+import path from 'path';
 
 // Get require functionality in ESM
 import { createRequire } from 'module';
@@ -20,11 +20,11 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: `${path.dirname(require.resolve("@aztec/sdk"))}/aztec-connect.wasm`,
+          src: `${path.dirname(require.resolve('@aztec/sdk'))}/aztec-connect.wasm`,
           dest: '',
         },
         {
-          src: `${path.dirname(require.resolve("@aztec/sdk"))}/web_worker.js`,
+          src: `${path.dirname(require.resolve('@aztec/sdk'))}/web_worker.js`,
           dest: '',
         },
       ],
@@ -37,19 +37,18 @@ export default defineConfig({
     outDir: 'dest',
   },
   optimizeDeps: {
-    exclude: ['@aztec/sdk'],
-  },
-  esbuildOptions: {
-    define: {
-      global: 'globalThis',
+    esbuildOptions: {
+      define: {
+        global: 'globalThis',
+      },
+      plugins: [
+        NodeGlobalsPolyfillPlugin({
+          process: true,
+          buffer: true,
+        }),
+        NodeModulesPolyfillPlugin(),
+      ],
     },
-    plugins: [
-      NodeGlobalsPolyfillPlugin({
-        process: true,
-        buffer: true,
-      }),
-      NodeModulesPolyfillPlugin(),
-    ],
   },
   server: {
     port: 8080,
