@@ -50,8 +50,8 @@ export const LIQUITY_TROVE_275: CreateRecipeArgs = {
   logo: liquityLogo,
   miniLogo: liquityMiniLogo,
   cardTag: 'Borrowing',
-  cardButtonLabel: 'Borrow',
-  exitButtonLabel: 'Repay',
+  cardButtonLabel: 'Post collateral & Borrow',
+  exitButtonLabel: 'Repay & Exit',
   exitDesc:
     'Your LUSD debt is repaid using a flash loan. Part of your ETH collateral then repays the flash loan, and the remaining ETH is returned to your account. Your total TB-275 tokens represents the entirety of your share of the collateral. Spending all your TB-275 will release your entire share of the collateral (minus the market value of the debt to be repaid).',
   keyStats: {

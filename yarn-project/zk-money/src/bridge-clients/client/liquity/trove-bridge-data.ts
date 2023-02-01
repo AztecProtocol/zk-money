@@ -122,32 +122,17 @@ export class TroveBridgeData implements BridgeDataFieldGetters {
       inputAssetA.erc20Address.equals(EthAddress.fromString(this.bridge.address)) &&
       outputAssetA.assetType === AztecAssetType.ETH
     ) {
-      // Repaying
+      // Repaying with collateral
       const tbTotalSupply = await bridge.totalSupply();
-
       const { debt, coll } = await this.troveManager.getEntireDebtAndColl(this.bridge.address);
-
-      if (inputAssetB.erc20Address.equals(this.LUSD)) {
-        const collateralToWithdraw = (inputValue * coll.toBigInt()) / tbTotalSupply.toBigInt();
-        if (outputAssetB.erc20Address.equals(this.LUSD)) {
-          const debtToRepay = (inputValue * debt.toBigInt()) / tbTotalSupply.toBigInt();
-          const lusdReturned = inputValue - debtToRepay;
-          return [collateralToWithdraw, lusdReturned];
-        } else if (outputAssetB.erc20Address.equals(EthAddress.fromString(this.bridge.address))) {
-          // Repaying after redistribution flow
-          // Note: this code assumes the flash swap doesn't fail (if it would fail some tb would get returned)
-          return [collateralToWithdraw, 0n];
-        }
-      } else if (
-        inputAssetB.assetType === AztecAssetType.NOT_USED &&
-        outputAssetB.assetType === AztecAssetType.NOT_USED
-      ) {
-        // Redeeming
-        // Fetching bridge's ETH balance because it's possible the collateral was already claimed
-        const ethHeldByBridge = (await this.ethersProvider.getBalance(this.bridge.address)).toBigInt();
-        const collateralToWithdraw = (inputValue * (coll.toBigInt() + ethHeldByBridge)) / tbTotalSupply.toBigInt();
-        return [collateralToWithdraw, 0n];
-      }
+      // Compute the users share of collateral measured in Eth
+      const userCollateral = (inputValue * coll.toBigInt()) / tbTotalSupply.toBigInt();
+      // Compute the users share of debt measured in LUSD
+      const userDebt = (inputValue * debt.toBigInt()) / tbTotalSupply.toBigInt();
+      // Compute the user share measured in Eth
+      const userDebtInEth = (userDebt * (await this.getLusdPriceInEth())) / 10n ** 18n;
+      // Return the remainder of users collateral after debt has been repaid
+      return [userCollateral - userDebtInEth, 0n];
     }
     throw new Error('Incorrect combination of input/output assets.');
   }
