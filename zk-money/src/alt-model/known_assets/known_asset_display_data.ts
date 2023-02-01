@@ -10,6 +10,7 @@ import yearnGradientIcon from '../../images/yearn_gradient.svg';
 import eulerGradientIcon from '../../images/euler_gradient.svg';
 import aaveGradientIcon from '../../images/aave_token_gradient.svg';
 import lusdGradientIcon from '../../images/lusd_gradient.svg';
+import lusdWhiteIcon from '../../images/lusd_white.svg';
 import compoundGradientIcon from '../../images/compound_token_gradient.svg';
 import setGradientIcon from '../../images/set_token_gradient.svg';
 import questionMarkBlackIcon from '../../images/question_mark_black.svg';
@@ -23,14 +24,9 @@ export type AssetLabel = RegisteredAssetLabel | UnregisteredAssetLabel;
 export function getAssetIcon(label?: AssetLabel) {
   switch (label) {
     case 'Eth':
-    case 'WETH':
       return ethIcon;
     case 'DAI':
       return daiIcon;
-    case 'yvDAI':
-    case 'yvWETH':
-    case 'yvLUSD':
-      return yearnGradientIcon;
     default:
       return questionMarkBlackIcon;
   }
@@ -48,6 +44,8 @@ export function getAssetIconWhite(label?: AssetLabel) {
     case 'yvWETH':
     case 'yvLUSD':
       return yearnGradientIcon;
+    case 'LUSD':
+      return lusdWhiteIcon;
     default:
       return questionMarkWhiteIcon;
   }
