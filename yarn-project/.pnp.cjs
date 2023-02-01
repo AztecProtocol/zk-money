@@ -54,15 +54,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "@aztec/barretenberg",\
-        "npm:2.1.79"\
+        "npm:2.1.81"\
       ],\
       [\
         "@aztec/blockchain",\
-        "npm:2.1.79"\
+        "npm:2.1.81"\
       ],\
       [\
         "@aztec/sdk",\
-        "npm:2.1.79"\
+        "npm:2.1.81"\
       ],\
       [\
         "@babel/code-frame",\
@@ -3038,7 +3038,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "debug",\
-        "virtual:609ede06987e7121b074007103c28a5bd706a890499dd89b4cfe461792fd7b54ea1699b094cfa52663247980ab280d6a46bb937ad1f7bf6627735883d497a23d#npm:4.3.4"\
+        "virtual:ab95570ecb5e56351a67db0cd38dd92a78e81ab4e36d55981d09139cc1e46ae6b7e320de148e2bef3a97fe7cf008f084dffa159c7789cdeed343d16f768f9667#npm:4.3.4"\
       ],\
       [\
         "decamelize",\
@@ -6554,7 +6554,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "sqlite3",\
-        "virtual:411d451110d2ccd8bd642e0ff2b126ce1dbe7045ed0bb12881719c6d2ad78a15c4dedbcd103f9710e8b6c062bd418df40fd11551d545369f38ed4d91a8a3dd3a#npm:5.0.9"\
+        "virtual:a0db642c9bc4c55592bf0729e4ee5107de76cd28d7bcb7f5bc443ce305a6eb440d99be5d25afe4058477f099a9b3ee0f702a94d05f6e55a6c41613100c1c0f32#npm:5.0.9"\
       ],\
       [\
         "ssri",\
@@ -6934,7 +6934,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "typeorm",\
-        "virtual:411d451110d2ccd8bd642e0ff2b126ce1dbe7045ed0bb12881719c6d2ad78a15c4dedbcd103f9710e8b6c062bd418df40fd11551d545369f38ed4d91a8a3dd3a#npm:0.3.10"\
+        "virtual:a0db642c9bc4c55592bf0729e4ee5107de76cd28d7bcb7f5bc443ce305a6eb440d99be5d25afe4058477f099a9b3ee0f702a94d05f6e55a6c41613100c1c0f32#npm:0.3.10"\
       ],\
       [\
         "typescript",\
@@ -28031,20 +28031,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["virtual:ab95570ecb5e56351a67db0cd38dd92a78e81ab4e36d55981d09139cc1e46ae6b7e320de148e2bef3a97fe7cf008f084dffa159c7789cdeed343d16f768f9667#npm:4.3.4", {\
-          "packageLocation": "./.yarn/__virtual__/debug-virtual-cde43dfd47/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
-          "packageDependencies": [\
-            ["debug", "virtual:ab95570ecb5e56351a67db0cd38dd92a78e81ab4e36d55981d09139cc1e46ae6b7e320de148e2bef3a97fe7cf008f084dffa159c7789cdeed343d16f768f9667#npm:4.3.4"],\
-            ["@types/supports-color", null],\
-            ["ms", "npm:2.1.2"],\
-            ["supports-color", "npm:7.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/supports-color",\
-            "supports-color"\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["virtual:87db25c7c5e6b25bbc12571091cdabc648b79d427ab445d1714ccfdcdfb3265c9de6561ca760cc3de470037cbedf3af4be56ba3b684b3a1c01d4c9c2fd55a741#npm:4.3.4", {\
           "packageLocation": "./.yarn/__virtual__/debug-virtual-762d08cbe9/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
           "packageDependencies": [\
@@ -28052,6 +28038,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/supports-color", null],\
             ["ms", "npm:2.1.2"],\
             ["supports-color", "npm:8.1.1"]\
+          ],\
+          "packagePeers": [\
+            "@types/supports-color",\
+            "supports-color"\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["virtual:ab95570ecb5e56351a67db0cd38dd92a78e81ab4e36d55981d09139cc1e46ae6b7e320de148e2bef3a97fe7cf008f084dffa159c7789cdeed343d16f768f9667#npm:4.3.4", {\
+          "packageLocation": "./.yarn/__virtual__/debug-virtual-cde43dfd47/0/cache/debug-npm-4.3.4-4513954577-3dbad3f94e.zip/node_modules/debug/",\
+          "packageDependencies": [\
+            ["debug", "virtual:ab95570ecb5e56351a67db0cd38dd92a78e81ab4e36d55981d09139cc1e46ae6b7e320de148e2bef3a97fe7cf008f084dffa159c7789cdeed343d16f768f9667#npm:4.3.4"],\
+            ["@types/supports-color", null],\
+            ["ms", "npm:2.1.2"],\
+            ["supports-color", "npm:7.2.0"]\
           ],\
           "packagePeers": [\
             "@types/supports-color",\
