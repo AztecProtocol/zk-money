@@ -2,6 +2,9 @@
   "name": "zk.money",
   "version": "0.1.0",
   "private": true,
+  "installConfig": {
+    "pnp": true
+  },
   "type": "module",
   "dependencies": {
     "@aztec/sdk": "^2.1.81",
@@ -126,5 +129,6 @@
     "vite-plugin-svgr": "^2.4.0",
     "vite-preset-react": "^2.3.0",
     "vite-tsconfig-paths": "^4.0.5"
-  }
+  },
+  "packageManager": "yarn@3.4.0"
 }
