@@ -142,6 +142,7 @@ function assembleConfig(
       'TB-400': toBaseUnits('10000', 18),
       wcDAI: toBaseUnits('10000', 18),
       icETH: toBaseUnits('5', 18),
+      yvLUSD: toBaseUnits('10000', 18),
     },
     debugFilter,
   };

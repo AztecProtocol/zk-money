@@ -64,3 +64,13 @@ export const YEARN_DAI_CARD: CreateRecipeArgs = {
   longDescription:
     'Depositing into the Yearn vault, pools the capital and uses the Yearn strategies to automate yield generation and rebalancing. Your position is represented with yvDAI.',
 };
+
+export const YEARN_LUSD_CARD: CreateRecipeArgs = {
+  ...YEARN_ETH_CARD,
+  id: 'yearn-finance.LUSD-to-yvLUSD',
+  openHandleAssetBinding: 'yvLUSD',
+  flowBindings: createSimpleSwapFlowBinding('LUSD', 'yvLUSD'),
+  shortDesc: `Deposit LUSD into Yearn's vault to easily generate yield with a passive investing strategy.`,
+  longDescription:
+    'Depositing into the Yearn vault, pools the capital and uses the Yearn strategies to automate yield generation and rebalancing. Your position is represented with yvLUSD.',
+};

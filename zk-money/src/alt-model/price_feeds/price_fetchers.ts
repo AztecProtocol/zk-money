@@ -110,6 +110,8 @@ export function createAssetPriceObs(
     );
   };
   switch (addressStr) {
+    case S.yvLUSD:
+      return boundCreateUnderlyingAssetPriceObs(S.LUSD, 'yearn-finance.LUSD-to-yvLUSD');
     case S.yvDAI:
       return boundCreateUnderlyingAssetPriceObs(S.DAI, 'yearn-finance.DAI-to-yvDAI');
     case S.yvWETH:
