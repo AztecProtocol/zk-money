@@ -4,27 +4,26 @@ import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfil
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
-import {viteStaticCopy} from "vite-plugin-static-copy";
-import path from "path";
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(), 
-    viteTsconfigPaths(), 
-    svgrPlugin(), 
+    react(),
+    viteTsconfigPaths(),
+    svgrPlugin(),
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/@aztec/sdk/dest/aztec-connect.wasm",
+          src: 'node_modules/@aztec/sdk/dest/aztec-connect.wasm',
           dest: '',
         },
         {
-          src: "node_modules/@aztec/sdk/dest/web_worker.js",
+          src: 'node_modules/@aztec/sdk/dest/web_worker.js',
           dest: '',
-        }
-      ]
-    })
+        },
+      ],
+    }),
   ],
   resolve: {
     alias: {},
@@ -33,7 +32,7 @@ export default defineConfig({
     outDir: 'dest',
   },
   optimizeDeps: {
-    exclude: ['@aztec/sdk']
+    exclude: ['@aztec/sdk'],
   },
   esbuildOptions: {
     define: {
