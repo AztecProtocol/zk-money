@@ -15,4 +15,4 @@ yarn install --immutable
 cd ..
 
 echo
-echo "Success!"
+echo "Success! You may now run `cd zk-money && yarn start:dev` to start the app."
