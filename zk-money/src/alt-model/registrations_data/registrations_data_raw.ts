@@ -71,6 +71,7 @@ export const registrationsDataRaw = {
       'TB-400',
       'wcDAI',
       'icETH',
+      'yvLUSD',
     ],
     assets: {
       Eth: '0x0000000000000000000000000000000000000000',
@@ -88,6 +89,7 @@ export const registrationsDataRaw = {
       'TB-400': '0xe2F1361271d0fCb77bb652FA382D441efD64f1f3',
       wcDAI: '0x6D088fe2500Da41D7fA7ab39c76a506D7c91f53b',
       icETH: '0x7C07F7aBe10CE8e33DC6C5aD68FE033085256A84',
+      yvLUSD: '0x378cb52b00F9D0921cb46dFc099CFf73b42419dC',
     },
     bridges: {
       ElementBridge_800K: 1,
@@ -122,6 +124,7 @@ export const registrationsDataRaw = {
       'TB-400',
       'wcDAI',
       'icETH',
+      'yvLUSD',
     ],
     assets: {
       Eth: '0x0000000000000000000000000000000000000000',
@@ -139,6 +142,7 @@ export const registrationsDataRaw = {
       'TB-400': '0xafF4ABb30ccD5929d0FE79C9d80a519fe4956e28',
       wcDAI: '0x6D088fe2500Da41D7fA7ab39c76a506D7c91f53b',
       icETH: '0x7C07F7aBe10CE8e33DC6C5aD68FE033085256A84',
+      yvLUSD: '0x378cb52b00F9D0921cb46dFc099CFf73b42419dC',
     },
     bridges: {
       ElementBridge_800K: 1,
@@ -173,6 +177,7 @@ export const registrationsDataRaw = {
       'TB-400',
       'wcDAI',
       'icETH',
+      'yvLUSD',
     ],
     assets: {
       Eth: '0x0000000000000000000000000000000000000000',
@@ -190,6 +195,7 @@ export const registrationsDataRaw = {
       'TB-400': '0x646Df2Dc98741a0Ab5798DeAC6Fc62411dA41D96',
       wcDAI: '0x6D088fe2500Da41D7fA7ab39c76a506D7c91f53b',
       icETH: '0x7C07F7aBe10CE8e33DC6C5aD68FE033085256A84',
+      yvLUSD: '0x378cb52b00F9D0921cb46dFc099CFf73b42419dC',
     },
     bridges: {
       ElementBridge_800K: 1,
