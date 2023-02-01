@@ -67,7 +67,7 @@ export function DefiConfirmationPage({
     <div className={style.page2Wrapper}>
       <CostBreakdown
         amountLabel="Amount"
-        recipient={recipe.name}
+        recipient={''}
         amount={amount}
         fee={lockedComposerPayload.feeAmount}
         investmentRowElement={renderInteractionPrediction(

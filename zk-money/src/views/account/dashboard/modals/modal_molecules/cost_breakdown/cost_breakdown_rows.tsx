@@ -21,6 +21,7 @@ interface CostBreakdownRecipientRowProps {
 }
 
 export function CostBreakdownRecipientRow({ label, value }: CostBreakdownRecipientRowProps) {
+  if (!value) return null;
   return (
     <div className={style.row}>
       <div className={style.title}>{label}</div>
