@@ -62,7 +62,7 @@ export const SET_UNISWAP_CARD: CreateRecipeArgs = {
   },
   useEnterInteractionPredictionInfo: bindInteractionPredictionHook_expectedOutput({
     direction: 'enter',
-    showUnderlying: true,
+    showUnderlying: false,
     outputSelection: 'A',
   }),
   useExitInteractionPredictionInfo: bindInteractionPredictionHook_expectedOutput({
