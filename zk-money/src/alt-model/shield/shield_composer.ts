@@ -14,7 +14,6 @@ import { retryUntil, withinTimeLimit, CachedStep } from '../../app/util/index.js
 import { WalletAccountEnforcer } from './ensured_provider.js';
 import { Network } from '../../app/networks.js';
 import { ShieldComposerPhase, ShieldComposerStateObs } from './shield_composer_state_obs.js';
-import { KNOWN_MAINNET_ASSET_ADDRESSES } from '../known_assets/known_asset_addresses.js';
 import { createSigningRetryableGenerator } from '../forms/composer_helpers.js';
 import { FEE_SIG_FIGURES } from '../forms/constants.js';
 import { ActiveSignerObs } from '../defi/defi_form/correct_provider_hooks.js';
