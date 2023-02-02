@@ -16,7 +16,6 @@ import { AAVE_ETH_CARD, AAVE_DAI_CARD } from './card_configs/aave.js';
 import { LIQUITY_TROVE_275 } from './card_configs/liquity_trove.js';
 import { RegistrationsRepo } from '../registrations_data/index.js';
 import { COMPOUND_DAI_CARD } from './card_configs/compound.js';
-import { SET_UNISWAP_CARD } from './card_configs/set_uniswap.js';
 
 const debug = createDebug('zm:recipes');
 
@@ -125,9 +124,9 @@ function createRecipe(args: CreateRecipeArgs, registrationsRepo: RegistrationsRe
 }
 
 const CREATE_RECIPES_ARGS: CreateRecipeArgs[] = [
-  SET_UNISWAP_CARD,
-  COMPOUND_DAI_CARD,
   LIQUITY_TROVE_275,
+  YEARN_LUSD_CARD,
+  COMPOUND_DAI_CARD,
   AAVE_ETH_CARD,
   AAVE_DAI_CARD,
   EULER_ETH_CARD,
@@ -137,7 +136,6 @@ const CREATE_RECIPES_ARGS: CreateRecipeArgs[] = [
   SEVEN_DAY_DCA_CARD_ETH_TO_DAI,
   YEARN_ETH_CARD,
   YEARN_DAI_CARD,
-  YEARN_LUSD_CARD,
   LIDO_CARD,
   FLUSHED_ELEMENT_CARD,
   ELEMENT_CARD,
