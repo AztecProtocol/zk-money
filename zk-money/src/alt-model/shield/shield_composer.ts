@@ -14,7 +14,6 @@ import { retryUntil, withinTimeLimit, CachedStep } from '../../app/util/index.js
 import { WalletAccountEnforcer } from './ensured_provider.js';
 import { Network } from '../../app/networks.js';
 import { ShieldComposerPhase, ShieldComposerStateObs } from './shield_composer_state_obs.js';
-import { KNOWN_MAINNET_ASSET_ADDRESSES } from '../known_assets/known_asset_addresses.js';
 import { createSigningRetryableGenerator } from '../forms/composer_helpers.js';
 import { FEE_SIG_FIGURES } from '../forms/constants.js';
 import { ActiveSignerObs } from '../defi/defi_form/correct_provider_hooks.js';
@@ -126,21 +125,22 @@ export class ShieldComposer {
   }
 
   private async approveAndAwaitL1AllowanceIfNecessary(controller: DepositController, requiredAmount: Amount) {
-    // If an ERC-20 doesn't support permits, an allowance must first be granted as a seperate transaction.
+    // If the asset is not ETH, the rollup must be approved to pull funds from the user's account.
     const targetAssetIsEth = controller.assetValue.assetId === 0;
-    if (!targetAssetIsEth && !controller.hasPermitSupport() && !this.isDai()) {
+    if (!targetAssetIsEth) {
+      // Check if allowance is sufficient, and approve more if not.
       const sufficientAllowanceHasBeenApproved = () =>
         controller.getPublicAllowance().then(allowance => allowance >= requiredAmount.baseUnits);
       if (!(await sufficientAllowanceHasBeenApproved())) {
         await this.walletAccountEnforcer.ensure();
-        this.stateObs.setPrompt(`Please approve a deposit of ${requiredAmount.format({ layer: 'L1' })}.`);
+        this.stateObs.setPrompt(`Approve the rollup to pull ${requiredAmount.format({ layer: 'L1' })}.`);
         await this.withRetryableSigning(() => controller.approve());
         this.stateObs.setPrompt('Awaiting transaction confirmation...');
         const timeout = 1000 * 60 * 30; // 30 mins
         const interval = this.deps.requiredNetwork.isFrequent ? 1000 : 10 * 1000;
         const approved = await retryUntil(sufficientAllowanceHasBeenApproved, timeout, interval);
         this.stateObs.clearPrompt();
-        if (!approved) throw new Error('Failed to grant deposit allowance');
+        if (!approved) throw new Error('Failed to grant allowance');
       }
     }
     return requiredAmount;
@@ -149,31 +149,18 @@ export class ShieldComposer {
   private async depositAndAwaitConfirmation(controller: DepositController, requiredAmount: Amount) {
     await this.walletAccountEnforcer.ensure();
     this.stateObs.setPrompt(
-      `Please make a deposit of ${requiredAmount.format({
+      `Deposit of ${requiredAmount.format({
         layer: 'L1',
       })} from your wallet. Important: It is not recommended to pay a low L1 gas fee. If your deposit takes too long to clear, gas prices might change so much as to cause the rollup provider to reject your shield proof.`,
     );
     const expireIn = 60n * 60n * 24n; // 24 hours
     const deadline = BigInt(Math.floor(Date.now() / 1000)) + expireIn;
-    if (this.isDai()) {
-      await this.withRetryableSigning(() => controller.depositFundsToContractWithNonStandardPermit(deadline));
-    } else {
-      await this.withRetryableSigning(() => controller.depositFundsToContract(deadline));
-    }
+    await this.withRetryableSigning(() => controller.depositFundsToContract(deadline));
     this.stateObs.setPrompt('Awaiting transaction confirmation...');
     const timeout = 1000 * 60 * 30; // 30 mins
     const confirmed = await withinTimeLimit(controller.awaitDepositFundsToContract(), timeout);
     this.stateObs.clearPrompt();
     if (!confirmed) throw new Error('Deposit confirmation timed out');
-  }
-
-  private isDai() {
-    try {
-      return this.payload.targetOutput.id === this.deps.sdk.getAssetIdByAddress(KNOWN_MAINNET_ASSET_ADDRESSES.DAI);
-    } catch {
-      // This should only happen when testing with a backend that isn't forked from mainnet
-      return false;
-    }
   }
 
   private async approveProof(controller: DepositController) {
