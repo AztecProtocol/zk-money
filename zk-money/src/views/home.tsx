@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { Button, Loader } from '../ui-components/index.js';
+import { Loader } from '../ui-components/index.js';
+import { Button } from 'aztec-ui';
 import { useNavigate } from 'react-router-dom';
 import stakingLogo from '../images/staking_logo.svg';
 import yieldLogo from '../images/yield_logo.svg';
