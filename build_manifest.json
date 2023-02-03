@@ -1,9 +1,15 @@
 {
+  "yarn-zk-money-base": {
+    "buildDir": "yarn-project",
+    "dockerfile": "yarn-zk-money-base/Dockerfile",
+    "rebuildPatterns": ["^yarn-project/yarn-zk-money-base/", "^yarn-project/yarn.lock"],
+    "dependencies": []
+  },
   "zk-money": {
-    "buildDir": ".",
-    "projectDir": "zk-money",
-    "dockerfile": "Dockerfile",
-    "rebuildPatterns": ["^zk-money/"],
-    "dependencies": [""]
+    "buildDir": "yarn-project",
+    "projectDir": "yarn-project/zk-money",
+    "dockerfile": "zk-money/Dockerfile",
+    "rebuildPatterns": ["^yarn-project/zk-money/"],
+    "dependencies": ["yarn-zk-money-base"]
   }
 }
