@@ -26,10 +26,12 @@ export class CompoundBridgeData extends ERC4626BridgeData {
     const cToken = ICERC20__factory.connect(cTokenAddress.toString(), this.ethersProvider);
 
     const supplyRatePerBlock = await cToken.supplyRatePerBlock();
-    return supplyRatePerBlock
-      .mul(blocksPerYear)
-      .div(10n ** 16n)
-      .toNumber();
+    return (
+      supplyRatePerBlock
+        .mul(blocksPerYear)
+        .div(10n ** 11n)
+        .toNumber() / 100000
+    );
   }
 
   async getMarketSize(
