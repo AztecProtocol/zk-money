@@ -118,7 +118,8 @@ workflows:
     when:
       equal: [system, << pipeline.parameters.workflow >>]
     jobs:
-      - zk-money
+      - zk-money:
+          filters: *tag_filter
       # Not currently a yarn project due to using next.js, but should be.
       - deploy:
           requires:
