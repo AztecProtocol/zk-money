@@ -10,9 +10,9 @@ fi
 nvm install
 
 # Until we push .yarn/cache, we still need to install.
-cd zk-money
+cd yarn-project
 yarn install --immutable
 cd ..
 
 echo
-echo "Success! You may now run `cd zk-money && yarn start:dev` to start the app."
+echo "Success!"
