@@ -25,11 +25,11 @@ export const LIDO_CARD: CreateRecipeArgs = {
   },
   enterAuxDataResolver: {
     type: 'static',
-    value: 10n ** 18n, // Minimum acceptable amount of stEth per 1 eth
+    value: 98n * 10n ** 16n, // Minimum acceptable amount of stEth per 1 eth
   },
   exitAuxDataResolver: {
     type: 'static',
-    value: 9n * 10n ** 17n, // Minimum acceptable amount of eth per 1 stEth
+    value: 95n * 10n ** 16n, // Minimum acceptable amount of eth per 1 stEth
   },
   projectName: 'Lido',
   website: 'https://lido.fi/',
