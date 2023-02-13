@@ -19,7 +19,7 @@ const SNIPPETS_THAT_SHOULDNT_BE_SHOWN_TOP_LEVEL = [
   "Cannot read properties of undefined (reading 'isBatchingLegacy')",
   'MetaMask Message Signature: User denied message signature.',
   'MetaMask Tx Signature: User denied transaction signature.',
-  'Exceeded deposit limit',
+  'Exceeded daily deposit limit',
 ];
 
 export function shouldErrorBeShownAtTopLevel(error: unknown) {
