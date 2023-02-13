@@ -204,7 +204,7 @@ resource "aws_lambda_function" "twitter_lambda" {
   role             = aws_iam_role.main.arn
   handler          = "index.main"
   provider         = aws.acm
-  source_code_hash = fileexists("../../../lambda/twitter_lambda.zip") ? filebase64sha256("../../../lambda/twitter_lambda.zip") : ""
+  source_code_hash = fileexists("../../lambda/twitter_lambda.zip") ? filebase64sha256("../../lambda/twitter_lambda.zip") : ""
   runtime          = "nodejs12.x"
   publish          = true
 }
