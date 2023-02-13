@@ -83,8 +83,7 @@ async function getInferredDeployTag() {
   if (process.env.NODE_ENV !== 'development') {
     const resp = await fetch('/DEPLOY_TAG');
     const text = await resp.text();
-    return 'aztec-connect-prod';
-    // return text.replace('\n', '');
+    return text.replace('\n', '');
   } else {
     // Webpack's dev-server would serve up index.html instead of the DEPLOY_TAG.
     return 'aztec-connect-prod';

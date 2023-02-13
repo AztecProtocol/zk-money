@@ -1,7 +1,7 @@
 FROM node:18-alpine
 RUN apk update && apk add --no-cache git curl bash
 
-COPY zk-money zk-money
+COPY . zk-money
 COPY lambda lambda
 
 WORKDIR zk-money
