@@ -1,6 +1,6 @@
 {
   "zk-money": {
-    "buildDir": ".",
+    "buildDir": "zk-money",
     "dockerfile": "Dockerfile",
     "rebuildPatterns": ["^zk-money/"],
     "dependencies": [""]
