@@ -86,7 +86,7 @@ async function getInferredDeployTag() {
     return text.replace('\n', '');
   } else {
     // Webpack's dev-server would serve up index.html instead of the DEPLOY_TAG.
-    return 'aztec-connect-dev';
+    return 'aztec-connect-prod';
   }
 }
 

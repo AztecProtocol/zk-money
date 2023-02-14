@@ -2,3 +2,9 @@
 .github
 .vscode
 **/node_modules
+Dockerfile
+.cache
+dist
+dest
+**/node_modules
+**/terraform
