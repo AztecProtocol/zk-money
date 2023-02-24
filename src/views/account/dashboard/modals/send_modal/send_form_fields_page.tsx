@@ -53,13 +53,10 @@ export const SendFormFieldsPage: React.FunctionComponent<SendProps> = ({
   const { sendMode } = state.fields;
   const { asset } = state;
   const canWithdraw = getAssetWithdrawShown(asset.label);
-
+ 
   return (
     <div className={style.root}>
       <div className={style.header}>
-        {canWithdraw && (
-          <Toggle className={style.toggle} value={sendMode} options={MODES} onChangeValue={onChangeSendMode} />
-        )}
         <DescriptionSection className={style.description} text={getDescription(sendMode)} />
       </div>
       <SplitSection
