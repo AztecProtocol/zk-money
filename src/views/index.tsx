@@ -16,7 +16,6 @@ import { getCookiesToast } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
 import { Earn } from './account/dashboard/earn.js';
-import { Trade } from './account/dashboard/trade.js';
 import { Balance } from './account/dashboard/balance.js';
 import { DefiModal, DefiModalProps } from './account/dashboard/modals/defi_modal/defi_modal.js';
 import { Home } from './home.js';
@@ -77,7 +76,7 @@ export function Views({ config }: ViewsProps) {
   useShowCookies();
 
   const isInAccessPage = location.pathname === Pages.BALANCE && (!isLoggedIn || accountState?.isSyncing);
-  const shouldCenterContent = location.pathname === Pages.TRADE || isInAccessPage;
+  const shouldCenterContent = isInAccessPage;
 
   return (
     <>
@@ -111,7 +110,6 @@ export function Views({ config }: ViewsProps) {
                   />
                 }
               />
-              <Route path={Pages.TRADE} element={<Trade />} />
               <Route path={Pages.BALANCE} element={<Balance onOpenDefiExitModal={handleOpenDefiExitModal} />} />
               <Route path={Pages.HOME} element={<Home onSignup={() => navigate(Pages.BALANCE)} recipes={recipes} />} />
               <Route

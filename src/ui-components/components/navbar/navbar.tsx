@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../images/zk_money.svg';
 import { ReactComponent as MobileNavbarEarn } from '../../../images/mobile_navbar_earn.svg';
-import { ReactComponent as MobileNavbarTrade } from '../../../images/mobile_navbar_trade.svg';
 import { ReactComponent as MobileNavbarWallet } from '../../../images/mobile_navbar_wallet.svg';
 import { ReactComponent as Clock } from '../../images/clock.svg';
 import { bindStyle } from '../../util/classnames.js';
@@ -16,7 +15,6 @@ enum Pages {
   HOME = '/',
   EARN = '/earn',
   SEND = '/send',
-  TRADE = '/trade',
   BALANCE = '/balance',
 }
 
@@ -47,7 +45,6 @@ interface LinkItem {
 
 const LINKS: LinkItem[] = [
   { url: Pages.EARN, label: 'Earn', mobileImage: <MobileNavbarEarn className={style.mobileImage} /> },
-  { url: Pages.TRADE, label: 'Trade', mobileImage: <MobileNavbarTrade className={style.mobileImage} /> },
 ];
 
 export function Navbar({
