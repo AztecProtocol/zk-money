@@ -13,7 +13,6 @@ export function Earn(props: EarnProps) {
   const { onOpenDefiEnterModal, onOpenDefiExitModal, isLoggedIn } = props;
   return (
     <div className={style.earnWrapper}>
-      <DefiCardsList onSelect={onOpenDefiEnterModal} isLoggedIn={isLoggedIn} />
       {isLoggedIn && <DefiInvestmentsSection onOpenDefiExitModal={onOpenDefiExitModal} />}
     </div>
   );
