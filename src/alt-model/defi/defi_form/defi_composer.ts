@@ -7,6 +7,8 @@ import { createSigningRetryableGenerator } from '../../forms/composer_helpers.js
 
 const debug = createDebug('zm:defi_composer');
 
+const PROOF_CREATION_TIMEOUT = 120e3;
+
 export type DefiComposerPayload = Readonly<{
   targetDepositAmount: Amount;
   feeAmount: Amount;
@@ -50,7 +52,7 @@ export class DefiComposer {
         targetDepositAmount.toAssetValue(),
         feeAmount.toAssetValue(),
       );
-      await controller.createProof();
+      await controller.createProof(PROOF_CREATION_TIMEOUT);
       this.stateObs.setPhase(DefiComposerPhase.SENDING_PROOF);
       const txId = await controller.send();
       this.stateObs.setPhase(DefiComposerPhase.DONE);

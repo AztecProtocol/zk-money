@@ -14,6 +14,8 @@ export type RegisterFlowState =
   | { phase: 'sending-proof' }
   | { phase: 'done' };
 
+const PROOF_CREATION_TIMEOUT = 120e3;
+
 export async function registerFlow(
   emitState: Emit<RegisterFlowState>,
   throwIfCancelled: ThrowIfCancelled,
@@ -47,7 +49,7 @@ export async function registerFlow(
   );
 
   emitState({ phase: 'creating-proof' });
-  await throwIfCancelled(controller.createProof());
+  await throwIfCancelled(controller.createProof(PROOF_CREATION_TIMEOUT));
 
   await depositAndSignFlow(
     depositAndSignFlow => emitState({ phase: 'deposit-and-sign', depositAndSignFlow }),
