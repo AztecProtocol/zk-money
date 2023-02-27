@@ -8,7 +8,6 @@ import {
 } from './types.js';
 import { RemoteAsset } from '../types.js';
 import { LIDO_CARD } from './card_configs/lido.js';
-import { ELEMENT_CARD, FLUSHED_ELEMENT_CARD } from './card_configs/element.js';
 import { YEARN_DAI_CARD, YEARN_ETH_CARD, YEARN_LUSD_CARD } from './card_configs/yearn.js';
 import { SEVEN_DAY_DCA_CARD_DAI_TO_ETH, SEVEN_DAY_DCA_CARD_ETH_TO_DAI } from './card_configs/seven_day_dca.js';
 import { EULER_DAI_CARD, EULER_ETH_CARD, EULER_WSTETH_CARD } from './card_configs/euler.js';
@@ -137,8 +136,6 @@ const CREATE_RECIPES_ARGS: CreateRecipeArgs[] = [
   YEARN_ETH_CARD,
   YEARN_DAI_CARD,
   LIDO_CARD,
-  FLUSHED_ELEMENT_CARD,
-  ELEMENT_CARD,
 ];
 
 export function createDefiRecipes(registrationsRepo: RegistrationsRepo) {
