@@ -2,7 +2,7 @@
   "zk-money": {
     "buildDir": ".",
     "dockerfile": "Dockerfile",
-    "rebuildPatterns": ["^zk-money/"],
+    "rebuildPatterns": ["^Dockerfile", "^src/", "^package.json", "^public", "^vite.config.js"],
     "dependencies": [""]
   }
 }
