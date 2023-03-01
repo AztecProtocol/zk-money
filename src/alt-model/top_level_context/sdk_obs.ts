@@ -91,6 +91,11 @@ function handleQuotaExceededError(err, toastsObs) {
       debug('Failed to create sdk', err);
     })
     .catch(e => {
+      toastsObs.addToast({
+        text: `Exceeded IndexedDB quota. Please delete some data to continue using the dApp.`,
+        closable: true,
+        type: ToastType.ERROR,
+      });
       debug('Failed to estimate indexedDB storage', e);
     });
 }
