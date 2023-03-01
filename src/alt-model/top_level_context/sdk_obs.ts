@@ -53,10 +53,13 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
   return new Obs(sdkObs);
 }
 
-function formatBytes(bytes: number) {
-  if (bytes === 0) return '0 Bytes';
-  const i = Math.floor(Math.log(bytes) / Math.log(1e3));
-  return parseFloat((bytes / Math.pow(1e3, i)).toFixed(2)) + ' KB';
+function formatBytes(bytes, decimals = 2) {
+  if (!+bytes) return '0 Bytes';
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
 function handleQuotaExceededError(err, toastsObs) {
@@ -66,7 +69,6 @@ function handleQuotaExceededError(err, toastsObs) {
       if (!est.usage || !est.quota) {
         throw new Error("Can't estimate storage");
       }
-
       toastsObs.addToast({
         text: `Exceeded IndexedDB quota (using ${formatBytes(est.usage)} out of ${formatBytes(
           est.quota,
