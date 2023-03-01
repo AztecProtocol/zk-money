@@ -33,15 +33,13 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
     .then(sdk => {
       sdkObs.next(sdk);
       sdk.addListener(SdkEvent.DESTROYED, err => {
-        sdkObs.next(undefined);
         if (err.includes('QuotaExceededError')) {
           handleQuotaExceededError(err, toastsObs);
         } else {
           handleSdkDestroyed(err, toastsObs);
         }
+        sdkObs.next(undefined);
       });
-      // sdk.on(SdkEvent., () => {});
-      // sdk.on(SdkEvent., () => {});
       sdk.on(SdkEvent.VERSION_MISMATCH, () => {
         debug('ClientVersionMismatch detected');
         handleVersionMismatch();
