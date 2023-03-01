@@ -4,6 +4,8 @@ import { ActiveChainIdObs } from '../../active_wallet_hooks.js';
 import { ActiveSignerObs } from '../../defi/defi_form/correct_provider_hooks.js';
 import { L1DepositAndSignFlowState, l1DepositAndSignFlow } from '../l1_deposit/l1_deposit_and_sign_flow.js';
 
+const PROOF_CREATION_TIMEOUT = 120e3;
+
 export type RegisterFormFlowState =
   | { phase: 'creating-proof' }
   | { phase: 'deposit-and-sign'; l1DepositAndSignFlow: L1DepositAndSignFlowState }
@@ -40,7 +42,7 @@ export async function registerFormFlow(
   );
 
   emitState({ phase: 'creating-proof' });
-  await throwIfCancelled(controller.createProof());
+  await throwIfCancelled(controller.createProof(PROOF_CREATION_TIMEOUT));
 
   await l1DepositAndSignFlow(
     l1DepositAndSignFlow => emitState({ phase: 'deposit-and-sign', l1DepositAndSignFlow }),
