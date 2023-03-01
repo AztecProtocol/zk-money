@@ -9,7 +9,7 @@ const cx = bindStyle(style);
 const MAX_TEXT_LENGTH = 400;
 
 export function Toast(props: ToastProps) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const hasPrimaryButton = !!props.toast.primaryButton;
   const hasSecondaryButton = !!props.toast.secondaryButton;
   const hasButtons = hasPrimaryButton || hasSecondaryButton;
@@ -49,7 +49,9 @@ export function Toast(props: ToastProps) {
     >
       {props.toast.text && (
         <div className={style.text}>
-          {collapsed ? `${props.toast.text.substring(0, MAX_TEXT_LENGTH)}...` : props.toast.text}
+          {collapsed && props.toast.text.length > MAX_TEXT_LENGTH
+            ? `${props.toast.text.substring(0, MAX_TEXT_LENGTH)}...`
+            : props.toast.text}
         </div>
       )}
       {props.toast.components}
