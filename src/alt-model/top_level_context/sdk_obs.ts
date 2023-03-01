@@ -32,7 +32,10 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
   })
     .then(sdk => {
       sdkObs.next(sdk);
-      sdk.addListener(SdkEvent.DESTROYED, () => sdkObs.next(undefined));
+      sdk.addListener(SdkEvent.DESTROYED, err => {
+        sdkObs.next(undefined);
+        handleSdkDestroyed(err, toastsObs);
+      });
       sdk.on(SdkEvent.VERSION_MISMATCH, () => {
         debug('ClientVersionMismatch detected');
         handleVersionMismatch();
@@ -60,6 +63,15 @@ function formatBytes(bytes, decimals = 2) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
+
+function handleSdkDestroyed(err, toastsObs) {
+  toastsObs.addToast({
+    text: err,
+    closable: true,
+    type: ToastType.ERROR,
+  });
+  debug('SDK destoyed');
 }
 
 function handleQuotaExceededError(err, toastsObs) {
