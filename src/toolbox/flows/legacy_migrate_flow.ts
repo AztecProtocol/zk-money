@@ -12,6 +12,8 @@ export type LegacyMigrateFlowState =
   | { phase: 'sending-proof' }
   | { phase: 'done' };
 
+const PROOF_CREATION_TIMEOUT = 120e3;
+
 export async function legacyMigrateFlow(
   emitState: Emit<LegacyMigrateFlowState>,
   throwIfCancelled: ThrowIfCancelled,
@@ -50,7 +52,7 @@ export async function legacyMigrateFlow(
     addressOfDepositor,
     signerForPaying,
   );
-  await throwIfCancelled(controller.createProof());
+  await throwIfCancelled(controller.createProof(PROOF_CREATION_TIMEOUT));
 
   await depositAndSignFlow(
     depositAndSignFlow => emitState({ phase: 'deposit-and-sign', depositAndSignFlow }),

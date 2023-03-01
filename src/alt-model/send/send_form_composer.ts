@@ -15,6 +15,8 @@ import { Amount } from '../assets/index.js';
 
 const debug = createDebug('zm:send_composer');
 
+const PROOF_CREATION_TIMEOUT = 120e3;
+
 export type Recipient =
   | {
       sendMode: SendMode.SEND;
@@ -83,7 +85,7 @@ export class SendComposer {
           recipient.address,
         );
       }
-      await controller.createProof();
+      await controller.createProof(PROOF_CREATION_TIMEOUT);
 
       this.stateObs.setPhase(SendComposerPhase.SENDING_PROOF);
       const txId = await controller.send();

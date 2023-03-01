@@ -20,6 +20,8 @@ import { ActiveSignerObs } from '../defi/defi_form/correct_provider_hooks.js';
 
 const debug = createDebug('zm:shield_composer');
 
+const PROOF_CREATION_TIMEOUT = 120e3;
+
 export type ShieldComposerPayload = Readonly<{
   targetOutput: Amount;
   fee: Amount;
@@ -108,7 +110,7 @@ export class ShieldComposer {
 
   private async createProof(controller: DepositController) {
     this.stateObs.setPhase(ShieldComposerPhase.CREATE_PROOF);
-    await controller.createProof();
+    await controller.createProof(PROOF_CREATION_TIMEOUT);
   }
 
   private async deposit(controller: DepositController) {

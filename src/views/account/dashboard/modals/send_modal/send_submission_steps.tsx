@@ -1,11 +1,12 @@
-import { ActiveSubmissionFlowItem, StepStatus, SubmissionFlow } from '../../../../../ui-components/index.js';
+import { ActiveSubmissionFlowItem, StepStatus, SubmissionFlow, ToastType } from '../../../../../ui-components/index.js';
 import {
   SpendKeyGenerationStep,
   useSpendingKeyGenerationStep,
 } from '../modal_molecules/spending_key_generation_step_hooks/index.js';
 import { SendComposerPhase, SendComposerState } from '../../../../../alt-model/send/send_composer_state_obs.js';
-import { SubmissionItemPrompt } from '../modal_molecules/submission_item_prompt/submission_item_prompt.js';
 import { ReportErrorButton } from '../../../../../components/report_error_button/index.js';
+import { useContext, useEffect } from 'react';
+import { TopLevelContext } from '../../../../../alt-model/top_level_context/top_level_context.js';
 
 interface SendSubmissionStepsProps {
   composerState: SendComposerState;
@@ -24,13 +25,7 @@ function getActiveItem(
 ): ActiveSubmissionFlowItem {
   if (error) {
     const idx = steps.findIndex(x => x.phase === error.phase);
-    const expandedContent = (
-      <SubmissionItemPrompt errored>
-        {error.message}
-        <ReportErrorButton error={error.raw} />
-      </SubmissionItemPrompt>
-    );
-    return { idx, status: StepStatus.ERROR, expandedContent };
+    return { idx, status: StepStatus.ERROR };
   }
   const idx = steps.findIndex(x => x.phase === phase);
   if (phase === SendComposerPhase.GENERATING_KEY) {
@@ -40,7 +35,19 @@ function getActiveItem(
 }
 
 export function SendSubmissionSteps({ composerState }: SendSubmissionStepsProps) {
+  const { toastsObs } = useContext(TopLevelContext);
+  const { error } = composerState;
   const spendingKeyGenerationStep = useSpendingKeyGenerationStep();
+
+  useEffect(() => {
+    if (!error) return;
+    toastsObs.addToast({
+      closable: true,
+      text: error.message,
+      type: ToastType.ERROR,
+      components: <ReportErrorButton error={error.raw} />,
+    });
+  }, [error, toastsObs]);
 
   return <SubmissionFlow activeItem={getActiveItem(composerState, spendingKeyGenerationStep)} labels={labels} />;
 }
