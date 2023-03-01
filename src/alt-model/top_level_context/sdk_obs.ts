@@ -34,8 +34,14 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
       sdkObs.next(sdk);
       sdk.addListener(SdkEvent.DESTROYED, err => {
         sdkObs.next(undefined);
-        handleSdkDestroyed(err, toastsObs);
+        if (err.includes('QuotaExceededError')) {
+          handleQuotaExceededError(err, toastsObs);
+        } else {
+          handleSdkDestroyed(err, toastsObs);
+        }
       });
+      // sdk.on(SdkEvent., () => {});
+      // sdk.on(SdkEvent., () => {});
       sdk.on(SdkEvent.VERSION_MISMATCH, () => {
         debug('ClientVersionMismatch detected');
         handleVersionMismatch();
