@@ -10,6 +10,8 @@ import { chainIdToNetwork } from '../../app/networks.js';
 import { Obs } from '../../app/util/index.js';
 import createDebug from 'debug';
 import { Config } from '../../config.js';
+import { ToastsObs } from './toasts_obs.js';
+import { ToastType } from '../../ui-components/index.js';
 
 const debug = createDebug('zm:sdk_obs');
 
@@ -18,7 +20,7 @@ const hostedSdkEnabled = !!localStorage.getItem('hosted_sdk_enabled');
 type SdkObsValue = AztecSdk | undefined;
 export type SdkObs = Obs<SdkObsValue>;
 
-export function createSdkObs(config: Config): SdkObs {
+export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
   const aztecJsonRpcProvider = new JsonRpcProvider(config.ethereumHost);
 
   const sdkObs = Obs.input<SdkObsValue>(undefined);
@@ -41,11 +43,42 @@ export function createSdkObs(config: Config): SdkObs {
         debug('ClientVersionMismatch detected');
         handleVersionMismatch();
       }
+      if (err.message.includes('QuotaExceededError')) {
+        handleQuotaExceededError(err, toastsObs);
+      }
       debug('Failed to create sdk', err);
       return undefined;
     });
   // Wrapping the input obs hides its `next` method
   return new Obs(sdkObs);
+}
+
+function formatBytes(bytes: number) {
+  if (bytes === 0) return '0 Bytes';
+  const i = Math.floor(Math.log(bytes) / Math.log(1e3));
+  return parseFloat((bytes / Math.pow(1e3, i)).toFixed(2)) + ' KB';
+}
+
+function handleQuotaExceededError(err, toastsObs) {
+  navigator.storage
+    .estimate()
+    .then(est => {
+      if (!est.usage || !est.quota) {
+        throw new Error("Can't estimate storage");
+      }
+
+      toastsObs.addToast({
+        text: `Exceeded IndexedDB quota (using ${formatBytes(est.usage)} out of ${formatBytes(
+          est.quota,
+        )} total capacity). Please delete some data to continue using the dApp.`,
+        closable: true,
+        type: ToastType.ERROR,
+      });
+      debug('Failed to create sdk', err);
+    })
+    .catch(e => {
+      debug('Failed to estimate indexedDB storage', e);
+    });
 }
 
 function handleVersionMismatch() {

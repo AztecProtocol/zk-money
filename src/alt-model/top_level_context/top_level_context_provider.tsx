@@ -23,11 +23,11 @@ function createTopLevelContextValue(
   initialRollupProviderStatus: RollupProviderStatus,
 ): TopLevelContextValue {
   const stableEthereumProvider = new StaticJsonRpcProvider(config.ethereumHost);
-  const sdkObs = createSdkObs(config);
+  const toastsObs = new ToastsObs();
+  const sdkObs = createSdkObs(config, toastsObs);
   const accountStateManager = new AccountStateManager(sdkObs);
   const aliasManager = new AliasManager();
   accountStateManager.attemptRecoverSession(); // TODO: consider where this should live
-  const toastsObs = new ToastsObs();
   const pendingBalancesObs = new PendingBalancesObs();
   const walletInteractionToastsObs = new ToastsObs();
   const remoteStatusPoller = createSdkRemoteStatusPoller(sdkObs, initialRollupProviderStatus);
