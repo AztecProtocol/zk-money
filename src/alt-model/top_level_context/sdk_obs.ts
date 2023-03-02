@@ -32,9 +32,10 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
   })
     .then(sdk => {
       sdkObs.next(sdk);
-      sdk.addListener(SdkEvent.DESTROYED, err => {
+      sdk.addListener(SdkEvent.DESTROYED, async err => {
         if (err.includes('QuotaExceededError')) {
-          handleQuotaExceededError(err, toastsObs);
+          const toast = await getQuotaExceededErrorToast(err);
+          toastsObs.addToast(toast);
         } else {
           handleSdkDestroyed(err, toastsObs);
         }
@@ -45,13 +46,14 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
         handleVersionMismatch();
       });
     })
-    .catch(err => {
+    .catch(async err => {
       if (err instanceof ClientVersionMismatchError) {
         debug('ClientVersionMismatch detected');
         handleVersionMismatch();
       }
       if (err.message.includes('QuotaExceededError')) {
-        handleQuotaExceededError(err, toastsObs);
+        const toast = await getQuotaExceededErrorToast(err);
+        toastsObs.addToast(toast);
       }
       debug('Failed to create sdk', err);
       return undefined;
@@ -78,30 +80,34 @@ function handleSdkDestroyed(err, toastsObs) {
   debug('SDK destoyed');
 }
 
-function handleQuotaExceededError(err, toastsObs) {
-  navigator.storage
-    .estimate()
-    .then(est => {
-      if (!est.usage || !est.quota) {
-        throw new Error("Can't estimate storage");
-      }
-      toastsObs.addToast({
-        text: `Exceeded IndexedDB quota (using ${formatBytes(est.usage)} out of ${formatBytes(
-          est.quota,
-        )} total capacity). Please delete some data to continue using the dApp.`,
-        closable: true,
-        type: ToastType.ERROR,
-      });
-      debug('Failed to create sdk', err);
-    })
-    .catch(e => {
-      toastsObs.addToast({
-        text: `Exceeded IndexedDB quota. Please delete some data to continue using the dApp.`,
-        closable: true,
-        type: ToastType.ERROR,
-      });
-      debug('Failed to estimate indexedDB storage', e);
-    });
+function getNotEstimatedQuotaExceededErrorToast() {
+  debug('Failed to estimate indexedDB storage');
+  return {
+    text: `Exceeded IndexedDB quota. Please delete some data to continue using the dApp.`,
+    closable: true,
+    type: ToastType.ERROR,
+  };
+}
+
+function getEstimatedQuotaExceededErrorToast(est, err) {
+  debug('Failed to create sdk', err);
+  return {
+    text: `Exceeded IndexedDB quota (using ${formatBytes(est.usage)} out of ${formatBytes(
+      est.quota,
+    )} total capacity). Please delete some data to continue using the dApp.`,
+    closable: true,
+    type: ToastType.ERROR,
+  };
+}
+
+export async function getQuotaExceededErrorToast(err) {
+  try {
+    const est = await navigator.storage.estimate();
+    if (!est.usage || !est.quota) throw new Error('Unable to estimate storage');
+    return getEstimatedQuotaExceededErrorToast(est, err);
+  } catch (e) {
+    return getNotEstimatedQuotaExceededErrorToast();
+  }
 }
 
 function handleVersionMismatch() {
