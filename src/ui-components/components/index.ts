@@ -4,7 +4,6 @@ export * from './dropdown/index.js';
 export * from './section_title/index.js';
 export * from './toast/index.js';
 export * from './toast_group/index.js';
-export * from './balance_indicator/index.js';
 export * from './section/index.js';
 export * from './tx_progress/index.js';
 export * from './loader/index.js';
