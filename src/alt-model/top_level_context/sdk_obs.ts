@@ -33,7 +33,10 @@ export function createSdkObs(config: Config, toastsObs: ToastsObs): SdkObs {
     .then(sdk => {
       sdkObs.next(sdk);
       sdk.addListener(SdkEvent.DESTROYED, async err => {
-        if (err.includes('QuotaExceededError')) {
+        debug('SDK destroyed');
+        if (!err) {
+          handleSdkDestroyedNoMessage(toastsObs);
+        } else if (err.includes('QuotaExceededError')) {
           const toast = await getQuotaExceededErrorToast(err);
           toastsObs.addToast(toast);
         } else {
@@ -71,13 +74,20 @@ function formatBytes(bytes, decimals = 2) {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 }
 
+function handleSdkDestroyedNoMessage(toastsObs) {
+  toastsObs.addToast({
+    text: 'SDK was destroyed. Please refresh the page.',
+    closable: true,
+    type: ToastType.ERROR,
+  });
+}
+
 function handleSdkDestroyed(err, toastsObs) {
   toastsObs.addToast({
     text: err,
     closable: true,
     type: ToastType.ERROR,
   });
-  debug('SDK destoyed');
 }
 
 function getNotEstimatedQuotaExceededErrorToast() {
