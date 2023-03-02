@@ -1,4 +1,4 @@
-import { DropdownType, Select } from '../../index.js';
+import { DropdownType, Select } from '@aztec/aztec-ui';
 import { bindStyle } from '../../util/classnames.js';
 import successIcon from '../../images/success.svg';
 import errorIcon from '../../images/error.svg';

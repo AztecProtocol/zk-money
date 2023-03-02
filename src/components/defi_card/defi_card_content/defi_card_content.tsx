@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { InfoWrap, Button } from '../../../ui-components/index.js';
+import { Button } from '@aztec/aztec-ui';
+import { InfoWrap } from '../../../ui-components/index.js';
 import { DefiRecipe } from '../../../alt-model/defi/types.js';
 import { DefiCardDescription } from './defi_card_description.js';
 import { DefiCardInfoContent } from './defi_card_info_content.js';

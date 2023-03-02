@@ -4,7 +4,7 @@ import { useDefiForm, DefiComposerPhase } from '../../../../../alt-model/defi/de
 import { DefiRecipe, FlowDirection } from '../../../../../alt-model/defi/types.js';
 import { Overlay } from '../../../../../components/overlay.js';
 import { DefiModalHeader } from './defi_modal_header.js';
-import { Card, CardHeaderSize } from '../../../../../ui-components/index.js';
+import { Card, CardHeaderSize } from '@aztec/aztec-ui';
 import { Modal } from '../../../../../components/index.js';
 import { DefiConfirmationPage } from './defi_confirmation_page/index.js';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Button, ButtonSize, ButtonTheme } from '@aztec/aztec-ui';
 import { confirmAndSendErrorReport, formatError } from '../../alt-model/errors/error_utils.js';
 import { useSdk } from '../../alt-model/top_level_context/top_level_context_hooks.js';
-import { Button, ButtonSize, ButtonTheme } from '../../ui-components/index.js';
 import style from './report_error_button.module.scss';
 
 interface ReportErrorButtonProps {

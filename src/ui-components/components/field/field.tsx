@@ -1,5 +1,5 @@
 import React, { createRef, useState } from 'react';
-import { BalanceIndicator, DropdownOption, Select } from '../../index.js';
+import { BalanceIndicator, DropdownOption, Select } from '@aztec/aztec-ui';
 import { bindStyle } from '../../util/classnames.js';
 import successIcon from '../../images/success.svg';
 import errorIcon from '../../images/error.svg';
@@ -183,7 +183,7 @@ export function Field(props: FieldProps) {
                 />
                 {props.balance !== undefined && props.onClickBalanceIndicator && (
                   <BalanceIndicator
-                    onClick={props.onClickBalanceIndicator}
+                    onClickMax={props.onClickBalanceIndicator}
                     disabled={!!props.disabled}
                     balance={props.balance}
                     onChangeWalletRequest={props.onChangeWalletRequest}

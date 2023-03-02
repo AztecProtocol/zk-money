@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '@aztec/aztec-ui';
 import { TxId, UserDefiInteractionResultState, UserDefiTx } from '@aztec/sdk';
 import type { DefiRecipe } from '../../../alt-model/defi/types.js';
 import type {
@@ -6,7 +7,7 @@ import type {
   DefiPosition_Interactable,
   DefiPosition_NonInteractable,
 } from '../../../alt-model/defi/open_position_hooks.js';
-import { Hyperlink, HyperlinkIcon, Tooltip, Button } from '../../../ui-components/index.js';
+import { Hyperlink, HyperlinkIcon, Tooltip } from '../../../ui-components/index.js';
 import { useExplorerTxLink } from '../../../alt-model/explorer_link_hooks.js';
 import { useWalletInteractionIsOngoing } from '../../../alt-model/wallet_interaction_hooks.js';
 import { useRollupProviderStatus } from '../../../alt-model/index.js';

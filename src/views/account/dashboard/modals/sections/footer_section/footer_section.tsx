@@ -1,5 +1,6 @@
+import { Button } from '@aztec/aztec-ui';
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
-import { FaqHint, Button } from '../../../../../../ui-components/index.js';
+import { FaqHint } from '../../../../../../ui-components/index.js';
 import style from './footer_section.module.scss';
 
 interface FooterSectionProps {

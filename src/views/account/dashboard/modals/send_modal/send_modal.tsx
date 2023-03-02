@@ -1,4 +1,5 @@
-import { Card, CardHeaderSize, Theme } from '../../../../../ui-components/index.js';
+import { Card, CardHeaderSize } from '@aztec/aztec-ui';
+import { Theme } from '../../../../../ui-components/index.js';
 import { Modal } from '../../../../../components/index.js';
 import { SendFormFieldsPage } from './send_form_fields_page.js';
 import { SendComposerPhase, useSendForm } from '../../../../../alt-model/send/index.js';

@@ -1,4 +1,4 @@
-import { Card, CardHeaderSize } from '../../../../../ui-components/index.js';
+import { Card, CardHeaderSize } from '@aztec/aztec-ui';
 import { useShieldForm, ShieldComposerPhase } from '../../../../../alt-model/shield/index.js';
 import { Modal } from '../../../../../components/index.js';
 import { ShieldConfirmationPage } from './shield_confirmation_page/index.js';

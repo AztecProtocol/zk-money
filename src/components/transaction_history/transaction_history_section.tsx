@@ -1,8 +1,9 @@
 import download from '../../ui-components/images/download.svg';
 import { ProofId, UserPaymentTx } from '@aztec/sdk';
+import { Button, ButtonSize, ButtonTheme } from '@aztec/aztec-ui';
 import { useAccountStateManager, useSdk } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { useObs } from '../../app/util/index.js';
-import { Button, ButtonSize, ButtonTheme, Section, SectionTitle } from '../../ui-components/index.js';
+import { Section, SectionTitle } from '../../ui-components/index.js';
 import { TransactionHistory } from './transaction_history.js';
 import { useUserTxs } from '../../alt-model/user_tx_hooks.js';
 

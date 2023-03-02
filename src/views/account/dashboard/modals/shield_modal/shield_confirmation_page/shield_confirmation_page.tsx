@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { GrumpkinAddress } from '@aztec/sdk';
-import { Button } from '../../../../../../ui-components/index.js';
 import {
   ShieldComposerPhase,
   ShieldComposerState,
@@ -15,6 +14,7 @@ import { RetrySigningButton } from '../../modal_molecules/retry_signing_button/r
 import { useWalletInteractionIsOngoing } from '../../../../../../alt-model/wallet_interaction_hooks.js';
 import { BorderBox } from '../../../../../../components/border_box.js';
 import style from './shield_confirmation_page.module.scss';
+import { Button } from '@aztec/aztec-ui';
 
 interface ShieldConfirmationPageProps {
   composerState: ShieldComposerState;

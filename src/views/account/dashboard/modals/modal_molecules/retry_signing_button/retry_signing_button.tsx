@@ -1,5 +1,5 @@
+import { Button } from '@aztec/aztec-ui';
 import { Retryable } from '../../../../../../app/util/promises/retryable.js';
-import { Button } from '../../../../../../ui-components/index.js';
 
 interface RetrySigningButtonProps {
   signingRetryable: Retryable<unknown>;

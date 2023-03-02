@@ -1,6 +1,6 @@
+import { Button } from '@aztec/aztec-ui';
 import { ContentWrapper } from '../../components/template/content_wrapper.js';
 import { Text } from '../../components/index.js';
-import { Button } from '../../ui-components/index.js';
 import { SupportStatus } from '../../device_support.js';
 import style from './unsupported_popup.module.css';
 

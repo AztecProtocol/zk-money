@@ -1,6 +1,7 @@
 import type { AssetValue } from '@aztec/sdk';
+import { Button, ButtonSize, ButtonTheme } from '@aztec/aztec-ui';
 import { ReactComponent as Clock } from '../../ui-components/images/clock.svg';
-import { SkeletonRect, Button, ButtonTheme, ButtonSize } from '../../ui-components/index.js';
+import { SkeletonRect } from '../../ui-components/index.js';
 import { formatBulkPrice } from '../../app/index.js';
 import { useAmountBulkPrice, useSpendableBalance } from '../../alt-model/index.js';
 import { RemoteAsset } from '../../alt-model/types.js';

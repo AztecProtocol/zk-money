@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { bindStyle } from '../../../ui-components/util/classnames.js';
-import { Button, ButtonTheme, Card } from '../../../ui-components/index.js';
+import { Card } from '@aztec/aztec-ui';
 import { useAccountStateManager } from '../../../alt-model/top_level_context/index.js';
 import { RegisterForm, useRegisterForm } from '../../../alt-model/forms/register/register_form_hooks.js';
 import { useWalletInteractionIsOngoing } from '../../../alt-model/wallet_interaction_hooks.js';
@@ -8,6 +8,7 @@ import { KeyGenerationResult } from '../../../components/index.js';
 import { KeysGenerationPage } from './keys_generation_page.js';
 import { RegisterAccountForm } from './register_account_form.js';
 import style from './access_account_form.module.scss';
+import { Button, ButtonTheme } from '@aztec/aztec-ui';
 
 const cx = bindStyle(style);
 

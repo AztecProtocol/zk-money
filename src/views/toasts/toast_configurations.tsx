@@ -1,9 +1,10 @@
 // import { FetchSignerResult } from '@wagmi/core';
 import Cookies from 'js-cookie';
+import { Button, ButtonTheme } from '@aztec/aztec-ui';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ToastsObs } from '../../alt-model/top_level_context/toasts_obs.js';
 import { RegisterFormFlowState } from '../../alt-model/forms/register/register_form_flow.js';
-import { Button, ButtonTheme, TxProgress, TxProgressFlow, TxProgressStep } from '../../ui-components/index.js';
+import { TxProgress, TxProgressFlow, TxProgressStep } from '../../ui-components/index.js';
 import { WalletInteractionStep, WalletInteractionToast } from '../../components/index.js';
 import { FlowRunnerState } from '../../toolbox/flows/flow_runner.js';
 import { PhaseType } from '../account/dashboard/register_account_form.js';

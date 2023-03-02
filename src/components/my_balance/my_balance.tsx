@@ -1,13 +1,6 @@
 import { formatBulkPrice } from '../../app/index.js';
-import {
-  Card,
-  CardHeaderSize,
-  Hyperlink,
-  InteractiveTooltip,
-  Loader,
-  LoaderSize,
-  SkeletonRect,
-} from '../../ui-components/index.js';
+import { Card, CardHeaderSize } from '@aztec/aztec-ui';
+import { Hyperlink, InteractiveTooltip, Loader, LoaderSize, SkeletonRect } from '../../ui-components/index.js';
 import { useTotalValuation, useTotalSpendableValuation } from '../../alt-model/total_account_valuation_hooks.js';
 import style from './my_balance.module.scss';
 import { useAccountStateManager } from '../../alt-model/top_level_context/index.js';
