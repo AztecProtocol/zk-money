@@ -1,5 +1,5 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { Button } from '../../index.js';
+import { Button } from '@aztec/aztec-ui';
 import style from './signing_request.module.scss';
 
 function insertBreaks(text: string) {

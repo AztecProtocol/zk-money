@@ -1,6 +1,6 @@
+import { Button } from '@aztec/aztec-ui';
 import type { Signer } from '@ethersproject/abstract-signer';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { Button } from '../../ui-components/index.js';
 import { useAccount, useSigner } from 'wagmi';
 import style from './signer_submit.module.css';
 

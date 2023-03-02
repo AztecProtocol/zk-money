@@ -1,7 +1,8 @@
+import { Button } from '@aztec/aztec-ui';
 import { useAccountStateManager } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { useWalletInteractionIsOngoing } from '../../alt-model/wallet_interaction_hooks.js';
 import { useObs } from '../../app/util/index.js';
-import { Button, CardWrapper } from '../../ui-components/index.js';
+import { CardWrapper } from '../../ui-components/index.js';
 import style from './shield_more.module.scss';
 
 interface ShieldMoreProps {

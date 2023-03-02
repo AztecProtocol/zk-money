@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button, ButtonTheme } from '@aztec/aztec-ui';
 import { GrumpkinAddress } from '@aztec/sdk';
 import { useCachedAlias } from '../../alt-model/alias_hooks.js';
 import { TopLevelContext } from '../../alt-model/top_level_context/top_level_context.js';
@@ -10,7 +11,7 @@ import {
   useAccountStateManager,
 } from '../../alt-model/top_level_context/top_level_context_hooks.js';
 import { useObs } from '../../app/util/index.js';
-import { Loader, Card, CardHeaderSize, Field, FieldStatus, Button, ButtonTheme } from '../../ui-components/index.js';
+import { Loader, Card, CardHeaderSize, Field, FieldStatus } from '../../ui-components/index.js';
 import { Dot } from '../dot.js';
 import { CloseButtonWhite } from '../index.js';
 import { Modal } from '../modal.js';

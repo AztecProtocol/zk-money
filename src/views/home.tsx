@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Button, Loader } from '../ui-components/index.js';
+import { Loader } from '../ui-components/index.js';
 import { useNavigate } from 'react-router-dom';
 import stakingLogo from '../images/staking_logo.svg';
 import yieldLogo from '../images/yield_logo.svg';
@@ -33,6 +33,7 @@ import { DefiCard } from '../components/index.js';
 import { DefiRecipe } from '../alt-model/defi/types.js';
 import { recipeFiltersToSearchStr } from '../alt-model/defi/recipe_filters.js';
 import style from './home.module.scss';
+import { Button } from '@aztec/aztec-ui';
 
 const cx = bindStyle(style);
 

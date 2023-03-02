@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Button, ButtonTheme } from '@aztec/aztec-ui';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { Button, ButtonTheme } from '../../ui-components/index.js';
 import { bindStyle } from '../../ui-components/util/classnames.js';
 import { EnforcedRetryableSignInteractions } from '../../views/flow_interactions/enforced_retryable_sign_interactions.js';
 import { L1DepositAndSignFlowState } from '../../alt-model/forms/l1_deposit/l1_deposit_and_sign_flow.js';

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, ButtonSize, ButtonTheme } from '../../index.js';
+import { Button, ButtonSize, ButtonTheme } from '@aztec/aztec-ui';
 import { CloseMiniIcon } from '../icons/index.js';
 import { bindStyle } from '../../util/classnames.js';
 import { ToastProps, ToastType } from './toast.types.js';

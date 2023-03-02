@@ -1,4 +1,4 @@
-import { Button } from '../../../ui-components/index.js';
+import { Button } from '@aztec/aztec-ui';
 import style from './trade.module.scss';
 
 const underContruction = (
