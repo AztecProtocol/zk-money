@@ -11,7 +11,6 @@ export * from './tooltip/index.js';
 export * from './info_tooltip/index.js';
 export * from './signing_request/index.js';
 export * from './toggle/index.js';
-export * from './card/index.js';
 export * from './form_warning/index.js';
 export * from './interactive_tooltip/index.js';
 export * from './skeleton_rect/index.js';

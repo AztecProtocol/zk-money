@@ -1,4 +1,4 @@
-import { Card, CardHeaderSize } from '../../ui-components/index.js';
+import { Card, CardHeaderSize } from '@aztec/aztec-ui';
 import { DefiCardHeader } from './defi_card_header/index.js';
 import { DefiCardContent } from './defi_card_content/index.js';
 import { DefiRecipe } from '../../alt-model/defi/types.js';

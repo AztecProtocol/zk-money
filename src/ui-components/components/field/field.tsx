@@ -184,7 +184,7 @@ export function Field(props: FieldProps) {
                 />
                 {props.balance !== undefined && props.onClickBalanceIndicator && (
                   <BalanceIndicator
-                    onClick={props.onClickBalanceIndicator}
+                    onClickMax={props.onClickBalanceIndicator}
                     disabled={!!props.disabled}
                     balance={props.balance}
                     onChangeWalletRequest={props.onChangeWalletRequest}
