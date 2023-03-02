@@ -1,6 +1,5 @@
 export * from './step_status_indicator/index.js';
 export * from './progress_bar/index.js';
-export * from './dropdown/index.js';
 export * from './section_title/index.js';
 export * from './toast/index.js';
 export * from './toast_group/index.js';
@@ -21,7 +20,6 @@ export * from './search_input/index.js';
 export * from './navbar/index.js';
 export * from './faq_hint/index.js';
 export * from './hyperlink/index.js';
-export * from './select/index.js';
 export * from './icons/index.js';
 export * from './icon_buttons/index.js';
 export * from './text/index.js';

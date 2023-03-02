@@ -7,7 +7,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@aztec/aztec-ui": "^0.1.13",
+    "@aztec/aztec-ui": "^0.1.14",
     "@aztec/sdk": "2.1.0-testnet.119",
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@types/jsan": "^3.1.2",

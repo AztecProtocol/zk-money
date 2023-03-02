@@ -1,6 +1,5 @@
 import React, { createRef, useState } from 'react';
-import { BalanceIndicator } from '@aztec/aztec-ui';
-import { DropdownOption, Select } from '../../index.js';
+import { BalanceIndicator, DropdownOption, Select } from '@aztec/aztec-ui';
 import { bindStyle } from '../../util/classnames.js';
 import successIcon from '../../images/success.svg';
 import errorIcon from '../../images/error.svg';

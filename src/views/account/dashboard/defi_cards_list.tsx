@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Section, SectionTitle, SearchInput, Select } from '../../../ui-components/index.js';
+import { Section, SectionTitle, SearchInput, Select } from '@aztec/aztec-ui';
 import { Obs, useMaybeObs } from '../../../app/util/index.js';
 import { DefiCard } from '../../../components/index.js';
 import { DefiRecipe } from '../../../alt-model/defi/types.js';

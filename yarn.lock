@@ -29,9 +29,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aztec/aztec-ui@npm:^0.1.13":
-  version: 0.1.13
-  resolution: "@aztec/aztec-ui@npm:0.1.13"
+"@aztec/aztec-ui@npm:^0.1.14":
+  version: 0.1.14
+  resolution: "@aztec/aztec-ui@npm:0.1.14"
   dependencies:
     "@rainbow-me/rainbowkit": ^0.8.1
     classnames: ^2.3.2
@@ -44,7 +44,7 @@ __metadata:
     sass: ^1.58.0
     style-loader: ^3.3.1
     wagmi: ^0.11.2
-  checksum: 2c2c986bc09865e23b91814073d9a7f5fe8972d054ebc82766f344f029a1b83ffb21549a6d92b1d275b08bf763ea2b0184ce07ec6556d163c410606e9fd3678d
+  checksum: c5d2c81cc12b042d33baf94c0eb3d0d3e41f671fadca4183a0b569e958bf19d2b2c2ab27c3d7c3eb2a368094bde064afe42b49fd2be9991f2d6a2ec2da4b6378
   languageName: node
   linkType: hard
 
@@ -22275,7 +22275,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zk.money@workspace:."
   dependencies:
-    "@aztec/aztec-ui": ^0.1.13
+    "@aztec/aztec-ui": ^0.1.14
     "@aztec/sdk": 2.1.0-testnet.119
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/abstract-signer": ^5.7.0

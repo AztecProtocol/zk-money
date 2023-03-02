@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { useOutsideAlerter } from '../../../../../../ui-components/components/dropdown/helpers.js';
 import { bindStyle, CogIcon } from '../../../../../../ui-components/index.js';
 import style from './customisation_popup.module.scss';
 
