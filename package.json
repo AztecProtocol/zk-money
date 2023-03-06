@@ -7,7 +7,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@aztec/sdk": "2.1.0-testnet.119",
+    "@aztec/sdk": "2.1.91",
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@types/jsan": "^3.1.2",
     "broadcast-channel": "^4.2.0",
