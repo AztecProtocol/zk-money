@@ -3,4 +3,29 @@ dest
 node_modules
 .terraform
 .cache
-.clangd
+
+terraform/twitter_lambda.zip
+
+.cache
+.parcel-cache*
+dest
+dist
+node_modules
+.terraform
+.env
+*.log
+*.swp
+.next
+.tsbuildinfo
+
+# Zero install: https://yarnpkg.com/features/zero-installs
+.yarn/*
+# Exclude cache until we're really sure we're ready.
+# !.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+twitter_lambda.zip
