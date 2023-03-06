@@ -6,13 +6,15 @@ if [ ! -f ~/.nvm/nvm.sh ]; then
   exit 1
 fi
 
+git submodule update --init --recursive
+
 \. ~/.nvm/nvm.sh
 nvm install
 
 # Until we push .yarn/cache, we still need to install.
-cd zk-money
 yarn install --immutable
-cd ..
+
+yarn build
 
 echo
-echo "Success! You may now run `cd zk-money && yarn start:dev` to start the app."
+echo "Success! You may now run `yarn start:dev` to start the app."
