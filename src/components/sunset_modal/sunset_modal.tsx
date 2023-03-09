@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Button, CloseMiniIcon } from '../../ui-components/index.js';
+import { useNavigate } from 'react-router';
+import { Button, CloseMiniIcon, Hyperlink } from '../../ui-components/index.js';
+import { Pages } from '../../views/views.js';
 import { ReactComponent as Background } from './background.svg';
 import { ReactComponent as Graphic } from './graphic.svg';
 import style from './sunset_modal.module.scss';
@@ -7,6 +9,7 @@ import style from './sunset_modal.module.scss';
 const SUNSET_MESSAGE_DISMISSED = 'sunset_message_dismissed';
 
 export function SunsetModal() {
+  const navigate = useNavigate();
   const [isSunsetMessageDismissed, setIsSunsetMessageDismissed] = useState(true);
 
   useEffect(() => {
@@ -18,6 +21,11 @@ export function SunsetModal() {
     e.preventDefault();
     setIsSunsetMessageDismissed(true);
     localStorage.setItem(SUNSET_MESSAGE_DISMISSED, 'true');
+  }
+
+  function handleWithdraw(e) {
+    handleClose(e);
+    navigate(Pages.BALANCE);
   }
 
   if (isSunsetMessageDismissed) return null;
@@ -48,9 +56,11 @@ export function SunsetModal() {
               <br />
               <br />
               Users should begin withdrawing funds immediately, though withdrawals can be made normally until 21st March
-              2024. <b>All user deposits will remain safe.</b> Read our full announcement here.
+              2024. <b>All user deposits will remain safe.</b> <br />
+              <br />
+              <Hyperlink className={style.link} href="http://google.com" label={'Read our full announcement here.'} />
             </div>
-            <Button className={style.learnMoreButton} text="Withdraw Funds" />
+            <Button className={style.learnMoreButton} onClick={handleWithdraw} text="Withdraw Funds" />
           </div>
           <Graphic className={style.graphic} />
         </div>
