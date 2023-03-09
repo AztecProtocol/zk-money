@@ -29,25 +29,28 @@ export function SunsetModal() {
         <div className={style.closeButton} onClick={handleClose}>
           <CloseMiniIcon />
         </div>
-        <div className={style.title}>zk.money is shutting down</div>
+        <div className={style.title}>Aztec is sunsetting zk.money</div>
         <div className={style.columns}>
           <div className={style.content}>
-            <div className={style.subtitle}>What does this mean?</div>
-            <div className={style.body}>
-              Aztec Connect is the power behind zk.money’s private DeFi. As Aztec refocus their efforts to build the
-              world’s first fully private decentralised network, Aztec Connect is to be discontinued.
-              <br />
-              <br />
-              New Account Creation, new DeFi deposits & new ETH deposits on zk.money are to be frozen on the{' '}
-              <b>20th March 2023.</b>
-              <br />
-              <br />
-              <b>
-                Current Funds in the system are safe, and withdrawals can be made as normal until 20th March 2024.
-              </b>{' '}
-              All existing DeFi positions will continue to run as normal.
+            <div className={style.subtitle}>
+              <b>What does this mean?</b>
             </div>
-            <Button className={style.learnMoreButton} text="Learn More" />
+            <div className={style.body}>
+              As of March 13th, 2023, we are sunsetting zk.money and Aztec Connect, the infrastructure that powers it.
+              <br />
+              <br />
+              Deposits will remain open until <b>23:59 UTC on March 21st, 2023</b>, after which zk.money will enter
+              withdrawal-only mode.
+              <br />
+              <br />
+              New account creation, new ETH and DAI deposits, and new DeFi interactions on zk.money will be disabled on
+              that date.
+              <br />
+              <br />
+              Users should begin withdrawing funds immediately, though withdrawals can be made normally until 21st March
+              2024. <b>All user deposits will remain safe.</b> Read our full announcement here.
+            </div>
+            <Button className={style.learnMoreButton} text="Withdraw Funds" />
           </div>
           <Graphic className={style.graphic} />
         </div>
