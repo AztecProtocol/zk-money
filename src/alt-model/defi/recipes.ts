@@ -10,6 +10,7 @@ import { RemoteAsset } from '../types.js';
 import { LIDO_CARD } from './card_configs/lido.js';
 import { YEARN_DAI_CARD, YEARN_ETH_CARD, YEARN_LUSD_CARD } from './card_configs/yearn.js';
 import { SEVEN_DAY_DCA_CARD_DAI_TO_ETH, SEVEN_DAY_DCA_CARD_ETH_TO_DAI } from './card_configs/seven_day_dca.js';
+import { EULER_DAI_CARD, EULER_ETH_CARD, EULER_WSTETH_CARD } from './card_configs/euler.js';
 import { AAVE_ETH_CARD, AAVE_DAI_CARD } from './card_configs/aave.js';
 import { LIQUITY_TROVE_275 } from './card_configs/liquity_trove.js';
 import { RegistrationsRepo } from '../registrations_data/index.js';
@@ -127,6 +128,9 @@ const CREATE_RECIPES_ARGS: CreateRecipeArgs[] = [
   COMPOUND_DAI_CARD,
   AAVE_ETH_CARD,
   AAVE_DAI_CARD,
+  EULER_ETH_CARD,
+  EULER_WSTETH_CARD,
+  EULER_DAI_CARD,
   SEVEN_DAY_DCA_CARD_DAI_TO_ETH,
   SEVEN_DAY_DCA_CARD_ETH_TO_DAI,
   YEARN_ETH_CARD,

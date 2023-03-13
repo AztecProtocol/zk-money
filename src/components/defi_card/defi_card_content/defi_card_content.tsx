@@ -50,7 +50,7 @@ export const DefiCardContent = (props: DefiCardContentProps) => {
           className={style.defiCardButton}
           gradient={props.recipe.gradient && { from: props.recipe.gradient[0], to: props.recipe.gradient[1] }}
           text={props.recipe.cardButtonLabel}
-          disabled={!props.isLoggedIn || walletInteractionIsOngoing || !isSynced}
+          disabled={!props.isLoggedIn || walletInteractionIsOngoing || !isSynced || props.recipe.earnDisabled}
           onClick={handleClickDeposit}
         />
       </div>
