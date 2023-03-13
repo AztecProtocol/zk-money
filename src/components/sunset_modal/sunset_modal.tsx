@@ -58,7 +58,11 @@ export function SunsetModal() {
               Users should begin withdrawing funds immediately, though withdrawals can be made normally until 21st March
               2024. <b>All user deposits will remain safe.</b> <br />
               <br />
-              <Hyperlink className={style.link} href="http://google.com" label={'Read our full announcement here.'} />
+              <Hyperlink
+                className={style.link}
+                href="https://medium.com/aztec-protocol/sunsetting-aztec-connect-a786edce5cae"
+                label={'Read our full announcement here.'}
+              />
             </div>
             <Button className={style.learnMoreButton} onClick={handleWithdraw} text="Withdraw Funds" />
           </div>
