@@ -15,6 +15,7 @@ import { Pages } from './views.js';
 import { getCookiesToast } from './toasts/toast_configurations.js';
 import { Navbar, Theme } from '../ui-components/index.js';
 import { UserAccountMenu } from '../components/template/user_account_menu.js';
+import { SunsetModal } from '../components/sunset_modal/sunset_modal.js';
 import { Earn } from './account/dashboard/earn.js';
 import { Trade } from './account/dashboard/trade.js';
 import { Balance } from './account/dashboard/balance.js';
@@ -126,6 +127,7 @@ export function Views({ config }: ViewsProps) {
           </CSSTransition>
         </TransitionGroup>
         <Toasts />
+        <SunsetModal />
         {defiModalProps && <DefiModal {...defiModalProps} />}
       </Template>
       <PageTransitionHandler />
