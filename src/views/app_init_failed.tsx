@@ -7,6 +7,7 @@ import { Theme } from '../ui-components/index.js';
 import { Home } from './home.js';
 import { SupportStatus } from '../device_support.js';
 import { UnsupportedPopup } from './unsupported_popup/index.js';
+import { SunsetModal } from '../components/sunset_modal/index.js';
 
 const FALAFEL_UNREACHABLE_MSG = {
   type: MessageType.ERROR,
@@ -74,6 +75,7 @@ export function AppInitFailed({ reason, explorerUrl }: AppInitFailedProps) {
             : []
         }
       />
+      <SunsetModal />
     </Template>
   );
 }
