@@ -47,7 +47,7 @@ export function SunsetModal() {
               As of March 13th, 2023, we are sunsetting zk.money and Aztec Connect, the infrastructure that powers it.
               <br />
               <br />
-              Deposits will remain open until <b>23:59 UTC on March 21st, 2023</b>, after which zk.money will enter
+              Deposits will remain open until <b>14:00 UTC on March 21st, 2023</b>, after which zk.money will enter
               withdrawal-only mode.
               <br />
               <br />
