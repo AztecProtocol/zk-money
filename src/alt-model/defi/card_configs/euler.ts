@@ -34,6 +34,7 @@ export const EULER_ETH_CARD: CreateRecipeArgs = {
   longDescription: 'Lend ETH on Euler and earn yield by holding weWETH in exchange.',
   logo: eulerLogo,
   miniLogo: eulerMiniLogo,
+  earnDisabled: true,
   cardTag: 'Lending',
   cardButtonLabel: 'Earn',
   exitButtonLabel: 'Claim & Exit',
