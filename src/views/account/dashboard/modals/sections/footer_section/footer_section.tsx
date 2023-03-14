@@ -5,6 +5,7 @@ import style from './footer_section.module.scss';
 interface FooterSectionProps {
   onNext: () => void;
   nextDisabled: boolean;
+  nextButtonMessage?: string;
   feedback?: React.ReactNode;
 }
 
@@ -18,12 +19,16 @@ export function FooterSection(props: FooterSectionProps) {
         <FaqHint className={style.faqHint} />
         {props.feedback && <div className={style.feedback}>{props.feedback}</div>}
         <div className={style.nextWrapper}>
-          <Button
-            className={style.nextButton}
-            text="Next"
-            onClick={props.onNext}
-            disabled={props.nextDisabled || walletInteractionIsOngoing}
-          />
+          {props.nextButtonMessage ? (
+            <div className={style.nextButtonMessage}>{props.nextButtonMessage}</div>
+          ) : (
+            <Button
+              className={style.nextButton}
+              text="Next"
+              onClick={props.onNext}
+              disabled={props.nextDisabled || walletInteractionIsOngoing}
+            />
+          )}
         </div>
       </div>
     </>

@@ -84,7 +84,12 @@ export function DefiEnterPage1({
           />
         }
       />
-      <FooterSection onNext={onNext} nextDisabled={!validationResult.isValid} feedback={feedback.footer} />
+      <FooterSection
+        onNext={onNext}
+        nextDisabled={!validationResult.isValid}
+        nextButtonMessage={recipe.nextButtonMessage}
+        feedback={feedback.footer}
+      />
     </div>
   );
 }
