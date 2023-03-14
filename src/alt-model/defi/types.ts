@@ -117,6 +117,7 @@ export interface DefiRecipe {
   openHandleAsset?: RemoteAsset;
   valueEstimationInteractionAssets: BridgeInteractionAssets;
   createAdaptor: BridgeDataAdaptorCreator;
+  nextButtonMessage?: string;
   enterAuxDataResolver: AuxDataResolver;
   exitAuxDataResolver?: AuxDataResolver;
   projectName: string;
@@ -129,7 +130,6 @@ export interface DefiRecipe {
   cardButtonLabel: string;
   exitButtonLabel?: string;
   shortDesc: string;
-  earnDisabled?: boolean;
   exitDesc?: string;
   showExchangeRate?: boolean;
   longDescription: string;
@@ -180,7 +180,6 @@ export interface CreateRecipeArgs
   extends Omit<DefiRecipe, 'bridgeAddressId' | 'address' | 'flow' | 'valueEstimationInteractionAssets'> {
   bridgeBinding: RegisteredBridgeLabel;
   exitBridgeBinding?: RegisteredBridgeLabel;
-  earnDisabled?: boolean;
   isAsync?: boolean;
   flowBindings: BridgeFlowAssetBindings;
   openHandleAssetBinding?: RegisteredAssetLabel;
