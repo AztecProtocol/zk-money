@@ -49,10 +49,16 @@
 .nextWrapper {
   grid-area: button;
   display: flex;
+  gap: 5px;
   flex-direction: column;
 }
 
 .nextButton {
   justify-self: end;
   align-self: end;
+}
+
+.nextButtonMessage {
+  font-size: 14px;
+  margin-top: 10px;
 }
