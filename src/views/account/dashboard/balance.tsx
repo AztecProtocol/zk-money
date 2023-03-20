@@ -4,7 +4,6 @@ import type { DefiRecipe } from '../../../alt-model/defi/types.js';
 import { useSdk } from '../../../alt-model/top_level_context/index.js';
 import { HoldingsList } from '../../../components/holdings_list/holdings_list.js';
 import { MyBalance } from '../../../components/my_balance/index.js';
-import { ShieldMore } from '../../../components/shield_more/index.js';
 import { TransactionHistorySection } from '../../../components/transaction_history/index.js';
 import { SendModal } from './modals/send_modal/index.js';
 import { ShieldModal } from './modals/shield_modal/index.js';
@@ -109,7 +108,6 @@ export function Balance(props: BalanceProps) {
     <div className={style.balanceWrapper}>
       <div className={style.balances}>
         <MyBalance />
-        <ShieldMore onOpenShieldModal={handleOpenShieldModal} />
       </div>
       <HoldingsList
         onOpenDefiExitModal={props.onOpenDefiExitModal}
