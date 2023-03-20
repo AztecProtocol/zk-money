@@ -12,30 +12,35 @@ $card_scale: 0.85;
     left: -5px;
     top: -5px;
   }
+
   10% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 0;
     left: -10px;
     top: -10px;
   }
+
   40% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 0;
     left: -10px;
     top: -10px;
   }
+
   50% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 1;
     left: -5px;
     top: -5px;
   }
+
   70% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 1;
     left: -5px;
     top: -5px;
   }
+
   80% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 2;
@@ -51,30 +56,35 @@ $card_scale: 0.85;
     left: 0;
     top: 0;
   }
+
   40% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 2;
     left: 0;
     top: 0;
   }
+
   45% {
     transform: translateX(-$animation_width) translateY(-40px) rotate(-5deg) scale($card_scale);
     z-index: 1;
     left: -5px;
     top: -5px;
   }
+
   50% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 0;
     left: -10px;
     top: -10px;
   }
+
   70% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 0;
     left: -10px;
     top: -10px;
   }
+
   80% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 1;
@@ -90,30 +100,35 @@ $card_scale: 0.85;
     left: -5px;
     top: -5px;
   }
+
   40% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 1;
     left: -5px;
     top: -5px;
   }
+
   50% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 2;
     left: 0;
     top: 0;
   }
+
   70% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 2;
     left: 0;
     top: 0;
   }
+
   75% {
     transform: translateX(-$animation_width) translateY(-40px) rotate(-5deg) scale($card_scale);
     z-index: 1;
     left: -5px;
     top: -5px;
   }
+
   80% {
     transform: translateX(0) translateY(0) rotate(0) scale($card_scale);
     z-index: 0;
@@ -182,6 +197,12 @@ $card_scale: 0.85;
 .homeWrapper {
   display: flex;
   flex-direction: column;
+}
+
+.sunsetWarningWrapper {
+  max-width: calc(1350px + 20%);
+  padding: 0% 10%;
+  z-index: 1;
 }
 
 .title {
@@ -531,18 +552,23 @@ $card_scale: 0.85;
     .whyImage1 {
       grid-area: whyImage1;
     }
+
     .whyImage2 {
       grid-area: whyImage2;
     }
+
     .whyImage3 {
       grid-area: whyImage3;
     }
+
     .whyContent1 {
       grid-area: whyContent1;
     }
+
     .whyContent2 {
       grid-area: whyContent2;
     }
+
     .whyContent3 {
       grid-area: whyContent3;
     }
