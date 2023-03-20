@@ -5,7 +5,7 @@ import { formatBulkPrice } from '../../app/index.js';
 import { useAmountBulkPrice, useSpendableBalance } from '../../alt-model/index.js';
 import { RemoteAsset } from '../../alt-model/types.js';
 import { ShieldedAssetIcon } from '../index.js';
-import { SHIELDABLE_ASSET_ADDRESSES } from '../../alt-model/known_assets/known_asset_addresses.js';
+import { EXIT_ASSET_ADDRESSES } from '../../alt-model/known_assets/known_asset_addresses.js';
 import { useAmount, useAsset } from '../../alt-model/asset_hooks.js';
 import { Amount } from '../../alt-model/assets/index.js';
 import { getIsDust } from '../../alt-model/assets/asset_helpers.js';
@@ -76,7 +76,7 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
   const spendableBalanceIsDust =
     !spendableAmount || (asset ? getIsDust(spendableAmount.toAssetValue(), asset) : undefined);
   const bulkPrice = useAmountBulkPrice(amount);
-  const shieldSupported = SHIELDABLE_ASSET_ADDRESSES.some(x => asset?.address.equals(x));
+  const exitSupported = EXIT_ASSET_ADDRESSES.some(x => asset?.address.equals(x));
   const spendableFormatted =
     (spendableAmount?.toFloat() ?? 0) > 0 ? spendableAmount?.format({ hideSymbol: true, uniform: true }) : '0';
 
@@ -104,34 +104,28 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
         </div>
       </div>
       <div className={style.buttonsWrapper}>
-        {shieldSupported && (
-          <Button
-            className={style.button}
-            theme={ButtonTheme.Secondary}
-            size={ButtonSize.Medium}
-            onClick={() => onShield?.(asset)}
-            text={'Shield'}
-            disabled={walletInteractionIsOngoing || !isSynced}
-          />
-        )}
         {!spendableBalanceIsDust && (
           <>
-            <Button
-              className={style.button}
-              onClick={() => onSend?.(asset)}
-              size={ButtonSize.Medium}
-              theme={ButtonTheme.Secondary}
-              text={'Send'}
-              disabled={walletInteractionIsOngoing || !isSynced}
-            />
-            <Button
-              className={style.button}
-              onClick={() => onGoToEarn?.(asset)}
-              theme={ButtonTheme.Secondary}
-              size={ButtonSize.Medium}
-              text={'Earn'}
-              disabled={walletInteractionIsOngoing || !isSynced}
-            />
+            {exitSupported && (
+              <Button
+                className={style.button}
+                onClick={() => onSend?.(asset)}
+                size={ButtonSize.Medium}
+                theme={ButtonTheme.Secondary}
+                text={'Exit'}
+                disabled={walletInteractionIsOngoing || !isSynced}
+              />
+            )}
+            {!exitSupported && (
+              <Button
+                className={style.button}
+                onClick={() => onGoToEarn?.(asset)}
+                theme={ButtonTheme.Secondary}
+                size={ButtonSize.Medium}
+                text={'Exit'}
+                disabled={walletInteractionIsOngoing || !isSynced}
+              />
+            )}
           </>
         )}
       </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import { TxSettlementTime } from '@aztec/sdk';
 import { SplitSection } from '../sections/split_section/index.js';
 import { TxGasSection } from '../sections/gas_section/index.js';
-import { Toggle } from '../../../../../ui-components/index.js';
 import { DescriptionSection, RecipientSection } from '../sections/index.js';
 import { PrivacyInformationSection } from '../sections/privacy_information_section/index.js';
 import { TransactionSettlementTimeInformationSection } from '../sections/settlement_time_information_section/index.js';
@@ -11,7 +10,6 @@ import { SendFormDerivedData, SendMode, SendFormFeedback } from '../../../../../
 import { FooterSection } from '../sections/footer_section/index.js';
 import { AmountSelection } from '../../../../../components/index.js';
 import style from './send_form_fields_page.module.scss';
-import { getAssetWithdrawShown } from '../../../../../alt-model/known_assets/known_asset_display_data.js';
 
 interface SendProps {
   state: SendFormDerivedData;
@@ -23,11 +21,6 @@ interface SendProps {
   onChangeSpeed(speed: TxSettlementTime): void;
   onNext(): void;
 }
-
-const MODES = [
-  { label: 'Withdraw to L1', value: SendMode.WIDTHDRAW },
-  { label: 'Send to L2', value: SendMode.SEND },
-];
 
 function getDescription(sendMode: SendMode) {
   switch (sendMode) {
@@ -44,7 +37,6 @@ export const SendFormFieldsPage: React.FunctionComponent<SendProps> = ({
   state,
   feedback,
   isValid,
-  onChangeSendMode,
   onChangeAmount,
   onChangeRecipient,
   onChangeSpeed,
@@ -52,14 +44,10 @@ export const SendFormFieldsPage: React.FunctionComponent<SendProps> = ({
 }) => {
   const { sendMode } = state.fields;
   const { asset } = state;
-  const canWithdraw = getAssetWithdrawShown(asset.label);
 
   return (
     <div className={style.root}>
       <div className={style.header}>
-        {canWithdraw && (
-          <Toggle className={style.toggle} value={sendMode} options={MODES} onChangeValue={onChangeSendMode} />
-        )}
         <DescriptionSection className={style.description} text={getDescription(sendMode)} />
       </div>
       <SplitSection
