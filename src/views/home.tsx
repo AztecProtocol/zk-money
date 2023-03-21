@@ -202,7 +202,7 @@ function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: De
           zk.money is your portal to using Ethereum DeFi services with full privacy and up to 100x cost savings. Shield
           funds to start accessing!
         </div>
-        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} />
+        <Button disabled={true} text="Shield Now" onClick={onShieldNow} className={style.shieldButton} />
         <div className={style.links}>
           <Hyperlink
             theme="gradient"
