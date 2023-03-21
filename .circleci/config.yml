@@ -1,8 +1,4 @@
 version: 2.1
-parameters:
-  workflow:
-    type: string
-    default: 'system'
 
 # This build step checks out the code from the repository. It has a hardcoded readonly key to allow the checkout.
 # Initially it just fetches the repo metadata for the current commit hash to a depth of 50 commits.
@@ -16,11 +12,6 @@ checkout: &checkout
       mkdir -p .ssh
       chmod 0700 .ssh
       ssh-keyscan -t rsa github.com >> .ssh/known_hosts
-
-      # A read only key for cloning the repository.
-      echo $GIT_CHECKOUT_KEY | base64 -d > .ssh/id_rsa
-
-      chmod 0600 .ssh/id_rsa
 
       # IF YOU'RE CHANGING THIS, YOU ALSO WANT TO CHANGE: .circleci/remote_build/remote_build
       # Shallow checkout this commit.
@@ -69,27 +60,28 @@ jobs:
 
 # Repeatable config for defining the workflow below.
 tag_regex: &tag_regex /v[0-9]+(\.[0-9]+)*(-[a-zA-Z-]+\.[0-9]+)?/
-tag_filter: &tag_filter
-  tags:
-    only: *tag_regex
-deploy_filters: &deploy_filters
-  branches:
-    only:
-      - defi-bridge-project
-      - stage
-  tags:
-    only: *tag_regex
+defaults: &defaults
+  filters:
+    tags:
+      only: *tag_regex
+  context:
+    - build
+deploy_defaults: &deploy_defaults
+  filters:
+    branches:
+      only:
+        - master
+    tags:
+      only: *tag_regex
+  context:
+    - build
 
 workflows:
-  system:
-    when:
-      equal: [system, << pipeline.parameters.workflow >>]
+  build:
     jobs:
       - zk-money:
-          filters: *tag_filter
-      # Not currently a yarn project due to using next.js, but should be.
+          <<: *defaults
       - deploy:
           requires:
-            # Must list all projects at the end of a dependency chain.
             - zk-money
-          filters: *deploy_filters
+          <<: *deploy_defaults

@@ -47,7 +47,7 @@ export function useSendForm(preselectedAssetId?: number) {
     speed: TxSettlementTime.NEXT_ROLLUP,
     recipientStr: '',
     assetId: preselectedAssetId ?? 0,
-    sendMode: SendMode.SEND,
+    sendMode: SendMode.WIDTHDRAW,
   });
   const [touchedFields, setters] = useTrackedFieldChangeHandlers(fields, setFields);
   const [attemptedLock, setAttemptedLock] = useState(false);
