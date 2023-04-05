@@ -11,11 +11,6 @@ interface BalanceIndicatorProps {
 }
 
 export function BalanceIndicator(props: BalanceIndicatorProps) {
-  const handleClick = () => {
-    if (props.disabled) return;
-    props.onClick();
-  };
-
   return (
     <>
       <div className={style.balanceIndicatorWrapper}>
@@ -28,11 +23,6 @@ export function BalanceIndicator(props: BalanceIndicatorProps) {
           />
         )}
         <div className={cx(style.text, props.disabled && style.disabled)}>Balance: {props.balance}</div>
-        {!props.disabled && (
-          <div onClick={handleClick} className={cx(style.text, style.maxButton, props.disabled && style.disabled)}>
-            Max
-          </div>
-        )}
       </div>
     </>
   );
