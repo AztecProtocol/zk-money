@@ -32,6 +32,7 @@ import { bindStyle } from '../ui-components/util/classnames.js';
 import { DefiCard } from '../components/index.js';
 import { DefiRecipe } from '../alt-model/defi/types.js';
 import { recipeFiltersToSearchStr } from '../alt-model/defi/recipe_filters.js';
+import { SunsetWarning } from '../components/sunset_warning/sunset_warning.js';
 import style from './home.module.scss';
 
 const cx = bindStyle(style);
@@ -44,6 +45,9 @@ interface HomeProps {
 export function Home({ onSignup, recipes }: HomeProps) {
   return (
     <div className={style.homeWrapper}>
+      <div className={style.sunsetWarningWrapper}>
+        <SunsetWarning />
+      </div>
       <Banner onShieldNow={onSignup} recipes={recipes} />
       <FavoriteApps />
       <div className={style.section}>
@@ -198,7 +202,7 @@ function Banner({ onShieldNow, recipes }: { onShieldNow: () => void; recipes: De
           zk.money is your portal to using Ethereum DeFi services with full privacy and up to 100x cost savings. Shield
           funds to start accessing!
         </div>
-        <Button text="Shield Now" onClick={onShieldNow} className={style.shieldButton} />
+        <Button disabled={true} text="Shield Now" onClick={onShieldNow} className={style.shieldButton} />
         <div className={style.links}>
           <Hyperlink
             theme="gradient"
