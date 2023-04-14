@@ -39,7 +39,7 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     auxData: bigint,
     inputValue: bigint,
   ): Promise<bigint[]> {
-    return [ inputValue * 95n / 100n ];
+    return [(inputValue * 95n) / 100n];
   }
 
   getExpiration?(interactionNonce: number): Promise<bigint> {
@@ -61,7 +61,7 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     outputAssetB: AztecAsset,
     auxData: bigint,
   ): Promise<AssetValue[]> {
-    return [ { asset: inputAssetA, value: 0n } ];
+    return [{ asset: inputAssetA, value: 0n }];
   }
 
   getInteractionAPR?(interactionNonce: number): Promise<number[]> {
