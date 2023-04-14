@@ -52,6 +52,7 @@ export const registrationsDataRaw = {
       Liquity400_700K: 11,
       Uniswap_500K: 12,
       Uniswap_800K: 13,
+      Euler_Redeem_2M: 14,
     },
   },
   'aztec-connect-testnet': {
@@ -105,6 +106,7 @@ export const registrationsDataRaw = {
       Liquity400_700K: 11,
       Uniswap_500K: 12,
       Uniswap_800K: 13,
+      Euler_Redeem_2M: 14,
     },
   },
   'aztec-connect-stage': {
@@ -158,6 +160,7 @@ export const registrationsDataRaw = {
       Liquity400_700K: 11,
       Uniswap_500K: 12,
       Uniswap_800K: 13,
+      Euler_Redeem_2M: 14,
     },
   },
   'aztec-connect-prod': {
@@ -211,6 +214,7 @@ export const registrationsDataRaw = {
       Liquity400_700K: 15,
       Uniswap_500K: 16,
       Uniswap_800K: 17,
+      Euler_Redeem_2M: 18,
     },
   },
 };

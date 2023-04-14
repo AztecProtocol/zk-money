@@ -70,7 +70,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aztec/sdk@npm:^2.1.93":
+"@aztec/sdk@npm:2.1.93":
   version: 2.1.93
   resolution: "@aztec/sdk@npm:2.1.93"
   dependencies:
@@ -22025,7 +22025,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "zk.money@workspace:."
   dependencies:
-    "@aztec/sdk": ^2.1.93
+    "@aztec/sdk": 2.1.93
     "@ethersproject/abi": ^5.7.0
     "@ethersproject/abstract-signer": ^5.7.0
     "@ethersproject/contracts": ^5.7.0

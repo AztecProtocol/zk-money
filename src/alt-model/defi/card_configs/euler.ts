@@ -1,6 +1,5 @@
 import eulerLogo from '../../../images/euler_logo.svg';
 import eulerMiniLogo from '../../../images/euler_mini_logo.png';
-import { EulerBridgeData } from '../../../bridge-clients/client/euler/euler-bridge-data.js';
 import { CreateRecipeArgs } from '../types.js';
 import { useDefaultExpectedAssetYield, useDefaultMarketSizeBulkPrice } from '../defi_info_hooks.js';
 import { formatBulkPrice_compact, formatPercentage_2dp } from '../../../app/util/formatters.js';
@@ -9,21 +8,22 @@ import { bindInteractionPredictionHook_expectedOutput } from '../interaction_pre
 import { useVariableAprText } from '../position_key_stat_configs.js';
 import { createDefiPublishStatsCacheArgsBuilder } from '../defi_publish_stats_utils.js';
 import { createSimpleSwapFlowBinding } from '../flow_configs.js';
+import { EulerRedemptionBridgeData } from '../../../bridge-clients/client/euler/euler-redemption-bridge-data.js';
 
 export const EULER_ETH_CARD: CreateRecipeArgs = {
   id: 'euler.ETH-to-weETH',
-  bridgeBinding: 'ERC4626_300K',
+  bridgeBinding: 'Euler_Redeem_2M',
   gradient: ['#414066', '#414066'],
   openHandleAssetBinding: 'weWETH',
   flowBindings: createSimpleSwapFlowBinding('Eth', 'weWETH'),
-  createAdaptor: ({ provider }) => EulerBridgeData.create(provider),
+  createAdaptor: ({ provider }) => EulerRedemptionBridgeData.create(provider),
   enterAuxDataResolver: {
-    type: 'static',
-    value: 0n, // Deposit flow
+    type: 'bridge-data-select',
+    selectOpt: opts => opts[0], // minimum output per erc4626 token
   },
   exitAuxDataResolver: {
-    type: 'static',
-    value: 1n, // Exit flow
+    type: 'bridge-data-select',
+    selectOpt: opts => opts[0], // minimum output per erc4626 token
   },
   projectName: 'Euler',
   website: 'https://www.euler.finance/',
@@ -33,7 +33,7 @@ export const EULER_ETH_CARD: CreateRecipeArgs = {
   exitDesc: 'Unwrap weWETH to recieve your underlying ETH.',
   longDescription: 'Lend ETH on Euler and earn yield by holding weWETH in exchange.',
   logo: eulerLogo,
-  nextButtonMessage: 'Euler is currently disabled. Please check back later.',
+  // nextButtonMessage: 'Euler is currently disabled. Please check back later.',
   miniLogo: eulerMiniLogo,
   cardTag: 'Lending',
   cardButtonLabel: 'Earn',
@@ -85,7 +85,7 @@ export const EULER_WSTETH_CARD: CreateRecipeArgs = {
   openHandleAssetBinding: 'wewstETH',
   flowBindings: createSimpleSwapFlowBinding('wstETH', 'wewstETH'),
   shortDesc: 'Lend wstETH on Euler and earn yield by holding wewstETH in exchange.',
-  exitDesc: 'Unwrap weestWETH to recieve your underlying wstETH.',
+  exitDesc: 'Unwrap wewstETH to recieve your underlying wstETH.',
   longDescription: 'Lend wstETH on Euler and earn yield by holding wewstETH in exchange.',
   keyStats: {
     ...EULER_ETH_CARD.keyStats,
