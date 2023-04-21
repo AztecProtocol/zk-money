@@ -18,8 +18,8 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     outputAssetA: AztecAsset,
     outputAssetB: AztecAsset,
   ): Promise<bigint[]> {
-    // Minimum of 0.95 underlying token in output per erc4626 input.
-    return [95n * 10n ** 16n];
+    // Minimum of underlying token output per erc4626 input.
+    return [99n * 10n ** 16n];
   }
 
   auxDataConfig: AuxDataConfig[] = [
@@ -27,7 +27,8 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
       start: 0,
       length: 64,
       solidityType: SolidityType.uint64,
-      description: 'The aux-data will determine the maximum slippage. The value represents the minimum acceptable amount per ERC4626 share ',
+      description:
+        'The aux-data will determine the maximum slippage. The value represents the minimum acceptable amount per ERC4626 share',
     },
   ];
 
@@ -39,7 +40,7 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     auxData: bigint,
     inputValue: bigint,
   ): Promise<bigint[]> {
-    return [(inputValue * 95n) / 100n];
+    return [(inputValue * 99n) / 100n];
   }
 
   getExpiration?(interactionNonce: number): Promise<bigint> {
