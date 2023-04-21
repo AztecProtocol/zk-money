@@ -27,7 +27,7 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
       start: 0,
       length: 64,
       solidityType: SolidityType.uint64,
-      description: 'AuxData determine the slippage',
+      description: 'The aux-data will determine the maximum slippage. The value represents the minimum acceptable amount per ERC4626 share ',
     },
   ];
 
