@@ -1,13 +1,20 @@
-import { EthAddress, AssetValue } from '@aztec/sdk';
-import 'isomorphic-fetch';
-
+import { AssetValue, EthAddress } from '@aztec/sdk';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
+import 'isomorphic-fetch';
+import { IERC4626__factory, IERC20Metadata__factory } from '../../typechain-types/index.js';
+
 import { AuxDataConfig, AztecAsset, BridgeDataFieldGetters, SolidityType, UnderlyingAsset } from '../bridge-data.js';
 
 export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
   protected constructor(protected ethersProvider: StaticJsonRpcProvider) {}
-  migrators = new Map<EthAddress, EthAddress>(); // Get contract addresses of the migrators
-
+  minTokenOut = {
+    0: 99n * 10n ** 16n, // ETH
+    1: 96n * 10n ** 16n, // DAI
+    2: 99n * 10n ** 16n, // WSTETH
+    5: 99n * 10n ** 16n, // weWETH
+    6: 99n * 10n ** 16n, // weWSTETH
+    7: 96n * 10n ** 16n, // weDAI
+  };
   getInteractionPresentValue?(interactionNonce: number, inputValue: bigint): Promise<AssetValue[]> {
     throw new Error('Method not implemented.');
   }
@@ -19,7 +26,7 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     outputAssetB: AztecAsset,
   ): Promise<bigint[]> {
     // Minimum of underlying token output per erc4626 input.
-    return [99n * 10n ** 16n];
+    return Promise.resolve([this.minTokenOut[outputAssetA.id]]);
   }
 
   auxDataConfig: AuxDataConfig[] = [
@@ -40,7 +47,7 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     auxData: bigint,
     inputValue: bigint,
   ): Promise<bigint[]> {
-    return [(inputValue * 99n) / 100n];
+    return Promise.resolve([(inputValue * auxData) / 10n ** 18n]);
   }
 
   getExpiration?(interactionNonce: number): Promise<bigint> {
@@ -51,26 +58,41 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
     throw new Error('Method not implemented.');
   }
 
-  getAPR?(yieldAsset: AztecAsset): Promise<number> {
-    return 0;
+  getAPR(yieldAsset: AztecAsset): Promise<number> {
+    return Promise.resolve(0);
   }
 
-  getMarketSize?(
+  getMarketSize(
     inputAssetA: AztecAsset,
     inputAssetB: AztecAsset,
     outputAssetA: AztecAsset,
     outputAssetB: AztecAsset,
     auxData: bigint,
   ): Promise<AssetValue[]> {
-    return [{ asset: inputAssetA, value: 0n }];
+    return Promise.resolve([{ assetId: inputAssetA.id, value: 0n }]);
   }
 
   getInteractionAPR?(interactionNonce: number): Promise<number[]> {
     throw new Error('Method not implemented.');
   }
 
-  getUnderlyingAmount?(asset: AztecAsset, amount: bigint): Promise<UnderlyingAsset> {
-    throw new Error('Method not implemented.');
+  async getUnderlyingAmount(share: AztecAsset, amount: bigint): Promise<UnderlyingAsset> {
+    const vault = IERC4626__factory.connect(share.erc20Address.toString(), this.ethersProvider);
+    const assetAddress = EthAddress.fromString(await vault.asset());
+
+    const tokenContract = IERC20Metadata__factory.connect(assetAddress.toString(), this.ethersProvider);
+    const namePromise = tokenContract.name();
+    const symbolPromise = tokenContract.symbol();
+    const decimalsPromise = tokenContract.decimals();
+    const underlyingAmount = (amount * this.minTokenOut[share.id]) / 10n ** 18n;
+
+    return {
+      address: assetAddress,
+      name: await namePromise,
+      symbol: await symbolPromise,
+      decimals: await decimalsPromise,
+      amount: underlyingAmount,
+    };
   }
 
   getTermAPR?(underlying: AztecAsset, auxData: bigint, inputValue: bigint): Promise<number> {
