@@ -9,11 +9,11 @@ export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
   protected constructor(protected ethersProvider: StaticJsonRpcProvider) {}
   minTokenOut = {
     0: 99n * 10n ** 16n, // ETH
-    1: 97n * 10n ** 16n, // DAI
+    1: 96n * 10n ** 16n, // DAI
     2: 99n * 10n ** 16n, // WSTETH
     5: 99n * 10n ** 16n, // weWETH
     6: 99n * 10n ** 16n, // weWSTETH
-    7: 97n * 10n ** 16n, // weDAI
+    7: 96n * 10n ** 16n, // weDAI
   };
   getInteractionPresentValue?(interactionNonce: number, inputValue: bigint): Promise<AssetValue[]> {
     throw new Error('Method not implemented.');
