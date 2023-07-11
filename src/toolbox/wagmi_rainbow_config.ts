@@ -1,11 +1,9 @@
 import '@rainbow-me/rainbowkit/styles.css';
-import { connectorsForWallets } from '@rainbow-me/rainbowkit';
-import { metaMaskWallet, walletConnectWallet, braveWallet } from '@rainbow-me/rainbowkit/wallets';
-
 import { configureChains, createClient, Chain } from 'wagmi';
 import { mainnet, localhost } from 'wagmi/chains';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import type { Config } from '../config.js';
+import { getDefaultWallets } from '@rainbow-me/rainbowkit';
 
 function getChain(config: Config): Chain {
   switch (config.chainId) {
@@ -45,8 +43,14 @@ function getPublicProvider(config: Config) {
 export function getWagmiRainbowConfig(config: Config) {
   const { chains, provider, webSocketProvider } = configureChains([getChain(config)], [getPublicProvider(config)]);
 
-  const wallets = [metaMaskWallet({ chains }), walletConnectWallet({ chains }), braveWallet({ chains })];
-  const connectors = connectorsForWallets([{ groupName: 'Supported', wallets }]);
+  const projectId = "053382c46f8e0d402053239255ef9783";
+  const { connectors } = getDefaultWallets(
+    {
+      appName: "zk-money",
+      projectId,
+      chains
+    }
+  )
   const wagmiClient = createClient({
     autoConnect: true,
     connectors,
