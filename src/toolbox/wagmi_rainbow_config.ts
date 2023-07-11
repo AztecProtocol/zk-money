@@ -43,14 +43,12 @@ function getPublicProvider(config: Config) {
 export function getWagmiRainbowConfig(config: Config) {
   const { chains, provider, webSocketProvider } = configureChains([getChain(config)], [getPublicProvider(config)]);
 
-  const projectId = "053382c46f8e0d402053239255ef9783";
-  const { connectors } = getDefaultWallets(
-    {
-      appName: "zk-money",
-      projectId,
-      chains
-    }
-  )
+  const projectId = '053382c46f8e0d402053239255ef9783';
+  const { connectors } = getDefaultWallets({
+    appName: 'zk-money',
+    projectId,
+    chains,
+  });
   const wagmiClient = createClient({
     autoConnect: true,
     connectors,
