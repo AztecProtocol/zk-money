@@ -112,11 +112,12 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
                 onClick={() => onSend?.(asset)}
                 size={ButtonSize.Medium}
                 theme={ButtonTheme.Secondary}
-                text={'Exit'}
+                text={'Withdraw'}
                 disabled={walletInteractionIsOngoing || !isSynced}
               />
             )}
-            {!exitSupported && (
+            {/* Support exit and withdrawal of yvDAI  */}
+            {(!exitSupported || asset.id === 3) && (
               <Button
                 className={style.button}
                 onClick={() => onGoToEarn?.(asset)}
