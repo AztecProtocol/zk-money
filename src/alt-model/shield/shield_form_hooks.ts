@@ -104,7 +104,7 @@ export function useShieldForm(
 
   const attemptLock = () => {
     setAttemptedLock(true);
-    if (!validationResult.isValid) {
+    if (validationResult.isValid === false) {
       debug('Attempted to submit invalid form | reason string: ', validationResult.isValidReasonString);
       return;
     }
