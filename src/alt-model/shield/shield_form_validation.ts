@@ -138,7 +138,6 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
   const couldShieldIfThereWereNoCosts =
     insufficientTargetAssetBalance && l1Balance >= requiredL1InputIfThereWereNoCosts;
 
-
   const mustAllowForFee = targetAssetIsPayingFee && couldShieldIfThereWereNoCosts;
   const mustAllowForGas = isEth && couldShieldIfThereWereNoCosts;
 
@@ -149,9 +148,10 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
     insufficientTargetAssetBalance,
     insufficientFeePayingAssetBalance,
     beyondTransactionLimit,
-    noAmount ,
-    precisionIsTooHigh ,
-    aliasIsValid)
+    noAmount,
+    precisionIsTooHigh,
+    aliasIsValid,
+  );
 
   const validPayload = isValid
     ? {
@@ -185,34 +185,41 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
 }
 
 /** Returns whether the deposit is valid or not, including a reason string if not.
- * 
- * @param insufficientFeePayingAssetBalance 
- * @param insufficientTargetAssetBalance 
- * @param beyondTransactionLimit 
- * @param noAmount 
- * @param precisionIsTooHigh 
- * @param aliasIsValid 
+ *
+ * @param insufficientFeePayingAssetBalance
+ * @param insufficientTargetAssetBalance
+ * @param beyondTransactionLimit
+ * @param noAmount
+ * @param precisionIsTooHigh
+ * @param aliasIsValid
  * @returns bool and reason string
  */
-function isFormValid(insufficientFeePayingAssetBalance: boolean, insufficientTargetAssetBalance: boolean, beyondTransactionLimit: boolean, noAmount: boolean, precisionIsTooHigh: boolean, aliasIsValid: boolean): [boolean, string] {
+function isFormValid(
+  insufficientFeePayingAssetBalance: boolean,
+  insufficientTargetAssetBalance: boolean,
+  beyondTransactionLimit: boolean,
+  noAmount: boolean,
+  precisionIsTooHigh: boolean,
+  aliasIsValid: boolean,
+): [boolean, string] {
   if (insufficientFeePayingAssetBalance) {
-    return [false, "insufficientFeePayingAssetBalance"];
+    return [false, 'insufficientFeePayingAssetBalance'];
   }
   if (insufficientTargetAssetBalance) {
-    return [false, "insufficientTargetAssetBalance"];
+    return [false, 'insufficientTargetAssetBalance'];
   }
   if (beyondTransactionLimit) {
-    return [false, "beyondTransactionLimit"];
+    return [false, 'beyondTransactionLimit'];
   }
   if (noAmount) {
-    return [false, "noAmount"];
+    return [false, 'noAmount'];
   }
   if (precisionIsTooHigh) {
-    return [false, "precisionIsTooHigh"];
+    return [false, 'precisionIsTooHigh'];
   }
   if (!aliasIsValid) {
-    return [false, "aliasIsInValid"];
+    return [false, 'aliasIsInValid'];
   }
 
-  return [true, ""];
+  return [true, ''];
 }
