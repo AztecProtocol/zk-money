@@ -74,6 +74,7 @@ export function useShieldForm(
     200,
     true,
   );
+
   const validationResult = validateShieldForm({
     fields,
     amountFactory,
@@ -104,7 +105,7 @@ export function useShieldForm(
   const attemptLock = () => {
     setAttemptedLock(true);
     if (!validationResult.isValid) {
-      debug('Attempted to submit invalid form');
+      debug('Attempted to submit invalid form | reason string: ', validationResult.isValidReasonString);
       return;
     }
     if (lockedComposer) {

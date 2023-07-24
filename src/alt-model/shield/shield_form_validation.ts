@@ -51,6 +51,7 @@ export interface ShieldFormValidationResult {
   noAmount?: boolean;
   precisionIsTooHigh?: boolean;
   isValid?: boolean;
+  isValidReasonString?: string;
   validPayload?: ShieldComposerPayload;
   maxL2Output?: bigint;
   targetL2OutputAmount?: Amount;
@@ -128,25 +129,30 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
   const requiredL1InputCoveringCosts = requiredL1InputIfThereWereNoCosts + totalCost;
 
   const beyondTransactionLimit = targetL2OutputAmount.baseUnits > transactionLimit;
+
   const noAmount = targetL2OutputAmount.baseUnits <= 0n;
   const insufficientTargetAssetBalance = l1Balance < requiredL1InputCoveringCosts;
+
   const insufficientFeePayingAssetBalance = !targetAssetIsPayingFee && balanceInFeePayingAsset < feeAmount.baseUnits;
 
   const couldShieldIfThereWereNoCosts =
     insufficientTargetAssetBalance && l1Balance >= requiredL1InputIfThereWereNoCosts;
+
+
   const mustAllowForFee = targetAssetIsPayingFee && couldShieldIfThereWereNoCosts;
   const mustAllowForGas = isEth && couldShieldIfThereWereNoCosts;
 
   const precisionIsTooHigh = getPrecisionIsTooHigh(targetL2OutputAmount);
   const aliasIsValid = !!recipientUserId && !isLoadingRecipientUserId;
 
-  const isValid =
-    !insufficientTargetAssetBalance &&
-    !insufficientFeePayingAssetBalance &&
-    !beyondTransactionLimit &&
-    !noAmount &&
-    !precisionIsTooHigh &&
-    aliasIsValid;
+  const [isValid, isValidReasonString] = isFormValid(
+    insufficientTargetAssetBalance,
+    insufficientFeePayingAssetBalance,
+    beyondTransactionLimit,
+    noAmount ,
+    precisionIsTooHigh ,
+    aliasIsValid)
+
   const validPayload = isValid
     ? {
         targetOutput: targetL2OutputAmount,
@@ -167,6 +173,7 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
     noAmount,
     precisionIsTooHigh,
     isValid,
+    isValidReasonString,
     validPayload,
     input,
     maxL2Output,
@@ -175,4 +182,37 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
     requiredL1InputCoveringCosts,
     hasPendingBalance,
   };
+}
+
+/** Returns whether the deposit is valid or not, including a reason string if not.
+ * 
+ * @param insufficientFeePayingAssetBalance 
+ * @param insufficientTargetAssetBalance 
+ * @param beyondTransactionLimit 
+ * @param noAmount 
+ * @param precisionIsTooHigh 
+ * @param aliasIsValid 
+ * @returns bool and reason string
+ */
+function isFormValid(insufficientFeePayingAssetBalance: boolean, insufficientTargetAssetBalance: boolean, beyondTransactionLimit: boolean, noAmount: boolean, precisionIsTooHigh: boolean, aliasIsValid: boolean): [boolean, string] {
+  if (insufficientFeePayingAssetBalance) {
+    return [false, "insufficientFeePayingAssetBalance"];
+  }
+  if (insufficientTargetAssetBalance) {
+    return [false, "insufficientTargetAssetBalance"];
+  }
+  if (beyondTransactionLimit) {
+    return [false, "beyondTransactionLimit"];
+  }
+  if (noAmount) {
+    return [false, "noAmount"];
+  }
+  if (precisionIsTooHigh) {
+    return [false, "precisionIsTooHigh"];
+  }
+  if (!aliasIsValid) {
+    return [false, "aliasIsInValid"];
+  }
+
+  return [true, ""];
 }
