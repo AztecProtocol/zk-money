@@ -51,6 +51,7 @@ export interface ShieldFormValidationResult {
   noAmount?: boolean;
   precisionIsTooHigh?: boolean;
   isValid?: boolean;
+  isValidReasonString?: string;
   validPayload?: ShieldComposerPayload;
   maxL2Output?: bigint;
   targetL2OutputAmount?: Amount;
@@ -101,6 +102,10 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
     return { unrecognisedTargetAmount: true, input };
   }
 
+  // Keep track of exactly how the form failed
+  let isValid = true;
+  let isValidReasonString = '';
+
   // If the target asset isn't used for paying the fee, we don't need to reserve funds for it
   const targetAssetIsPayingFee = fields.assetId === feeAmount.id;
   const feeInTargetAsset = targetAssetIsPayingFee ? feeAmount.baseUnits : 0n;
@@ -127,26 +132,72 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
   const requiredL1InputIfThereWereNoCosts = targetL2OutputAmount.baseUnits - l1PendingBalance;
   const requiredL1InputCoveringCosts = requiredL1InputIfThereWereNoCosts + totalCost;
 
-  const beyondTransactionLimit = targetL2OutputAmount.baseUnits > transactionLimit;
+  // Check if we are beyond the transaction limit
+  const beyondTransactionLimit = targetL2OutputAmount.baseUnits > maxL2Output;
+  if (beyondTransactionLimit) {
+    isValid = false;
+    isValidReasonString =
+      'beyondTransactionLimit, maxL2Output: ' +
+      maxL2Output.toString() +
+      ' targetL2OutputAmount: ' +
+      targetL2OutputAmount.baseUnits.toString();
+  }
+
+  // Check if the user has entered an amount
   const noAmount = targetL2OutputAmount.baseUnits <= 0n;
+  if (noAmount) {
+    isValid = false;
+    isValidReasonString = 'noAmount';
+  }
+
+  // Check if the target balance is too small
   const insufficientTargetAssetBalance = l1Balance < requiredL1InputCoveringCosts;
+  if (insufficientTargetAssetBalance) {
+    isValid = false;
+    isValidReasonString =
+      'insufficientTargetAssetBalance, l1Balance: ' +
+      l1Balance.toString() +
+      ' requiredL1InputCoveringCosts: ' +
+      requiredL1InputCoveringCosts.toString();
+  }
+
   const insufficientFeePayingAssetBalance = !targetAssetIsPayingFee && balanceInFeePayingAsset < feeAmount.baseUnits;
+  if (insufficientFeePayingAssetBalance) {
+    isValid = false;
+    isValidReasonString =
+      'insufficientFeePayingAssetBalance, balanceInFeePayingAsset: ' +
+      balanceInFeePayingAsset.toString() +
+      ' feeAmount.baseUnits: ' +
+      feeAmount.baseUnits.toString();
+  }
 
   const couldShieldIfThereWereNoCosts =
     insufficientTargetAssetBalance && l1Balance >= requiredL1InputIfThereWereNoCosts;
+  if (couldShieldIfThereWereNoCosts) {
+    isValid = false;
+    isValidReasonString =
+      'couldShieldIfThereWereNoCosts, l1Balance: ' +
+      l1Balance.toString() +
+      ' requiredL1InputIfThereWereNoCosts: ' +
+      requiredL1InputIfThereWereNoCosts.toString();
+  }
+
   const mustAllowForFee = targetAssetIsPayingFee && couldShieldIfThereWereNoCosts;
   const mustAllowForGas = isEth && couldShieldIfThereWereNoCosts;
 
   const precisionIsTooHigh = getPrecisionIsTooHigh(targetL2OutputAmount);
-  const aliasIsValid = !!recipientUserId && !isLoadingRecipientUserId;
+  if (precisionIsTooHigh) {
+    isValid = false;
+    isValidReasonString = 'precisionIsTooHigh, targetL2OutputAmount: ' + targetL2OutputAmount.baseUnits.toString();
+  }
 
-  const isValid =
-    !insufficientTargetAssetBalance &&
-    !insufficientFeePayingAssetBalance &&
-    !beyondTransactionLimit &&
-    !noAmount &&
-    !precisionIsTooHigh &&
-    aliasIsValid;
+  const aliasIsValid = !!recipientUserId && !isLoadingRecipientUserId;
+  if (!aliasIsValid) {
+    isValid = false;
+    isValidReasonString =
+      'aliasIsInValid, recipientUserId: ' + recipientUserId + ' isLoadingRecipientUserId: ' + isLoadingRecipientUserId;
+  }
+
   const validPayload = isValid
     ? {
         targetOutput: targetL2OutputAmount,
@@ -167,6 +218,7 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
     noAmount,
     precisionIsTooHigh,
     isValid,
+    isValidReasonString,
     validPayload,
     input,
     maxL2Output,
