@@ -108,7 +108,7 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
 
   // If the target asset isn't used for paying the fee, we don't need to reserve funds for it
   const targetAssetIsPayingFee = fields.assetId === feeAmount.id;
-  const feeInTargetAsset = targetAssetIsPayingFee ? feeAmount.baseUnits : 0n;
+  // const feeInTargetAsset = targetAssetIsPayingFee ? feeAmount.baseUnits : 0n;
 
   const requiresSpendingKey = !targetAssetIsPayingFee;
   if (requiresSpendingKey && !signerAddress.equals(depositor)) {
