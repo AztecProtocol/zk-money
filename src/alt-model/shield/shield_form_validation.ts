@@ -108,7 +108,7 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
 
   // If the target asset isn't used for paying the fee, we don't need to reserve funds for it
   const targetAssetIsPayingFee = fields.assetId === feeAmount.id;
-  const feeInTargetAsset = targetAssetIsPayingFee ? feeAmount.baseUnits : 0n;
+  // const feeInTargetAsset = targetAssetIsPayingFee ? feeAmount.baseUnits : 0n;
 
   const requiresSpendingKey = !targetAssetIsPayingFee;
   if (requiresSpendingKey && !signerAddress.equals(depositor)) {
@@ -117,14 +117,18 @@ export function validateShieldForm(input: ShieldFormValidationInputs): ShieldFor
 
   // If it's ETH being shielded, we need to reserve funds for gas costs
   const isEth = targetAsset.id === 0;
-  const reservedForL1GasIfTargetAssetIsEth = isEth ? approveProofGasCost + depositFundsGasCost : 0n;
+  // const reservedForL1GasIfTargetAssetIsEth = isEth ? approveProofGasCost + depositFundsGasCost : 0n;
+  // NOTE: This is currently hardcoded to zero as users cannot actually deposit right now
+  const reservedForL1GasIfTargetAssetIsEth = 0n;
 
   // Some value may already be deposited, and will be used first
   const hasPendingBalance = l1PendingBalance > 0n;
   const totalL1Balance = l1Balance + l1PendingBalance;
 
   // Accounting for both L1 gas and L2 fees
-  const totalCost = feeInTargetAsset + reservedForL1GasIfTargetAssetIsEth;
+  // const totalCost = feeInTargetAsset + reservedForL1GasIfTargetAssetIsEth;
+  // NOTE: hardcoded to 0 as there are no costs to withdraw
+  const totalCost = 0n;
 
   const maxL2Output = max(min(totalL1Balance - totalCost, transactionLimit), 0n);
   const targetL2OutputAmount = amountFromStrOrMaxRoundedDown(fields.amountStrOrMax, maxL2Output, targetAsset);
