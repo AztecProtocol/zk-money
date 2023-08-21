@@ -104,16 +104,6 @@ export function Holding({ assetValue, onSend, onShield, onGoToEarn }: HoldingPro
         </div>
       </div>
       <div className={style.buttonsWrapper}>
-        {/* This is how to add the deposit button back */}
-        {/* <Button
-                className={style.button}
-                onClick={() => onShield?.(asset)}
-                size={ButtonSize.Medium}
-                theme={ButtonTheme.Secondary}
-                text={'Deposit'}
-                disabled={walletInteractionIsOngoing || !isSynced}
-              /> */}
-
         {!spendableBalanceIsDust && (
           <>
             {exitSupported && (
