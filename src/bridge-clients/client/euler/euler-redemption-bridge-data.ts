@@ -7,13 +7,16 @@ import { AuxDataConfig, AztecAsset, BridgeDataFieldGetters, SolidityType, Underl
 
 export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
   protected constructor(protected ethersProvider: StaticJsonRpcProvider) {}
+  // using 0.95 as minimums to account for large price fluctuations between dai/eth
+  // in the time between user proof generation and inclusion on L1.
+  const MINIMUM_OUT = 95n * 10n ** 16n;
   minTokenOut = {
-    0: 99n * 10n ** 16n, // ETH
-    1: 96n * 10n ** 16n, // DAI
-    2: 99n * 10n ** 16n, // WSTETH
-    5: 99n * 10n ** 16n, // weWETH
-    6: 99n * 10n ** 16n, // weWSTETH
-    7: 96n * 10n ** 16n, // weDAI
+    0: MINIMUM_OUT, // ETH
+    1: MINIMUM_OUT, // DAI
+    2: MINIMUM_OUT, // WSTETH
+    5: MINIMUM_OUT, // weWETH
+    6: MINIMUM_OUT, // weWSTETH
+    7: MINIMUM_OUT, // weDAI
   };
   getInteractionPresentValue?(interactionNonce: number, inputValue: bigint): Promise<AssetValue[]> {
     throw new Error('Method not implemented.');
