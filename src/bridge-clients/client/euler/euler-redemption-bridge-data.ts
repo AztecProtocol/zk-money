@@ -5,11 +5,12 @@ import { IERC4626__factory, IERC20Metadata__factory } from '../../typechain-type
 
 import { AuxDataConfig, AztecAsset, BridgeDataFieldGetters, SolidityType, UnderlyingAsset } from '../bridge-data.js';
 
+// using 0.95 as minimums to account for large price fluctuations between dai/eth
+// in the time between user proof generation and inclusion on L1.
+const MINIMUM_OUT = 95n * 10n ** 16n;
+
 export class EulerRedemptionBridgeData implements BridgeDataFieldGetters {
   protected constructor(protected ethersProvider: StaticJsonRpcProvider) {}
-  // using 0.95 as minimums to account for large price fluctuations between dai/eth
-  // in the time between user proof generation and inclusion on L1.
-  private MINIMUM_OUT = 95n * 10n ** 16n;
   minTokenOut = {
     0: MINIMUM_OUT, // ETH
     1: MINIMUM_OUT, // DAI
