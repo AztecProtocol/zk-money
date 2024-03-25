@@ -15,55 +15,47 @@ import { getWagmiRainbowConfig } from './toolbox/wagmi_rainbow_config.js';
 const PROD_EXPLORER_URL = 'https://aztec-connect-prod-explorer.aztec.network/';
 
 async function rootRender() {
-  try {
-    const supportStatusProm = getSupportStatus();
-    const { config, initialRollupProviderStatus, staleFrontend } = await getEnvironment();
-    const { wagmiClient, chains } = getWagmiRainbowConfig(config);
-    const supportStatus = await supportStatusProm;
-    if (supportStatus !== 'supported') {
-      return (
-        <BrowserRouter>
-          <AppInitFailed reason={{ type: 'unsupported', supportStatus }} explorerUrl={PROD_EXPLORER_URL} />
-        </BrowserRouter>
-      );
-    } else if (staleFrontend) {
-      return (
-        <BrowserRouter>
-          <AppInitFailed reason={{ type: 'stale-frontend' }} explorerUrl={PROD_EXPLORER_URL} />
-        </BrowserRouter>
-      );
-    }
-    if (window.location.pathname === '/toolbox') {
-      return <Toolbox config={config} />;
-    }
-
-    return (
-      <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider
-          theme={lightTheme({
-            accentColor: 'white',
-            accentColorForeground: 'black',
-            borderRadius: 'medium',
-            fontStack: 'system',
-            overlayBlur: 'none',
-          })}
-          chains={chains}
-        >
-          <TopLevelContextProvider config={config} initialRollupProviderStatus={initialRollupProviderStatus}>
-            <BrowserRouter>
-              <Views config={config} />
-            </BrowserRouter>
-          </TopLevelContextProvider>
-        </RainbowKitProvider>
-      </WagmiConfig>
-    );
-  } catch (e) {
+  const supportStatusProm = getSupportStatus();
+  const { config, initialRollupProviderStatus, staleFrontend } = await getEnvironment();
+  const { wagmiClient, chains } = getWagmiRainbowConfig(config);
+  const supportStatus = await supportStatusProm;
+  if (supportStatus !== 'supported') {
     return (
       <BrowserRouter>
-        <AppInitFailed reason={{ type: 'falafel-down' }} explorerUrl={PROD_EXPLORER_URL} />
+        <AppInitFailed reason={{ type: 'unsupported', supportStatus }} explorerUrl={PROD_EXPLORER_URL} />
+      </BrowserRouter>
+    );
+  } else if (staleFrontend) {
+    return (
+      <BrowserRouter>
+        <AppInitFailed reason={{ type: 'stale-frontend' }} explorerUrl={PROD_EXPLORER_URL} />
       </BrowserRouter>
     );
   }
+  if (window.location.pathname === '/toolbox') {
+    return <Toolbox config={config} />;
+  }
+
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider
+        theme={lightTheme({
+          accentColor: 'white',
+          accentColorForeground: 'black',
+          borderRadius: 'medium',
+          fontStack: 'system',
+          overlayBlur: 'none',
+        })}
+        chains={chains}
+      >
+        <TopLevelContextProvider config={config} initialRollupProviderStatus={initialRollupProviderStatus}>
+          <BrowserRouter>
+            <Views config={config} />
+          </BrowserRouter>
+        </TopLevelContextProvider>
+      </RainbowKitProvider>
+    </WagmiConfig>
+  );
 }
 
 async function main() {
