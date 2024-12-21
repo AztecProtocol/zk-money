@@ -20,7 +20,7 @@ async function getDepositFundsGasEstimate(contract: Contract, fromAddressStr: st
   // in the fallback values.
   return 70000n;
 
-  // // A non-zero value indicates some token is has to be transfered
+  // // A non-zero value indicates some token is has to be transferred
   // const ethValue = assetId === 0 ? 1n : 0n;
   // const tokenValue = assetId === 0 ? 0n : 1n;
   // const proofHash = TxId.random().toString();
