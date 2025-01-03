@@ -18,7 +18,7 @@ export function useTrackedFieldChangeHandlers<TFields extends {}>(
   // Initialising to a ref instead of memoising is safe on the assumptions that:
   //   - fieldsSetter is a stable react state hook rather than some arrow function with captures
   //   - The keys of `fields` all start with a defined value.
-  // Using a ref is desirable becuase it stablises the setters for use in effect hooks
+  // Using a ref is desirable because it stablises the setters for use in effect hooks
   const fieldSettersRef = useRef<FieldSetters<TFields>>();
   if (!fieldSettersRef.current) {
     fieldSettersRef.current = mapObj(fields, (_, name) => (value: typeof _) => {
