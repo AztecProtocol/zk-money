@@ -74,7 +74,7 @@ export class SendComposer {
           targetAmount.toAssetValue(),
           feeAmount.toAssetValue(),
           recipient.userId,
-          true, // recipientAccountRequired: (transfering to an account that is registered)
+          true, // recipientAccountRequired: (transferring to an account that is registered)
         );
       } else {
         controller = sdk.createWithdrawController(
