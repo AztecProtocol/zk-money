@@ -11,7 +11,7 @@ import path from 'path';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
